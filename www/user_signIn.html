@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Personal Stylist</title>
+    <title>Personal Stylist - User Sign In</title>
 
     <link rel="manifest" href="manifest.json">
 
@@ -36,19 +36,22 @@
   <body ng-app="starter">
     <!-- Header -->
     <ion-header-bar>
-      <h1>Personal Stylist</h1>
+      <h1>User Sign-In</h1>
     </ion-header-bar>
 
     
     <ion-content>
-      <!-- Greeting Message -->
-      Greeting users, please select one to continue
-    
+      <!-- User Login -->    
+      <div>
+      	<label><input type="text" placeholder="Username"></label>
+      	<label><input type="text" placeholder="placeholder2"></label>
+      	<label><input type="text" placeholder="placeholder3"></label>
+	  </div>
       <br>
-
+      
       <!-- Buttons -->
-      <button ion-button icon-start onclick="location.href='stylist_signIn.html'">Stylist</button>
-      <button ion-button icon-end onclick="location.href='user_signIn.html'">User</button>
+      <button ion-button icon-start onclick="#">Register</button>
+      <button ion-button icon-end onclick="location.href='user_main.html'">Sign-In</button>
     </ion-content>
   </body>
 </html>

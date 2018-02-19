@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Personal Stylist</title>
+    <title>Personal Stylist - Stylist Main</title>
 
     <link rel="manifest" href="manifest.json">
 
@@ -36,19 +36,39 @@
   <body ng-app="starter">
     <!-- Header -->
     <ion-header-bar>
-      <h1>Personal Stylist</h1>
+      <h1>Stylist Main</h1>
     </ion-header-bar>
 
-    
-    <ion-content>
-      <!-- Greeting Message -->
-      Greeting users, please select one to continue
-    
-      <br>
+    <ion-side-menus>
+      <ion-side-menu side = "left">
+        <ion-content>
+          <button>Client 1</button>
+          <br>
+          <button>Client 2</button>
+          <br>
+          <button>Client 3</button>
+          <br>
+          <button>Client 4</button>
+          <br>
+          <button>Client 5</button>
+        </ion-content>
+      </ion-side-menu>
 
-      <!-- Buttons -->
-      <button ion-button icon-start onclick="location.href='stylist_signIn.html'">Stylist</button>
-      <button ion-button icon-end onclick="location.href='user_signIn.html'">User</button>
-    </ion-content>
+      <ion-side-menu-content>
+        <ion-content>
+          <!-- Greeting Message -->
+          <div>
+            <h2>Hello Stylist</h2> 
+            <p>BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH </p>   
+          </div>
+          
+          <div>
+            <h3>The best pictures</h3>
+            <p>BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH </p>
+          </div>
+
+        </ion-content>
+      </ion-side-menu-content>
+    </ion-side-menus>
   </body>
 </html>

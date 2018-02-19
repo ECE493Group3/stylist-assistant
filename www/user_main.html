@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Personal Stylist</title>
+    <title>Personal Stylist - User Main</title>
 
     <link rel="manifest" href="manifest.json">
 
@@ -36,19 +36,32 @@
   <body ng-app="starter">
     <!-- Header -->
     <ion-header-bar>
-      <h1>Personal Stylist</h1>
+      <h1>User Main</h1>
     </ion-header-bar>
 
-    
-    <ion-content>
-      <!-- Greeting Message -->
-      Greeting users, please select one to continue
-    
-      <br>
+    <ion-side-menus>
+      <ion-side-menu side = "left">
+        <ion-content>
+          <button>All</button>
+          <br>
+          <button>Top</button>
+          <br>
+          <button>Bottom</button>
+          <br>
+          <button>Full Body</button>
+        </ion-content>
+      </ion-side-menu>
 
-      <!-- Buttons -->
-      <button ion-button icon-start onclick="location.href='stylist_signIn.html'">Stylist</button>
-      <button ion-button icon-end onclick="location.href='user_signIn.html'">User</button>
-    </ion-content>
+      <ion-side-menu-content>
+        <ion-content>
+          <h2>Recommended Colloge</h2>
+
+          <h2>R.C.</h2>
+
+          <button ion-icon round>Wardrobe</button>
+          <button ion-icon round>Recommended</button>
+        </ion-content>
+      </ion-side-menu-content>
+    </ion-side-menus>
   </body>
 </html>
