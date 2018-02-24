@@ -22,3 +22,102 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+.config(function($stateProvider, $urlRouterProvider){
+
+  $stateProvider
+    .state('user_signin', {
+      url:"/user_signin",
+      views:{
+        "user-tab":{
+          templateUrl:"user_signin.html"          
+        }
+      }
+    })
+    .state('user_register', {
+      url:"/user_register",
+      views:{
+        "user-tab":{
+          templateUrl:"user_register.html"          
+        }
+      }
+    })
+    .state('stylist_signin',{
+      url:"/stylist_signin",
+      views:{
+        "stylist-tab":{
+          templateUrl:"stylist_signin.html"
+        }
+      }
+    })
+    .state('stylist_register', {
+      url:"/stylist_register",
+      views:{
+        "stylist-tab":{
+          templateUrl:"stylist_register.html"
+        }
+      }
+    })
+    ;
+})
+
+.controller('user_signin_controller', ['$scope', '$window', function($scope, $window){
+  $scope.count = 0;
+
+  $scope.submit = function(){
+    if($scope.username){
+      $scope.count += 1
+      $scope.username = 'Submit one more time to direct';
+      if($scope.count == 2){
+        $window.location.href = 'user_main.html';
+        $scope.count = 0;
+      };
+    };
+  };
+}])
+
+
+.controller('user_register_controller', ['$scope', '$window', function($scope, $window){
+  $scope.count = 0;
+
+  $scope.submit = function(){
+    if($scope.username){
+      $scope.count += 1
+      $scope.username = 'Submit one more time to direct';
+      if($scope.count == 2){
+        $window.location.href = 'user_main.html';
+        $scope.count = 0;
+      };
+    };
+  };
+}])
+
+.controller('stylist_signin_controller', ['$scope', '$window', function($scope, $window){
+  $scope.count = 0;
+
+  $scope.submit = function(){
+    if($scope.username){
+      $scope.count += 1
+      $scope.username = 'Submit one more time to direct';
+      if($scope.count == 2){
+        $window.location.href = 'user_main.html';
+        $scope.count = 0;
+      };
+    };
+  };
+}])
+
+.controller('stylist_register_controller', ['$scope', '$window', function($scope, $window){
+  $scope.count = 0;
+
+  $scope.submit = function(){
+    if($scope.username){
+      $scope.count += 1
+      $scope.username = 'Submit one more time to direct';
+      if($scope.count == 2){
+        $window.location.href = 'user_main.html';
+        $scope.count = 0;
+      };
+    };
+  };
+}]);
