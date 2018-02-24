@@ -62,6 +62,7 @@ angular.module('starter', ['ionic'])
 })
 
 .controller('user_signin_controller', ['$scope', '$window', function($scope, $window){
+  // controller for user signin
   $scope.count = 0;
 
   $scope.submit = function(){
@@ -78,6 +79,7 @@ angular.module('starter', ['ionic'])
 
 
 .controller('user_register_controller', ['$scope', '$window', function($scope, $window){
+  // controller for user register
   $scope.count = 0;
 
   $scope.submit = function(){
@@ -93,20 +95,23 @@ angular.module('starter', ['ionic'])
 }])
 
 .controller('stylist_signin_controller', ['$scope', '$window', function($scope, $window){
+  // controller for stylist sign in
   $scope.count = 0;
+
 
   $scope.submit = function(){
     if($scope.username){
       $scope.count += 1
       $scope.username = 'Submit one more time to direct';
       if($scope.count == 2){
-        $window.location.href = 'user_main.html';
+        $window.location.href = 'stylist_main.html';
         $scope.count = 0;
       };
     };
   };
 }])
 
+// controller for stylist register
 .controller('stylist_register_controller', ['$scope', '$window', function($scope, $window){
   $scope.count = 0;
 
@@ -115,7 +120,7 @@ angular.module('starter', ['ionic'])
       $scope.count += 1
       $scope.username = 'Submit one more time to direct';
       if($scope.count == 2){
-        $window.location.href = 'user_main.html';
+        $window.location.href = 'stylist_main.html';
         $scope.count = 0;
       };
     };

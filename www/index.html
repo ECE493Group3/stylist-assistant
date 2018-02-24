@@ -34,13 +34,15 @@
   </head>
 
   <body ng-app="starter">
-    <!-- Header -->
 
+    <!-- Header Navigation Bar-->
     <ion-nav-bar class = "bar-positive">
       <ion-title><h1>Personal Stylist</h1></ion-title>
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
+
     <ion-view>
+      <!-- Navigation Tabs -->
       <ion-tabs tabsPlacement="bottom" class = "tabs-positive">
         <ion-tab title = "<b>User</b>" href="#/user_signin">
           <ion-nav-view name="user-tab"></ion-nav-view>
@@ -51,6 +53,7 @@
       </ion-tabs>
     </ion-view>
 
+    <!-- User Sign In Form/ -->
     <script type="text/ng-template" id="user_signin.html">
       <ion-view view-title="User Sign In">
         <ion-content class="padding">
@@ -77,6 +80,7 @@
       </ion-view>
     </script>
 
+    <!-- User Register Form -->
     <script id="user_register.html" type="text/ng-template">
       <ion-view view-title="User Register">
         <ion-content class="padding">
@@ -107,6 +111,7 @@
       </ion-view>
     </script>
 
+    <!-- Stylist Register Form -->
     <script id="stylist_register.html" type="text/ng-template">
       <ion-view view-title="Stylist Register">
         <ion-content class="padding">
@@ -133,6 +138,8 @@
       </ion-view>
     </script>
 
+
+    <!-- Stylist Sign In Form -->
     <script id="stylist_signin.html" type="text/ng-template">
       <ion-view view-title="Stylist Sign In">
         <ion-content class="padding">
@@ -157,6 +164,5 @@
       </ion-view>
     </script>
 
-    <div></div>
   </body>
 </html>
