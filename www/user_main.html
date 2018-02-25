@@ -30,37 +30,55 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="js/app.js"></script>
+    <script src="js/user_main.js"></script>
   </head>
 
-  <body ng-app="starter">
-    <!-- Header -->
-    <ion-header-bar>
-      <h1>User Main</h1>
-    </ion-header-bar>
+  <body ng-app="user_module">
+    
+    
 
     <ion-side-menus>
-      <ion-side-menu side = "left">
-        <ion-content>
-          <button>All</button>
-          <br>
-          <button>Top</button>
-          <br>
-          <button>Bottom</button>
-          <br>
-          <button>Full Body</button>
+      <!-- Left Menu -->
+      <ion-side-menu side = "left" width="200">  
+        <ion-header-bar class = "bar-positive">
+          Options
+        </ion-header-bar>
+        <ion-content class = "padding">
+          <ion-list>
+            <ion-item href="#">
+              All
+            </ion-item>
+            <ion-item href="#">
+              Top
+            </ion-item>
+            <ion-item href="#">
+              Bottom
+            </ion-item>
+            <ion-item href="#">
+              Full Body
+            </ion-item>
         </ion-content>
       </ion-side-menu>
 
       <ion-side-menu-content>
-        <ion-content>
-          <h2>Recommended Colloge</h2>
+        <ion-nav-bar class = "bar-positive" animation = "no-animation">
+          <ion-nav-title><h1>Recommended</h1></ion-nav-title>
+          <ion-nav-back-button></ion-nav-back-button>
+          <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
 
-          <h2>R.C.</h2>
+        <ion-view>
+          <ion-content class="has-header">
+            <h2>Recommended Colloge</h2>
 
-          <button ion-icon round>Wardrobe</button>
-          <button ion-icon round>Recommended</button>
-        </ion-content>
+            <h2>R.C.</h2>
+
+            <button ion-icon round>Wardrobe</button>
+            <button ion-icon round>Recommended</button>
+          </ion-content>
+        </ion-view>  
       </ion-side-menu-content>
     </ion-side-menus>
   </body>

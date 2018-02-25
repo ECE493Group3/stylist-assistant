@@ -30,44 +30,63 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="js/app.js"></script>
+    <script src="js/stylist_main.js"></script>
   </head>
 
-  <body ng-app="starter">
-    <!-- Header -->
-    <ion-header-bar>
-      <h1>Stylist Main</h1>
-    </ion-header-bar>
+  <body ng-app="stylist_module">
 
     <ion-side-menus>
-      <ion-side-menu side = "left">
-        <ion-content>
-          <button>Client 1</button>
-          <br>
-          <button>Client 2</button>
-          <br>
-          <button>Client 3</button>
-          <br>
-          <button>Client 4</button>
-          <br>
-          <button>Client 5</button>
+      <!-- Left Menu -->
+      <ion-side-menu side = "left" width="200">  
+        <ion-header-bar class = "bar-positive">
+          <ion-title>Clients</ion-title>
+        </ion-header-bar>
+        <ion-content class = "">
+          <ion-list>
+            <ion-item href="#">
+              Client 1
+              <ion-icon name="body" item-right></ion-icon>
+            </ion-item>
+            <ion-item href="#">
+              Client 2
+            </ion-item>
+            <ion-item href="#">
+              Client 3
+            </ion-item>
+          </ion-list>
         </ion-content>
+
+        <ion-footer-bar>
+          <ion-toolbar>
+            <ion-buttons>
+              <button ion-button icon-only>
+                <ion-icon name="add-circle"></ion-icon>
+                Add Client
+              </button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer-bar>
+
       </ion-side-menu>
 
       <ion-side-menu-content>
-        <ion-content>
-          <!-- Greeting Message -->
-          <div>
-            <h2>Hello Stylist</h2> 
-            <p>BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH </p>   
-          </div>
-          
-          <div>
-            <h3>The best pictures</h3>
-            <p>BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH </p>
-          </div>
+        <ion-nav-bar class = "bar-positive" animation = "no-animation">
+          <ion-nav-title><h1>Recommended</h1></ion-nav-title>
+          <ion-nav-back-button></ion-nav-back-button>
+          <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
 
-        </ion-content>
+        <ion-view>
+          <ion-content class="has-header">
+            <h2>Client</h2>
+
+            <h2>Recommended</h2>
+
+            <h2>Dress Log</h2>
+          </ion-content>
+        </ion-view>  
       </ion-side-menu-content>
     </ion-side-menus>
   </body>
