@@ -29,39 +29,57 @@ angular.module('starter', ['ionic'])
     .state('user_signin', {
       url:"/user_signin",
       views:{
-        "user-tab":{
-          templateUrl:"user_signin.html"          
+        "user-view":{
+          templateUrl:"user/signin.html"          
         }
       }
     })
     .state('user_register', {
       url:"/user_register",
       views:{
-        "user-tab":{
-          templateUrl:"user_register.html"          
+        "user-view":{
+          templateUrl:"user/register.html"          
         }
       }
     })
     .state('stylist_signin',{
       url:"/stylist_signin",
       views:{
-        "stylist-tab":{
-          templateUrl:"stylist_signin.html"
+        "stylist-view":{
+          templateUrl:"stylist/signin.html"
         }
       }
     })
     .state('stylist_register', {
       url:"/stylist_register",
       views:{
-        "stylist-tab":{
-          templateUrl:"stylist_register.html"
+        "stylist-view":{
+          templateUrl:"stylist/register.html"
         }
       }
     })
+    .state('user_main', {
+      url:"/user_main",
+      views:{
+        "user-view":{
+          templateUrl:"user/user_main.html"          
+        }
+      }
+    })
+    .state('stylist_main',{
+      url:"/stylist_main",
+      views:{
+        "stylist-view":{
+          templateUrl:"stylist/stylist_main.html"    
+        }
+      }          
+    })
     ;
+
+    // $urlRouterProvider.otherwise("/user_signin");
 })
 
-.controller('user_signin_controller', ['$scope', '$window', function($scope, $window){
+.controller('user_signin_controller', ['$scope', '$location', function($scope, $location){
   // controller for user signin
   $scope.count = 0;
 
@@ -70,7 +88,8 @@ angular.module('starter', ['ionic'])
       $scope.count += 1
       $scope.username = 'Submit one more time to direct';
       if($scope.count == 2){
-        $window.location.href = 'user_main.html';
+        $location.path('/user_main');
+        // $window.location.href = '/user_main';
         $scope.count = 0;
       };
     };
@@ -78,7 +97,7 @@ angular.module('starter', ['ionic'])
 }])
 
 
-.controller('user_register_controller', ['$scope', '$window', function($scope, $window){
+.controller('user_register_controller', ['$scope', '$location', function($scope, $location){
   // controller for user register
   $scope.count = 0;
 
@@ -87,14 +106,14 @@ angular.module('starter', ['ionic'])
       $scope.count += 1
       $scope.username = 'Submit one more time to direct';
       if($scope.count == 2){
-        $window.location.href = 'user_main.html';
+        $location.path('/user_main');
         $scope.count = 0;
       };
     };
   };
 }])
 
-.controller('stylist_signin_controller', ['$scope', '$window', function($scope, $window){
+.controller('stylist_signin_controller', ['$scope', '$location', function($scope, $location){
   // controller for stylist sign in
   $scope.count = 0;
 
@@ -104,7 +123,9 @@ angular.module('starter', ['ionic'])
       $scope.count += 1
       $scope.username = 'Submit one more time to direct';
       if($scope.count == 2){
-        $window.location.href = 'stylist_main.html';
+
+        // $scope.navigation-tab.style.display="none"
+        $location.path('/stylist_main');
         $scope.count = 0;
       };
     };
@@ -112,7 +133,7 @@ angular.module('starter', ['ionic'])
 }])
 
 // controller for stylist register
-.controller('stylist_register_controller', ['$scope', '$window', function($scope, $window){
+.controller('stylist_register_controller', ['$scope', '$location', function($scope, $location){
   $scope.count = 0;
 
   $scope.submit = function(){
@@ -120,7 +141,7 @@ angular.module('starter', ['ionic'])
       $scope.count += 1
       $scope.username = 'Submit one more time to direct';
       if($scope.count == 2){
-        $window.location.href = 'stylist_main.html';
+        $location.path('/stylist_main');
         $scope.count = 0;
       };
     };

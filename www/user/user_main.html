@@ -1,0 +1,56 @@
+<ion-view view-title="User Main">
+	<ion-side-menus>
+	  <!-- Left Menu -->
+	  <ion-side-menu side = "left" width="200">  
+	    <ion-header-bar class = "bar-positive">
+	      Options
+	    </ion-header-bar>
+	    <ion-content class = "padding">
+	      <ion-list>
+	        <ion-item href="#">
+	          All
+	        </ion-item>
+	        <ion-item href="#">
+	          Top
+	        </ion-item>
+	        <ion-item href="#">
+	          Bottom
+	        </ion-item>
+	        <ion-item href="#">
+	          Full Body
+	        </ion-item>
+	    </ion-content>
+	  </ion-side-menu>
+
+	  <ion-side-menu-content>
+	    <ion-nav-bar class = "bar-positive" animation = "no-animation">
+	      <ion-nav-title><h1>User Main</h1></ion-nav-title>
+	      <ion-nav-back-button></ion-nav-back-button>
+	      <ion-nav-buttons side="left">
+	        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+	      </ion-nav-buttons>
+	    </ion-nav-bar>
+
+	    <ion-subheader-bar class="bar bar-subheader bar-positive">
+	    	<ion-tabs class = "tabs-positive">
+	    	  <ion-tab title = "<b>Wardrobe</b>" href="#/user_wardrobe">
+	    	    <ion-nav-view name="user-wardrobe-view"></ion-nav-view>
+	    	  </ion-tab>
+	    	  <ion-tab title = "<b>Recommended</b>" href="#/user_recommend">
+	    	    <ion-nav-view name="user-recommend-view"></ion-nav-view>
+	    	  </ion-tab>
+	    	</ion-tabs>
+	    </ion-subheader-bar>
+
+      <ion-content class="has-subheader">
+        <h2>Recommended Colloge</h2>
+
+        <h2>R.C.</h2>
+
+        <button ion-icon round>Wardrobe</button>
+        <button ion-icon round>Recommended</button>
+      </ion-content>
+
+	  </ion-side-menu-content>
+	</ion-side-menus>
+</ion-view>

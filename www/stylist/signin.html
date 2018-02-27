@@ -1,0 +1,25 @@
+<ion-nav-bar class = "bar-positive">
+  <ion-nav-title>Stylist Sign In</ion-nav-title>
+  <ion-nav-back-button></ion-nav-back-button>
+</ion-nav-bar>
+<ion-view>
+  <ion-content class="has-header padding">
+    <form name="stylist_signin_form" ng-submit="submit()" ng-controller="stylist_signin_controller">
+      <ion-list>
+        <item>
+          <input type="text" name="username" ng-model="username" placeholder="Username" required>
+          <span ng-show="stylist_signin_form.username.$touched && stylist_signin_form.username.$invalid">The username is required.</span>
+        </item>
+        <item>
+          <input type="password" name = "pword" ng-model = "pword" placeholder="password" required>
+          <span ng-show="stylist_signin_form.pword.$touched && stylist_signin_form.pword.$invalid">The password is required.</span>
+        </item>
+      </ion-list>
+
+      <button ion-button icon-end type="submit">Sign-In</button>
+      <button ion-button icon-end type="reset">Clear</button>
+    </form>
+    <p>
+      Not a user? <a href="#/stylist_register">Register</a>
+    </p>
+</ion-view>

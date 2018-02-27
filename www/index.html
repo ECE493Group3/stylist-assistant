@@ -35,134 +35,16 @@
 
   <body ng-app="starter">
 
-    <!-- Header Navigation Bar-->
-    <ion-nav-bar class = "bar-positive">
-      <ion-title><h1>Personal Stylist</h1></ion-title>
-      <ion-nav-back-button></ion-nav-back-button>
-    </ion-nav-bar>
-
     <ion-view>
-      <!-- Navigation Tabs -->
       <ion-tabs tabsPlacement="bottom" class = "tabs-positive">
         <ion-tab title = "<b>User</b>" href="#/user_signin">
-          <ion-nav-view name="user-tab"></ion-nav-view>
+          <ion-nav-view name="user-view"></ion-nav-view>
         </ion-tab>
         <ion-tab title = "<b>Stylist</b>" href="#/stylist_signin">
-          <ion-nav-view name="stylist-tab"></ion-nav-view>
+          <ion-nav-view name="stylist-view"></ion-nav-view>
         </ion-tab>
       </ion-tabs>
     </ion-view>
-
-    <!-- User Sign In Form/ -->
-    <script type="text/ng-template" id="user_signin.html">
-      <ion-view view-title="User Sign In">
-        <ion-content class="padding">
-          <form name="user_signin_form" ng-submit="submit()" ng-controller="user_signin_controller">
-            <ion-list>
-              <item>
-                <input type="text" name = "username" ng-model = "username" placeholder="Username" required>
-                <span ng-show="user_signin_form.username.$touched && user_signin_form.username.$invalid">The username is required.</span>
-              </item>
-              <item>
-                <input type="password" name = "pword" ng-model = "pword" placeholder="password" required>
-                <span ng-show="user_signin_form.pword.$touched && user_signin_form.pword.$invalid">The password is required.</span>
-              </item>
-            </ion-list>
-
-            <button ion-button icon-end type="submit">Sign-In</button>
-            <button ion-button icon-end type="reset">Clear</button>
-          </form>
-
-          <p>
-            Not a user? <a href="#/user_register">Register</a>
-          </p>
-        </ion-content>
-      </ion-view>
-    </script>
-
-    <!-- User Register Form -->
-    <script id="user_register.html" type="text/ng-template">
-      <ion-view view-title="User Register">
-        <ion-content class="padding">
-          <form name="user_register_form" ng-submit="submit()" ng-controller="user_register_controller">
-            <ion-list>
-              <item>
-                <input type="text" name ="username" ng-model="username" placeholder="Username" required>
-                <span ng-show="user_register_form.username.$touched && user_register_form.username.$invalid">The username is required.</span>
-              </item>
-              <item>
-                <input type="password" name = "pword" ng-model = "pword" placeholder="password" required>
-                <span ng-show="user_register_form.pword.$touched && user_register_form.pword.$invalid">The password is required.</span>
-              </item>
-              <item>
-                <input type="password" name = "re_pword" ng-model = "re_pword" placeholder="RetypePpassword" required>
-                <span ng-show="user_register_form.re_pword.$touched && user_register_form.re_pword.$invalid">The retype password is required.</span>
-              </item>
-              <item>
-                <input type="text" name = "stylist_code" ng-model = "stylist_code" placeholder="Stylist Code" required>
-                <span ng-show="user_register_form.stylist_code.$touched && user_register_form.stylist_code.$invalid">The Stylist Code is required.</span>
-              </item>
-            </ion-list>
-
-            <button ion-button icon-end type="submit">Register</button>
-            <button ion-button icon-end type="reset">Clear</button>
-          </form>
-        </ion-content>
-      </ion-view>
-    </script>
-
-    <!-- Stylist Register Form -->
-    <script id="stylist_register.html" type="text/ng-template">
-      <ion-view view-title="Stylist Register">
-        <ion-content class="padding">
-          <form name="stylist_register_form" ng-submit="submit()" ng-controller="stylist_register_controller">
-            <ion-list>
-              <item>
-                <input type="text" name="username" ng-model="username" placeholder="Username" required>
-                <span ng-show="stylist_register_form.username.$touched && stylist_register_form.username.$invalid">The username is required.</span>
-              </item>
-              <item>
-                <input type="password" name = "pword" ng-model = "pword" placeholder="password" required>
-                <span ng-show="stylist_register_form.pword.$touched && stylist_register_form.pword.$invalid">The password is required.</span>
-              </item>
-              <item>
-                <input type="password" name = "re_pword" ng-model = "re_pword" placeholder="Retype password" required>
-                <span ng-show="stylist_register_form.re_pword.$touched && stylist_register_form.re_pword.$invalid">The retype password is required.</span>
-              </item>
-            </ion-list>
-
-            <button ion-button icon-end type="submit">Register</button>
-            <button ion-button icon-end type="reset">Clear</button>
-          </form>
-        </ion-content>
-      </ion-view>
-    </script>
-
-
-    <!-- Stylist Sign In Form -->
-    <script id="stylist_signin.html" type="text/ng-template">
-      <ion-view view-title="Stylist Sign In">
-        <ion-content class="padding">
-          <form name="stylist_signin_form" ng-submit="submit()" ng-controller="stylist_signin_controller">
-            <ion-list>
-              <item>
-                <input type="text" name="username" ng-model="username" placeholder="Username" required>
-                <span ng-show="stylist_signin_form.username.$touched && stylist_signin_form.username.$invalid">The username is required.</span>
-              </item>
-              <item>
-                <input type="password" name = "pword" ng-model = "pword" placeholder="password" required>
-                <span ng-show="stylist_signin_form.pword.$touched && stylist_signin_form.pword.$invalid">The password is required.</span>
-              </item>
-            </ion-list>
-
-            <button ion-button icon-end type="submit">Sign-In</button>
-            <button ion-button icon-end type="reset">Clear</button>
-          </form>
-          <p>
-            Not a user? <a href="#/stylist_register">Register</a>
-          </p>
-      </ion-view>
-    </script>
 
   </body>
 </html>
