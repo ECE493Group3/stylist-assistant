@@ -1,0 +1,7 @@
+ion-list ion-item img {
+    width: 100%;
+}
+
+ion-list.listofcards ion-item {
+    margin-bottom: 10px;
+}
