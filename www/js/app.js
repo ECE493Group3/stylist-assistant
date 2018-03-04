@@ -66,6 +66,14 @@ angular.module('starter', ['ionic'])
         }
       }
     })
+    .state('user_recommend', {
+      url:"/user_recommend",
+      views:{
+        "user-view":{
+          templateUrl:"user/user_recommend.html"          
+        }
+      }
+    })    
     .state('stylist_main',{
       url:"/stylist_main",
       views:{
@@ -76,7 +84,7 @@ angular.module('starter', ['ionic'])
     })
     ;
 
-    // $urlRouterProvider.otherwise("/user_signin");
+    $urlRouterProvider.otherwise("/user_signin");
 })
 
 .controller('user_signin_controller', ['$scope', '$location', function($scope, $location){
