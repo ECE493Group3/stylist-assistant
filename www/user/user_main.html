@@ -23,25 +23,62 @@
 	  </ion-side-menu>
 
 	  <ion-side-menu-content>
-	    <ion-nav-bar class = "bar-positive" animation = "no-animation">
-	      <ion-nav-title><h1>User Main</h1></ion-nav-title>
+	    <ion-nav-bar class="bar" animation = "no-animation">
+	      <ion-nav-title>User Main</ion-nav-title>
 	      <ion-nav-back-button></ion-nav-back-button>
 	      <ion-nav-buttons side="left">
 	        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 	      </ion-nav-buttons>
 	    </ion-nav-bar>
 
-	    <ion-subheader-bar class="bar bar-subheader bar-positive">
-	    	<ion-tabs class = "tabs-positive">
-	    	  <ion-tab title = "<b>Wardrobe</b>" href="/user_main">
-	    	  </ion-tab>
-	    	  <ion-tab title = "<b>Recommended</b>" href="/user_recommend">
-	    	  </ion-tab>
+	    <ion-subheader-bar class="bar bar-subheader bar">
+	    	<ion-tabs class="tabs">
+					<ion-tab title="Wardrobe" href="/user_main">
+					</ion-tab>
+					<ion-tab title="Recommended" href="/user_recommend">
+					</ion-tab>
 	    	</ion-tabs>
 	    </ion-subheader-bar>
 
       <ion-content class="has-subheader padding">
-        <h2>Wardrobe</h2>
+				<ion-list class="listofcards"><!-- *ngFor="let country of countries"> -->
+					<ion-item>
+						<ion-card>
+							<img src="img/ionic.png" />
+							<!-- <ion-fab right bottom>
+								<button ion-fab (click)="edit()">
+									<ion-icon name="brush"></ion-icon>
+								</button>
+							</ion-fab> -->
+							<div class="card-title">Outfit #1</div>
+							<p>featuring all the things</p>
+						</ion-card>
+					</ion-item>
+					<ion-item>
+						<ion-card>
+							<img src="img/ionic.png" />
+							<!-- <ion-fab right bottom>
+														<button ion-fab (click)="edit()">
+															<ion-icon name="brush"></ion-icon>
+														</button>
+													</ion-fab> -->
+							<div class="card-title">Outfit #2</div>
+							<p>featuring all the other things</p>
+						</ion-card>
+					</ion-item>
+					<ion-item>
+						<ion-card>
+							<img src="img/ionic.png" />
+							<!-- <ion-fab right bottom>
+														<button ion-fab (click)="edit()">
+															<ion-icon name="brush"></ion-icon>
+														</button>
+													</ion-fab> -->
+							<div class="card-title">Outfit #2</div>
+							<p>featuring all the best things</p>
+						</ion-card>
+					</ion-item>
+				</ion-list>
       </ion-content>
 
 	  </ion-side-menu-content>
