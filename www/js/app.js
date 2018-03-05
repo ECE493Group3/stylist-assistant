@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+var app = angular.module('starter', ['ionic']);
 
-.run(function($ionicPlatform) {
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,137 +21,44 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-})
+});
 
-.config(function($stateProvider, $urlRouterProvider){
+app.config(function($stateProvider, $urlRouterProvider){
 
   $stateProvider
+    .state('welcome',{
+      url:"/welcome",
+      templateUrl:"welcome.html"
+    })
     .state('user_signin', {
       url:"/user_signin",
-      views:{
-        "user-view":{
-          templateUrl:"user/signin.html"          
-        }
-      }
+      templateUrl:"user/signin.html"          
     })
     .state('user_register', {
       url:"/user_register",
-      views:{
-        "user-view":{
-          templateUrl:"user/register.html"          
-        }
-      }
+      templateUrl:"user/register.html"          
     })
     .state('stylist_signin',{
       url:"/stylist_signin",
-      views:{
-        "stylist-view":{
-          templateUrl:"stylist/signin.html"
-        }
-      }
+      templateUrl:"stylist/signin.html"
     })
     .state('stylist_register', {
       url:"/stylist_register",
-      views:{
-        "stylist-view":{
-          templateUrl:"stylist/register.html"
-        }
-      }
+      templateUrl:"stylist/register.html"
     })
     .state('user_main', {
       url:"/user_main",
-      views:{
-        "user-view":{
-          templateUrl:"user/user_main.html"          
-        }
-      }
+      templateUrl:"user/user_main.html"          
     })
     .state('user_recommend', {
       url:"/user_recommend",
-      views:{
-        "user-view":{
-          templateUrl:"user/user_recommend.html"          
-        }
-      }
+      templateUrl:"user/user_recommend.html"          
     })    
     .state('stylist_main',{
       url:"/stylist_main",
-      views:{
-        "stylist-view":{
-          templateUrl:"stylist/stylist_main.html"    
-        }
-      }          
-    })
-    ;
+      templateUrl:"stylist/stylist_main.html"    
+    });
 
-    $urlRouterProvider.otherwise("/user_signin");
+    $urlRouterProvider.otherwise("/welcome");
 })
-
-.controller('user_signin_controller', ['$scope', '$location', function($scope, $location){
-  // controller for user signin
-  $scope.count = 0;
-
-  $scope.submit = function(){
-    if($scope.username){
-      $scope.count += 1
-      $scope.username = 'Submit one more time to direct';
-      if($scope.count == 2){
-        $location.path('/user_main');
-        // $window.location.href = '/user_main';
-        $scope.count = 0;
-      };
-    };
-  };
-}])
-
-
-.controller('user_register_controller', ['$scope', '$location', function($scope, $location){
-  // controller for user register
-  $scope.count = 0;
-
-  $scope.submit = function(){
-    if($scope.username){
-      $scope.count += 1
-      $scope.username = 'Submit one more time to direct';
-      if($scope.count == 2){
-        $location.path('/user_main');
-        $scope.count = 0;
-      };
-    };
-  };
-}])
-
-.controller('stylist_signin_controller', ['$scope', '$location', function($scope, $location){
-  // controller for stylist sign in
-  $scope.count = 0;
-
-
-  $scope.submit = function(){
-    if($scope.username){
-      $scope.count += 1
-      $scope.username = 'Submit one more time to direct';
-      if($scope.count == 2){
-
-        // $scope.navigation-tab.style.display="none"
-        $location.path('/stylist_main');
-        $scope.count = 0;
-      };
-    };
-  };
-}])
-
-// controller for stylist register
-.controller('stylist_register_controller', ['$scope', '$location', function($scope, $location){
-  $scope.count = 0;
-
-  $scope.submit = function(){
-    if($scope.username){
-      $scope.count += 1
-      $scope.username = 'Submit one more time to direct';
-      if($scope.count == 2){
-        $location.path('/stylist_main');
-        $scope.count = 0;
-      };
-    };
-  };
-}]);
+;
