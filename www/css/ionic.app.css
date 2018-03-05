@@ -4114,7 +4114,8 @@ a.subdued {
     font-size: 17px; }
   .bar-light .button.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
 
 .bar-stable .button {
   border-color: #b2b2b2;
@@ -4134,7 +4135,8 @@ a.subdued {
     font-size: 17px; }
   .bar-stable .button.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
 
 .bar-positive .button {
   border-color: #05075b;
@@ -4154,7 +4156,8 @@ a.subdued {
     font-size: 17px; }
   .bar-positive .button.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
 
 .bar-calm .button {
   border-color: #0a9dc7;
@@ -4174,7 +4177,8 @@ a.subdued {
     font-size: 17px; }
   .bar-calm .button.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
 
 .bar-assertive .button {
   border-color: #e42112;
@@ -4194,7 +4198,8 @@ a.subdued {
     font-size: 17px; }
   .bar-assertive .button.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
 
 .bar-balanced .button {
   border-color: #28a54c;
@@ -4214,7 +4219,8 @@ a.subdued {
     font-size: 17px; }
   .bar-balanced .button.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
 
 .bar-energized .button {
   border-color: #e6b500;
@@ -4234,7 +4240,8 @@ a.subdued {
     font-size: 17px; }
   .bar-energized .button.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
 
 .bar-royal .button {
   border-color: #6b46e5;
@@ -4254,7 +4261,8 @@ a.subdued {
     font-size: 17px; }
   .bar-royal .button.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
 
 .bar-dark .button {
   border-color: #111;
@@ -4274,7 +4282,8 @@ a.subdued {
     font-size: 17px; }
   .bar-dark .button.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
 
 .bar-header {
   top: 0;
@@ -8646,7 +8655,8 @@ progress {
       color: #ddd; }
     .button.button-light.button-icon {
       border-color: transparent;
-      background: none; }
+      background: none;
+      color: #080a8b; }
     .button.button-light.button-outline {
       border-color: #ddd;
       background: transparent;
@@ -8672,7 +8682,8 @@ progress {
       color: #b2b2b2; }
     .button.button-stable.button-icon {
       border-color: transparent;
-      background: none; }
+      background: none;
+      color: #080a8b; }
     .button.button-stable.button-outline {
       border-color: #b2b2b2;
       background: transparent;
@@ -8698,7 +8709,8 @@ progress {
       color: #080a8b; }
     .button.button-positive.button-icon {
       border-color: transparent;
-      background: none; }
+      background: none;
+      color: #080a8b; }
     .button.button-positive.button-outline {
       border-color: #080a8b;
       background: transparent;
@@ -8724,7 +8736,8 @@ progress {
       color: #11c1f3; }
     .button.button-calm.button-icon {
       border-color: transparent;
-      background: none; }
+      background: none;
+      color: #080a8b; }
     .button.button-calm.button-outline {
       border-color: #11c1f3;
       background: transparent;
@@ -8750,7 +8763,8 @@ progress {
       color: #ef473a; }
     .button.button-assertive.button-icon {
       border-color: transparent;
-      background: none; }
+      background: none;
+      color: #080a8b; }
     .button.button-assertive.button-outline {
       border-color: #ef473a;
       background: transparent;
@@ -8776,7 +8790,8 @@ progress {
       color: #33cd5f; }
     .button.button-balanced.button-icon {
       border-color: transparent;
-      background: none; }
+      background: none;
+      color: #080a8b; }
     .button.button-balanced.button-outline {
       border-color: #33cd5f;
       background: transparent;
@@ -8802,7 +8817,8 @@ progress {
       color: #ffc900; }
     .button.button-energized.button-icon {
       border-color: transparent;
-      background: none; }
+      background: none;
+      color: #080a8b; }
     .button.button-energized.button-outline {
       border-color: #ffc900;
       background: transparent;
@@ -8828,7 +8844,8 @@ progress {
       color: #886aea; }
     .button.button-royal.button-icon {
       border-color: transparent;
-      background: none; }
+      background: none;
+      color: #080a8b; }
     .button.button-royal.button-outline {
       border-color: #886aea;
       background: transparent;
@@ -8854,7 +8871,8 @@ progress {
       color: #444; }
     .button.button-dark.button-icon {
       border-color: transparent;
-      background: none; }
+      background: none;
+      color: #080a8b; }
     .button.button-dark.button-outline {
       border-color: #444;
       background: transparent;
@@ -8916,7 +8934,8 @@ progress {
     color: transparent; }
   .button-clear.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none;
+    color: #080a8b; }
   .button-clear.active, .button-clear.activated {
     opacity: 0.3; }
 

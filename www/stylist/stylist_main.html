@@ -3,17 +3,17 @@
     <ion-header-bar class = "bar-positive">
       <ion-title>Clients</ion-title>
     </ion-header-bar>
+    
     <ion-content class = "">
       <ion-list>
-        <ion-item href="#">
-          Client 1
-          <ion-icon name="body" item-right></ion-icon>
+        <ion-item class="item-avatar" href="#">
+          <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png">
+          <h2>ClientName1</h2>
+          <p>How you say broke in Spanish</p>
         </ion-item>
-        <ion-item href="#">
-          Client 2
-        </ion-item>
-        <ion-item href="#">
-          Client 3
+        <ion-item class="item-icon-left" href="#">
+          <i class="icon ion-plus"></i>
+          <h2>Add another</h2>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -32,11 +32,10 @@
   </ion-side-menu>
 
   <ion-side-menu-content>
-    <ion-nav-bar class = "bar-positive" animation = "no-animation">
-      <ion-nav-title><h1>Recommended</h1></ion-nav-title>
+    <ion-nav-bar class = "bar" animation = "no-animation">
       <ion-nav-back-button></ion-nav-back-button>
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        <button class="button button-icon button-positive ion-navicon" menu-toggle="left"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
 
