@@ -1,0 +1,55 @@
+ion-content#profile {
+    margin: 0 10px;
+}
+
+#profileheader {
+    height: 33vh;
+    max-width: 100vw;
+    text-align: center
+}
+
+#profileheader img {
+    display: block;
+    margin: 0 auto;
+    padding-top: 12vh;
+    padding-bottom: 1vh;
+    border-radius: 50%;
+}
+
+.profile-section {
+    margin-bottom: 10px;
+}
+
+.profilesubheader {
+    height: 50px;
+    width: 100%;
+}
+
+.profilesubheader h4 {
+    float: left;
+}
+
+.profilesubheader button {
+    float: right;
+    margin: 5px 0 2px 2px;
+}
+
+ion-list.horizontal-images {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    width: 900px;
+    overflow-x: auto;
+    overflow: auto;
+}
+
+ion-list.horizontal-images ion-item {
+    display: inline;
+    border: none;
+}
+
+ion-list.horizontal-images ion-item img {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+}
