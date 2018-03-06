@@ -20,6 +20,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/signinstyle.css" rel="stylesheet">
     <link href="css/clientprofilestyle.css" rel="stylesheet">
+    <link href="css/welcomestyle.css" rel="stylesheet">
     <link href="css/listofcards.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
@@ -39,29 +40,49 @@
   </head>
 
   <body ng-app="starter">
-    <ion-nav-view></ion-nav-view>
+    <ion-view>
+      <div id="titlebrand">
+        <img src="img/applogo.png" />
+      </div>
 
-    <script type="text/ng-template" id="welcome.html">
-      <button>
-        <a href="#/user_signin"><b>User</b></a>
-        <!-- <ion-nav-view name="user-view"></ion-nav-view> -->
-      </button>
-      <button>
-        <a href="#/stylist_signin"><b>Stylist</b></a>
-        <!-- <ion-nav-view name="stylist-view"></ion-nav-view> -->
-      </button>
-    </script>  
+      <div class="row" id="user-selection">
+        <a href="#/user_signin" class="col">
+          <div class="card">
+            <img src="https://media.istockphoto.com/videos/young-woman-looking-through-clothes-video-id474658605?s=640x640" />
+            <div class="item item-divider bottom">
+              Stylist
+            </div>
+          </div>
+        </a>
+        <a href="#/stylist_signin" class="col">
+          <div class="card">
+            <img src="https://instagram.fsea1-1.fna.fbcdn.net/vp/d90f3195e454f3640bc05787c819d2a0/5B3EDB40/t51.2885-15/sh0.08/e35/p750x750/21294259_302346016906143_5185048072085831680_n.jpg" />
+            <div class="item item-divider bottom">
+              Stylish
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div id="footer-copywrite">
+        <p>This application is created by Rui (James) Wu, Vitor Mendonca and Arjun Kalburgi</p>
+        <p>for the University of Alberta Computer Software Capstone.</p>
+        <br>
+        <p>Please contact before use.</p>         
+      </div>
+
+      <script type="text/ng-template" id="welcome.html">
+        <button class="card">
+          <a href="#/user_signin"><b>User</b></a>
+          <!-- <ion-nav-view name="user-view"></ion-nav-view> -->
+        </button>
+        <button class="card">
+          <a href="#/stylist_signin"><b>Stylist</b></a>
+          <!-- <ion-nav-view name="stylist-view"></ion-nav-view> -->
+        </button>
+      </script>  
     
 
-<!--     <ion-view>
-      <ion-tabs tabsPlacement="bottom" class="tabs-positive">
-        <ion-tab title = "<b>User</b>" href="#/user_signin">
-          <ion-nav-view name="user-view"></ion-nav-view>
-        </ion-tab>
-        <ion-tab title = "<b>Stylist</b>" href="#/stylist_signin">
-          <ion-nav-view name="stylist-view"></ion-nav-view>
-        </ion-tab>
-      </ion-tabs>
     </ion-view>
- -->  </body>
+  </body>
 </html>
