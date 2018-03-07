@@ -85,9 +85,9 @@ def cnn_model_fn(features, labels, mode):
 
     # The original file didn't perform one-hot encoding, even though the
     # tutorial recommends it...
-    # one_hot_labels = tf.one_hot(indices=labels, depth=N_LABELS)
-    # loss = tf.losses.sparse_softmax_cross_entropy(labels=one_hot_labels, logits=logits)
-    loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
+    one_hot_labels = tf.one_hot(indices=tf.cast(labels, tf.int32), depth=N_LABELS)
+    loss = tf.losses.softmax_cross_entropy(onehot_labels=one_hot_labels, logits=logits)
+    # loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
 
     # Configure the Training Op (for TRAIN mode)
     if mode == tf.estimator.ModeKeys.TRAIN:
