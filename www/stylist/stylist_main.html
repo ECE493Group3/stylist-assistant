@@ -6,12 +6,17 @@
     
     <ion-content class = "">
       <ion-list>
-        <ion-item class="item-avatar" href="#">
+<!--         <ion-item class="item-avatar" href="#">
           <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png">
           <h2>ClientName1</h2>
           <p>How you say broke in Spanish</p>
+        </ion-item> -->
+        <ion-item class="item-avatar" ng-repeat="client in clientList">
+          <img src={{client.imgUrl}}>
+          <h2>{{client.name}}</h2>
+          <p>{{client.notes}}</p>
         </ion-item>
-        <ion-item class="item-icon-left" href="#">
+        <ion-item class="item-icon-left" ng-click="addUser()">
           <i class="icon ion-plus"></i>
           <h2>Add another</h2>
         </ion-item>
