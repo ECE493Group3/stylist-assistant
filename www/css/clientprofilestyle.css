@@ -53,3 +53,8 @@ ion-list.horizontal-images ion-item img {
     height: 100px;
     background-color: #ddd;
 }
+
+.wide-as-needed {
+    overflow: scroll;
+    white-space: nowrap;
+}

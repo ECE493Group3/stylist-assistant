@@ -1,6 +1,7 @@
 #titlebrand {
     height: 33vh;
     max-width: 100vw;
+    text-align: center; 
 }
 
 #titlebrand img {
