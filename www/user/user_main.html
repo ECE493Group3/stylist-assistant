@@ -24,62 +24,65 @@
 
 	  <ion-side-menu-content>
 	    <ion-nav-bar class="bar" animation = "no-animation">
-	      <ion-nav-title>User Main</ion-nav-title>
-	      <ion-nav-back-button></ion-nav-back-button>
+	      <ion-nav-title>Your Wardrobe</ion-nav-title>
 	      <ion-nav-buttons side="left">
 	        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 	      </ion-nav-buttons>
 	    </ion-nav-bar>
 
-	    <ion-subheader-bar class="bar bar-subheader bar">
-	    	<ion-tabs class="tabs">
-					<ion-tab title="Wardrobe" href="/user_main">
-					</ion-tab>
-					<ion-tab title="Recommended" href="/user_recommend">
-					</ion-tab>
-	    	</ion-tabs>
-	    </ion-subheader-bar>
-
-      <ion-content class="has-subheader padding">
-				<ion-list class="listofcards"><!-- *ngFor="let country of countries"> -->
+      <ion-content class="has-header has-footer padding">
+				<ion-list class="listofcards">
 					<ion-item>
 						<ion-card>
 							<img src="img/ionic.png" />
-							<!-- <ion-fab right bottom>
-								<button ion-fab (click)="edit()">
-									<ion-icon name="brush"></ion-icon>
-								</button>
-							</ion-fab> -->
-							<div class="card-title">Outfit #1</div>
-							<p>featuring all the things</p>
+							<div class="row">
+								<div class="col col-75">
+									<div class="card-title">Piece #1</div>
+									<p>featuring 1 article of clothing</p>
+								</div>
+								<div class="col">
+									<button class="button button-positive">Wear</button>
+								</div>
+							</div>
 						</ion-card>
 					</ion-item>
 					<ion-item>
 						<ion-card>
 							<img src="img/ionic.png" />
-							<!-- <ion-fab right bottom>
-														<button ion-fab (click)="edit()">
-															<ion-icon name="brush"></ion-icon>
-														</button>
-													</ion-fab> -->
-							<div class="card-title">Outfit #2</div>
-							<p>featuring all the other things</p>
+							<div class="row">
+								<div class="col col-75">
+									<div class="card-title">Piece #2</div>
+									<p>featuring 1 article of clothing</p>
+								</div>
+								<div class="col">
+									<button class="button button-positive">Wear</button>
+								</div>
+							</div>
 						</ion-card>
 					</ion-item>
 					<ion-item>
 						<ion-card>
 							<img src="img/ionic.png" />
-							<!-- <ion-fab right bottom>
-														<button ion-fab (click)="edit()">
-															<ion-icon name="brush"></ion-icon>
-														</button>
-													</ion-fab> -->
-							<div class="card-title">Outfit #2</div>
-							<p>featuring all the best things</p>
+							<div class="row">
+								<div class="col col-75">
+									<div class="card-title">Piece #3</div>
+									<p>featuring 1 article of clothing</p>
+								</div>
+								<div class="col">
+									<button class="button button-positive">Wear</button>
+								</div>
+							</div>
 						</ion-card>
 					</ion-item>
 				</ion-list>
-      </ion-content>
+			</ion-content>
+
+			<ion-tabs class="tabs" tabsPlacement="bottom">
+				<ion-tab title="Wardrobe" href="/user_main">
+				</ion-tab>
+				<ion-tab title="Recommended" href="/user_recommend">
+				</ion-tab>
+			</ion-tabs>
 
 	  </ion-side-menu-content>
 	</ion-side-menus>

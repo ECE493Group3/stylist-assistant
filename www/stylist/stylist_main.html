@@ -6,11 +6,7 @@
     
     <ion-content class = "">
       <ion-list>
-<!--         <ion-item class="item-avatar" href="#">
-          <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png">
-          <h2>ClientName1</h2>
-          <p>How you say broke in Spanish</p>
-        </ion-item> -->
+
         <ion-item class="item-avatar" ng-repeat="client in clientList">
           <img src={{client.imgUrl}}>
           <h2>{{client.name}}</h2>
@@ -22,23 +18,12 @@
         </ion-item>
       </ion-list>
     </ion-content>
-
-    <ion-footer-bar>
-      <ion-toolbar>
-        <ion-buttons>
-          <button ion-button icon-only>
-            <ion-icon name="add-circle"></ion-icon>
-            Add Client
-          </button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-footer-bar>
-
   </ion-side-menu>
 
   <ion-side-menu-content>
     <ion-nav-bar class = "bar" animation = "no-animation">
       <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-title>ClientName1</ion-nav-title>
       <ion-nav-buttons side="left">
         <button class="button button-icon button-positive ion-navicon" menu-toggle="left"></button>
       </ion-nav-buttons>
