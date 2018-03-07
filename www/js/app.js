@@ -22,6 +22,7 @@ angular.module('starter', ['ionic'])
     }
   });
 
+  //Back button listener
   $ionicPlatform.onHardwareBackButton(function(event){
     if($ionicHistory.currentStateName() == "welcome"){
       ionic.Platform.exitApp();
