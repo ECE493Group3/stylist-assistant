@@ -21,6 +21,15 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
   });
+
+  $ionicPlatform.onHardwareBackButton(function(event){
+    if($ionicHistory.currentStateName() == "welcome"){
+      ionic.Platform.exitApp();
+    }
+    else{
+      $ionicHistory.goBack();
+    }
+  }, 100);
 })
 
 // Disable Animation
@@ -34,11 +43,11 @@ angular.module('starter', ['ionic'])
   $stateProvider
     .state('welcome',{
       url:"/welcome",
-      templateUrl:"welcome.html"
+      templateUrl:"welcome.html"   
     })
     .state('user_signin', {
       url:"/user_signin",
-      templateUrl:"user/signin.html"
+      templateUrl:"user/signin.html"   
     })
     .state('user_register', {
       url:"/user_register",
@@ -50,19 +59,23 @@ angular.module('starter', ['ionic'])
     })
     .state('stylist_register', {
       url:"/stylist_register",
-      templateUrl:"stylist/register.html"
+      templateUrl:"stylist/register.html"   
     })
     .state('user_main', {
+      cache:false,
       url:"/user_main",
-      templateUrl:"user/user_main.html"          
+      templateUrl:"user/user_main.html",    
+      controller: "user_main_controller"
     })
     .state('user_recommend', {
+      cache:false,
       url:"/user_recommend",
-      templateUrl:"user/user_recommend.html"          
+      templateUrl:"user/user_recommend.html"             
     })    
     .state('stylist_main',{
+      cache:false,
       url:"/stylist_main",
-      templateUrl:"stylist/stylist_main.html",
+      templateUrl:"stylist/stylist_main.html",   
       controller: "stylist_main_controller"  
     })
     ;
@@ -70,6 +83,9 @@ angular.module('starter', ['ionic'])
     $urlRouterProvider.otherwise("/welcome");
 })
 
+.controller("user_main_controller", [function(){
+
+}])
 .controller("stylist_main_controller", ['$scope', '$ionicPopup', function($scope, $ionicPopup){
   $scope.clientList = [
     {
@@ -106,7 +122,7 @@ angular.module('starter', ['ionic'])
             if(!$scope.data.model){
               e.preventDefault();
             }else{
-              return $scope.data.wifi;
+              return $scope.data.model;
             }
           }
         },
