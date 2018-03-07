@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+var app = angular.module('starter', ['ionic']);
 
-.run(function($ionicPlatform) {
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,27 +21,23 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-})
+});
 
-.config(function($stateProvider, $urlRouterProvider){
+// Disable Animation
+app.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.views.transition('none');
+});
+
+// UI Routers
+app.config(function($stateProvider, $urlRouterProvider){
 
   $stateProvider
     .state('welcome',{
       url:"/welcome",
-      // views:{
-      //   "main-view":{
-      //     templateUrl:"welcome.html"
-      //   }
-      // }
       templateUrl:"welcome.html"
     })
     .state('user_signin', {
       url:"/user_signin",
-      // views:{
-      //   "main-view":{
-      //     templateUrl:"user/signin.html"                    
-      //   }
-      // }
       templateUrl:"user/signin.html"          
     })
     .state('user_register', {
@@ -67,7 +63,8 @@ angular.module('starter', ['ionic'])
     .state('stylist_main',{
       url:"/stylist_main",
       templateUrl:"stylist/stylist_main.html"    
-    });
+    })
+    ;
 
     $urlRouterProvider.otherwise("/welcome");
 });

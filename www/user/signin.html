@@ -1,25 +1,10 @@
-<ion-nav-bar class="bar">
-  <ion-nav-back-button></ion-nav-back-button>
-</ion-nav-bar>
 <ion-view>
-  <ion-content class="has-header padding">
+  <ion-content class="padding">
     <div id="titlebrand">
       <img src="img/applogo.png" />
     </div>
-    <form name="user_signin_form" ng-submit="submit()" ng-controller="user_signin_controller">
+    <form name="user_signin_form">
       <ion-list inset>
-
-        <!-- Is there a way we can use ion-items? -->
-        <!-- <ion-item>
-          <ion-label>Username</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-          
-        <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item> -->
-
         <ion-item>
           <input type="text" name="username" ng-model="username" placeholder="Username" required>
           <span ng-show="user_signin_form.username.$touched && user_signin_form.username.$invalid">The username is required.</span>
