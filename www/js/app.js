@@ -72,6 +72,7 @@ angular.module('starter', ['ionic'])
 .controller("user_signin_controller", ['$scope', '$location' , function($scope, $location){
 
   $scope.formSubmit = function(){
+
     $location.path("/user_main");
   }
 
@@ -81,7 +82,16 @@ angular.module('starter', ['ionic'])
 
   $scope.formSubmit = function(){
     $location.path("/user_main");
-  }
+  };
+
+  $scope.isValid = function(){
+    if($scope.pword != $scope.re_pword){
+      return false;
+    }
+    else{
+      return true;
+    }
+  };
 
 }])
 .controller("stylist_signin_controller", ['$scope', '$location' , function($scope, $location){
@@ -98,6 +108,65 @@ angular.module('starter', ['ionic'])
   }
 
 }])
+
+.service("camera", function(){
+  this.setOptions = function(srcType){
+    var options = {
+      quality: 50,
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: srcType,
+      encodingType: Camera.EncodingType.JPEG,
+      mediaType: Camera.MediaType.PICTURE,
+      allowEdit: true,
+      correctOrientation: true
+    }
+    return options;
+  };
+
+  this.openCamera = function(selection){
+    var srcType = Camera.PictureSourceType.CAMERA;
+    var options = this.setOptions(srcType);
+    var func = createNewFileEntry;
+
+    navigator.camera.getPicture(function cameraSuccess(imageUri){
+      displayImage(imageUri);
+      func(imageUri);
+    }, function cameraError(error){
+      console.debug("unable to obtain picture: " + error, "app")
+    }, options);
+  };
+
+  this.openFilePicker = function(selection){
+    var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
+    var options = setOptions(srcType);
+    var func = createNewFileEntry;
+
+    navigator.camera.getPicture(function cameraSuccess(imageUri){
+      // Do Something
+    }, function cameraError(error){
+      console.debug("unable to obtain picture: " + error, "app");
+    }, options);
+
+  }
+  
+})
+.service("network", function(){
+  this.checkConnection = function(){
+    var networkState = navigator.connection.type;
+
+    var states = {};
+   states[Connection.UNKNOWN]  = 'Unknown connection';
+   states[Connection.ETHERNET] = 'Ethernet connection';
+   states[Connection.WIFI]     = 'WiFi connection';
+   states[Connection.CELL_2G]  = 'Cell 2G connection';
+   states[Connection.CELL_3G]  = 'Cell 3G connection';
+   states[Connection.CELL_4G]  = 'Cell 4G connection';
+   states[Connection.CELL]     = 'Cell generic connection';
+   states[Connection.NONE]     = 'No network connection';
+
+   //alert('Connection type: ' + states[networkState]);
+  };
+})
 
 ;
 

@@ -16,7 +16,7 @@
         </ion-item>
         <ion-item>
           <input type="password" name = "re_pword" ng-model = "re_pword" placeholder="RetypePpassword" required>
-          <span ng-show="user_register_form.re_pword.$touched && user_register_form.re_pword.$invalid">The retype password is required.</span>
+          <span ng-show="(user_register_form.re_pword.$touched && user_register_form.re_pword.$invalid) || !isValid()">The retype password is required and matched.</span>
         </ion-item>
         <ion-item>
           <input type="text" name = "stylist_code" ng-model = "stylist_code" placeholder="Stylist Code" required>

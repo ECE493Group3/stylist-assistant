@@ -20,7 +20,7 @@
         </ion-item>
         <ion-item>
           <input type="password" name = "re_pword" ng-model = "re_pword" placeholder="Retype password" required>
-          <span ng-show="stylist_register_form.re_pword.$touched && stylist_register_form.re_pword.$invalid">The retype password is required.</span>
+          <span ng-show="stylist_register_form.re_pword.$touched && stylist_register_form.re_pword.$invalid && isValid()">The retype password is required.</span>
         </ion-item>
       </ion-list>
 
