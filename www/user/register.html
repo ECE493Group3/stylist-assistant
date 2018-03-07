@@ -4,7 +4,7 @@
       <img src="img/applogo.png" />
       <p>Register to get daily outfit recommendations, start dressing better today.</p>
     </div>
-    <form name="user_register_form" ng-submit="submit()" ng-controller="user_register_controller">
+    <form name="user_register_form" ng-submit="formSubmit()" ng-controller="user_register_controller">
       <ion-list inset>
         <ion-item>
           <input type="text" name ="username" ng-model="username" placeholder="Username" required>

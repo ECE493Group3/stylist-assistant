@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic']);
+angular.module('starter', ['ionic'])
 
-app.run(function($ionicPlatform) {
+.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,15 +21,15 @@ app.run(function($ionicPlatform) {
       StatusBar.styleDefault();
     }
   });
-});
+})
 
 // Disable Animation
-app.config(function($ionicConfigProvider) {
+.config(function($ionicConfigProvider) {
   $ionicConfigProvider.views.transition('none');
-});
+})
 
 // UI Routers
-app.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider){
 
   $stateProvider
     .state('welcome',{
@@ -38,11 +38,11 @@ app.config(function($stateProvider, $urlRouterProvider){
     })
     .state('user_signin', {
       url:"/user_signin",
-      templateUrl:"user/signin.html"          
+      templateUrl:"user/signin.html"
     })
     .state('user_register', {
       url:"/user_register",
-      templateUrl:"user/register.html"          
+      templateUrl:"user/register.html"
     })
     .state('stylist_signin',{
       url:"/stylist_signin",
@@ -67,5 +67,39 @@ app.config(function($stateProvider, $urlRouterProvider){
     ;
 
     $urlRouterProvider.otherwise("/welcome");
-});
+})
+
+.controller("user_signin_controller", ['$scope', '$location' , function($scope, $location){
+
+  $scope.formSubmit = function(){
+    $location.path("/user_main");
+  }
+
+}])
+
+.controller("user_register_controller", ['$scope', '$location' , function($scope, $location){
+
+  $scope.formSubmit = function(){
+    $location.path("/user_main");
+  }
+
+}])
+.controller("stylist_signin_controller", ['$scope', '$location' , function($scope, $location){
+
+  $scope.formSubmit = function(){
+    $location.path("/stylist_main");
+  }
+
+}])
+.controller("stylist_register_controller", ['$scope', '$location' , function($scope, $location){
+
+  $scope.formSubmit = function(){
+    $location.path("/stylist_main");
+  }
+
+}])
+
+;
+
+
 

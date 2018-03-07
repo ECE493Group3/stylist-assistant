@@ -8,7 +8,7 @@
       <img src="img/applogo.png" />
       <p>Register to connect with more clients, bring good style to everyone.</p>
     </div>
-    <form name="stylist_register_form">
+    <form name="stylist_register_form" ng-submit="formSubmit()" ng-controller="stylist_register_controller">
       <ion-list inset>
         <ion-item>
           <input type="text" name="username" ng-model="username" placeholder="Username" required>
