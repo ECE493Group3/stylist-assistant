@@ -42,22 +42,27 @@ angular.module('starter', ['ionic'])
 
   $stateProvider
     .state('welcome',{
+      cache:false,
       url:"/welcome",
       templateUrl:"welcome.html"   
     })
     .state('user_signin', {
+      cache:false,
       url:"/user_signin",
       templateUrl:"user/signin.html"   
     })
     .state('user_register', {
+      cache:false,
       url:"/user_register",
       templateUrl:"user/register.html"
     })
     .state('stylist_signin',{
+      cache:false,
       url:"/stylist_signin",
       templateUrl:"stylist/signin.html"
     })
     .state('stylist_register', {
+      cache:false,
       url:"/stylist_register",
       templateUrl:"stylist/register.html"   
     })
@@ -215,7 +220,6 @@ angular.module('starter', ['ionic'])
     }, function cameraError(error){
       console.debug("unable to obtain picture: " + error, "app");
     }, options);
-
   }
   
 })
