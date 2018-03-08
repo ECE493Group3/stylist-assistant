@@ -26,7 +26,10 @@
     height: 25vh;
 }
 
+#footer-copywrite {
+    text-align: center;
+}
+
 #footer-copywrite p {
     font-size: smaller;
-    text-align: center;
 }

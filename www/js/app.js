@@ -47,6 +47,10 @@ angular.module('starter', ['ionic'])
       url:"/welcome",
       templateUrl:"welcome.html"   
     })
+    .state('upload_images', {
+      url: "/upload_images",
+      templateUrl: "upload_images.html"
+    })
     .state('user_signin', {
       cache:false,
       url:"/user_signin",
@@ -141,6 +145,10 @@ angular.module('starter', ['ionic'])
     };
     $scope.clientList.push(newClient);
   };
+
+  $scope.edit = function() {
+    $scope.delete_button = !$scope.delete_button;
+  }
 
 }])
 

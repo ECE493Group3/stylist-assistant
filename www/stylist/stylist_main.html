@@ -74,17 +74,35 @@
           <div class="profilesubheader">
             <h4>Recommendations</h4>
             <button class="button button-small button-positive">Search</button>
-            <button class="button button-small button-positive">Edit</button>
+            <button class="button button-small button-positive" ng-click="edit()">Edit</button>
+            <a href="#/upload_images"><button class="button button-small button-positive" ng-show="delete_button">Add</button></a>
           </div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
+              <ion-item>
+                <img src="img/ionic.png" />
+                <a href="" class="delete" ng-show="delete_button"></a>
+              </ion-item>
+              <ion-item>
+                <img src="img/ionic.png" />
+                <a href="" class="delete" ng-show="delete_button"></a>
+              </ion-item>
+              <ion-item>
+                <img src="img/ionic.png" />
+                <a href="" class="delete" ng-show="delete_button"></a>
+              </ion-item>
+              <ion-item>
+                <img src="img/ionic.png" />
+                <a href="" class="delete" ng-show="delete_button"></a>
+              </ion-item>
+              <ion-item>
+                <img src="img/ionic.png" />
+                <a href="" class="delete" ng-show="delete_button"></a>
+              </ion-item>
+              <ion-item>
+                <img src="img/ionic.png" />
+                <a href="" class="delete" ng-show="delete_button"></a>
+              </ion-item>
             </ion-scroll>
           </ion-list>
         </div>

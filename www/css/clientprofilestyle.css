@@ -3,7 +3,7 @@ ion-content#profile {
 }
 
 #profileheader {
-    margin: 10vh 0 5vh 0; 
+    margin: 10vh 0 5vh 0;
     text-align: center
 }
 
@@ -58,9 +58,24 @@ ion-list.horizontal-images ion-item img {
 }
 
 .popup {
-    border-radius: 5% !important; 
+    border-radius: 5% !important;
 }
 
 .popup .button {
-    border-radius: 4px !important; 
+    border-radius: 4px !important;
+}
+
+.delete {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -115px;
+    right: 25px;
+    background: url("https://cdn.iconscout.com/public/images/icon/free/png-512/false-delete-remove-cross-wrong-306c19a71a478768-512x512.png");
+    background-size: 100% 100%;
+    background-color: lightgrey;
+    border-radius: 50%;
+    overflow: hidden;
+    text-indent: -9999px;
 }
