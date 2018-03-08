@@ -136,6 +136,10 @@ angular.module('starter', ['ionic'])
     $scope.clientList.push(newClient);
   };
 
+  $scope.edit = function() {
+    $scope.delete_button = !$scope.delete_button;
+  }
+
 }])
 
 .controller("user_signin_controller", ['$scope', '$location' , function($scope, $location){
