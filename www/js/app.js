@@ -45,6 +45,10 @@ angular.module('starter', ['ionic'])
       url:"/welcome",
       templateUrl:"welcome.html"   
     })
+    .state('upload_images', {
+      url: "/upload_images",
+      templateUrl: "upload_images.html"
+    })
     .state('user_signin', {
       url:"/user_signin",
       templateUrl:"user/signin.html"   
