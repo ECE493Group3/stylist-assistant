@@ -49,7 +49,7 @@ angular.module('starter', ['ionic'])
     })
     .state('upload_images', {
       url: "/upload_images",
-      templateUrl: "upload_images.html"
+      templateUrl: "upload_images.html",
     })
     .state('user_signin', {
       cache:false,
@@ -191,47 +191,6 @@ angular.module('starter', ['ionic'])
   }
 
 }])
-
-.service("camera", function(){
-  this.setOptions = function(srcType){
-    var options = {
-      quality: 50,
-      destinationType: Camera.DestinationType.FILE_URI,
-      sourceType: srcType,
-      encodingType: Camera.EncodingType.JPEG,
-      mediaType: Camera.MediaType.PICTURE,
-      allowEdit: true,
-      correctOrientation: true
-    }
-    return options;
-  };
-
-  this.openCamera = function(selection){
-    var srcType = Camera.PictureSourceType.CAMERA;
-    var options = this.setOptions(srcType);
-    var func = createNewFileEntry;
-
-    navigator.camera.getPicture(function cameraSuccess(imageUri){
-      displayImage(imageUri);
-      func(imageUri);
-    }, function cameraError(error){
-      console.debug("unable to obtain picture: " + error, "app")
-    }, options);
-  };
-
-  this.openFilePicker = function(selection){
-    var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
-    var options = setOptions(srcType);
-    var func = createNewFileEntry;
-
-    navigator.camera.getPicture(function cameraSuccess(imageUri){
-      // Do Something
-    }, function cameraError(error){
-      console.debug("unable to obtain picture: " + error, "app");
-    }, options);
-  }
-  
-})
 .service("network", function(){
   this.checkConnection = function(){
     var networkState = navigator.connection.type;
@@ -249,7 +208,54 @@ angular.module('starter', ['ionic'])
    //alert('Connection type: ' + states[networkState]);
   };
 })
+.factory('Camera', function($q){
+  return {
+    getPicture: function(options){
+      var q = $q.defer();
+      navigator.camera.getPicture(function(result){
+        q.resolve(result);
+      },
+      function(err){
+        q.reject(err);
+      },
+      options);
 
+      return q.promise;
+    }
+  }
+})
+.controller("images_controller", ["$scope", "Camera", function($scope, Camera){
+  $scope.replaceURI = "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png";
+
+  $scope.takePhoto = function(){
+    var options = {
+      quality:75,
+      // destinationType: Camera.DestinationType.FILE_URI,
+      // sourceType: Camera.PictureSourceType.CAMERA,
+      // mediaType: Camera.MediaType.PICTURE,
+      // allowEdit: true,
+      // correctOrientation: true
+      targetWidth: 200,
+      targetHeight: 200,
+      sourceType: 1
+    };
+
+    Camera.getPicture(options).then(function(imageData){
+      $scope.imgURI = imageData;
+    },
+    function(err){
+      console.log(err);
+    });
+    // var func = createNewFileEntry;
+    // navigator.camera.getPicture(function cameraSuccess(imageUri){
+    //   $scope.imgURI = imageUri;
+    //   func(imageUri);
+    // }, function cameraError(err){
+
+    // }, options); 
+  };
+
+}])
 ;
 
 
