@@ -22,6 +22,7 @@ angular.module('starter', ['ionic'])
     }
   });
 
+  //Back button listener
   $ionicPlatform.onHardwareBackButton(function(event){
     if($ionicHistory.currentStateName() == "welcome"){
       ionic.Platform.exitApp();
@@ -42,26 +43,31 @@ angular.module('starter', ['ionic'])
 
   $stateProvider
     .state('welcome',{
+      cache:false,
       url:"/welcome",
       templateUrl:"welcome.html"   
     })
     .state('upload_images', {
       url: "/upload_images",
-      templateUrl: "upload_images.html"
+      templateUrl: "upload_images.html",
     })
     .state('user_signin', {
+      cache:false,
       url:"/user_signin",
       templateUrl:"user/signin.html"   
     })
     .state('user_register', {
+      cache:false,
       url:"/user_register",
       templateUrl:"user/register.html"
     })
     .state('stylist_signin',{
+      cache:false,
       url:"/stylist_signin",
       templateUrl:"stylist/signin.html"
     })
     .state('stylist_register', {
+      cache:false,
       url:"/stylist_register",
       templateUrl:"stylist/register.html"   
     })
@@ -192,48 +198,6 @@ angular.module('starter', ['ionic'])
   }
 
 }])
-
-.service("camera", function(){
-  this.setOptions = function(srcType){
-    var options = {
-      quality: 50,
-      destinationType: Camera.DestinationType.FILE_URI,
-      sourceType: srcType,
-      encodingType: Camera.EncodingType.JPEG,
-      mediaType: Camera.MediaType.PICTURE,
-      allowEdit: true,
-      correctOrientation: true
-    }
-    return options;
-  };
-
-  this.openCamera = function(selection){
-    var srcType = Camera.PictureSourceType.CAMERA;
-    var options = this.setOptions(srcType);
-    var func = createNewFileEntry;
-
-    navigator.camera.getPicture(function cameraSuccess(imageUri){
-      displayImage(imageUri);
-      func(imageUri);
-    }, function cameraError(error){
-      console.debug("unable to obtain picture: " + error, "app")
-    }, options);
-  };
-
-  this.openFilePicker = function(selection){
-    var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
-    var options = setOptions(srcType);
-    var func = createNewFileEntry;
-
-    navigator.camera.getPicture(function cameraSuccess(imageUri){
-      // Do Something
-    }, function cameraError(error){
-      console.debug("unable to obtain picture: " + error, "app");
-    }, options);
-
-  }
-  
-})
 .service("network", function(){
   this.checkConnection = function(){
     var networkState = navigator.connection.type;
@@ -251,7 +215,60 @@ angular.module('starter', ['ionic'])
    //alert('Connection type: ' + states[networkState]);
   };
 })
+.factory('Camera', function($q){
+  //Reference https://www.tutorialspoint.com/ionic/ionic_camera.htm
+  return {
+    getPicture: function(options){
+      var q = $q.defer();
+      navigator.camera.getPicture(function(result){
+        q.resolve(result);
+      },
+      function(err){
+        q.reject(err);
+      },
+      options);
 
+      return q.promise;
+    }
+  }
+})
+.controller("images_controller", ["$scope", "Camera", function($scope, Camera){
+
+  $scope.takePhoto = function(){
+    var options = {
+      quality:75,
+      targetWidth: 200,
+      targetHeight: 200,
+      sourceType:1,
+      correctOrientation: true,
+      saveToPhotoAlbum: true,
+    };
+
+    Camera.getPicture(options).then(function(imageData){
+      $scope.imgURI = imageData;
+    },
+    function(err){
+      console.log(err);
+    });
+  };
+
+  $scope.loadPhoto = function(){
+    var options = {
+      quality: 75,
+      targetHeight: 200,
+      targetWidth: 200,
+      sourceType: 0,
+      correctOrientation: true
+    };
+
+    Camera.getPicture(options).then(function(imageData){
+      $scope.imgURI = imageData;
+    },
+    function(err){
+      console.log(err);
+    });
+  };
+}])
 ;
 
 
