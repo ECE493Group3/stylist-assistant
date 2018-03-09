@@ -12,6 +12,13 @@
           <h2>{{client.name}}</h2>
           <p>{{client.notes}}</p>
         </ion-item>
+        <ion-item class="item-avatar client-request" ng-repeat="client in clientRequestList">
+          <img src={{client.imgUrl}}>
+          <h2>{{client.name}}</h2>
+          <p>{{client.notes}}</p>
+          <button class="button button-positive button-small">Accept</button>
+          <button class="button button-assertive button-small">Decline</button>
+        </ion-item>
         <ion-item class="item-icon-left" ng-click="addUser()">
           <i class="icon ion-plus"></i>
           <h2>Add another</h2>

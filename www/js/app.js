@@ -108,6 +108,13 @@ angular.module('starter', ['ionic'])
       notes: "Client 3 is herebababab"
     },
   ];
+  $scope.clientRequestList = [
+    {
+      name: "ClientName4",
+      imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+      notes: "How you say broke in Spanish"
+    },
+  ];
 
   $scope.addUser = function(){
     var popUp = $ionicPopup.show({
