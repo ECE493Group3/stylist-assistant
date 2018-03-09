@@ -209,6 +209,7 @@ angular.module('starter', ['ionic'])
   };
 })
 .factory('Camera', function($q){
+  //Reference https://www.tutorialspoint.com/ionic/ionic_camera.htm
   return {
     getPicture: function(options){
       var q = $q.defer();
@@ -225,19 +226,15 @@ angular.module('starter', ['ionic'])
   }
 })
 .controller("images_controller", ["$scope", "Camera", function($scope, Camera){
-  $scope.replaceURI = "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png";
 
   $scope.takePhoto = function(){
     var options = {
       quality:75,
-      // destinationType: Camera.DestinationType.FILE_URI,
-      // sourceType: Camera.PictureSourceType.CAMERA,
-      // mediaType: Camera.MediaType.PICTURE,
-      // allowEdit: true,
-      // correctOrientation: true
       targetWidth: 200,
       targetHeight: 200,
-      sourceType: 1
+      sourceType:1,
+      correctOrientation: true,
+      saveToPhotoAlbum: true,
     };
 
     Camera.getPicture(options).then(function(imageData){
@@ -246,15 +243,24 @@ angular.module('starter', ['ionic'])
     function(err){
       console.log(err);
     });
-    // var func = createNewFileEntry;
-    // navigator.camera.getPicture(function cameraSuccess(imageUri){
-    //   $scope.imgURI = imageUri;
-    //   func(imageUri);
-    // }, function cameraError(err){
-
-    // }, options); 
   };
 
+  $scope.loadPhoto = function(){
+    var options = {
+      quality: 75,
+      targetHeight: 200,
+      targetWidth: 200,
+      sourceType: 0,
+      correctOrientation: true
+    };
+
+    Camera.getPicture(options).then(function(imageData){
+      $scope.imgURI = imageData;
+    },
+    function(err){
+      console.log(err);
+    });
+  };
 }])
 ;
 

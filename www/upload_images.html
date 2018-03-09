@@ -13,19 +13,16 @@
                 <img src="img/applogo.png" />
             </div>
 
-
-            <div>
-                <img ng-src={{imgURI}}>
-                <img src= {{replaceURI}}>
-            </div>
-
             <p>To ensure the best results, please input pictures that the Neural Net will be able to see the best. The next paragraph explains that lol </p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
         <div id="footer-copywrite" class="welcome-bot">
             <button class="button button-positive" ng-click="takePhoto()">Upload pictures</button>
-            <p>alternatively, <a href="">upload from gallery</a></p>
+            <p>alternatively, <button class="button" ng-click="loadPhoto()">upload from gallery</button></p>
         </div>
 
+        <div>
+            <img ng-src={{imgURI}}>
+        </div>
     </ion-content>
 </ion-view>
