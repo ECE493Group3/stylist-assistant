@@ -1,0 +1,8 @@
+.editimages.item {
+    border: none;
+    width: 25%; 
+}
+
+.editimages .item img {
+    width: 100%;
+}

@@ -245,6 +245,7 @@ angular.module('starter', ['ionic'])
     };
 
     Camera.getPicture(options).then(function(imageData){
+      // add photo to db and come back and update clothingPieces
       $scope.imgURI = imageData;
     },
     function(err){
@@ -262,12 +263,51 @@ angular.module('starter', ['ionic'])
     };
 
     Camera.getPicture(options).then(function(imageData){
+      // add photo to db and come back and update clothingPieces
       $scope.imgURI = imageData;
     },
     function(err){
       console.log(err);
     });
   };
+
+  $scope.clothingPieces; 
+  
+  // if user is stylist 
+  $scope.clothingPieces = [
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+  ];
+  // if user is client
+  // $scope.clothingPieces = []; 
+
+  $scope.remove = function(uristring) {
+    // remove photo from db and come back and update clothingPieces
+    console.log("remove " + uristring); 
+  }
+
 }])
 ;
 
