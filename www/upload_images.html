@@ -8,15 +8,19 @@
     </ion-nav-bar>
     
     <ion-content class="has-header" ng-controller="images_controller">
-        <div class="welcome-top padding">
+        <div class="padding">
             <div id="titlebrand">
                 <img src="img/applogo.png" />
             </div>
 
             <p>To ensure the best results, please input pictures that the Neural Net will be able to see the best. The next paragraph explains that lol </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <img class="inlineimg" src="img/ionic.png" />
+            <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
-        <div id="footer-copywrite" class="">
+        <div id="footer-copywrite" class="padding-top">
             <button class="button button-positive" ng-click="takePhoto()">Upload pictures</button>
             <div class="alternativeoption">
                 alternatively,
@@ -27,8 +31,9 @@
         <div>
             <img ng-src={{imgURI}}>
         </div>
-        <div class="row">
-            <div class="item editimages item-thumbnail-left col-25" ng-repeat="piece in clothingPieces">
+
+        <div class="row myrow padding-top">
+            <div class="item editimages col-25" ng-repeat="piece in clothingPieces">
                 <img src={{piece.imgURI}}>
                 <button class="delete" ng-click="remove(piece.imgURI)"></button>
             </div>
