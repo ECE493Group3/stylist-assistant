@@ -9,7 +9,7 @@ N_LABELS = 3
 def vgg16(features, labels, mode):
     """Model function for CNN."""
 
-    input_layer = features
+    input_layer = tf.reshape(features, [-1, SIZE, SIZE, 3])
 
     # 1st stack of convolutional layers
     conv3_64_0 = tf.layers.conv2d(
@@ -133,9 +133,8 @@ def vgg16(features, labels, mode):
             strides=2)
 
     # Flatten tensor for dense layers
-    size_after_maxpool_4 = SIZE // 2
-    new_size = size_after_maxpool_4 * size_after_maxpool_4 * 512
-    maxpool_4_flat = tf.reshape(features, [-1, new_size])
+    _, new_size, _, new_channels = maxpool_4.shape
+    maxpool_4_flat = tf.reshape(maxpool_4, [-1, new_size * new_size * new_channels])
 
     # Dense layers
     fc_4096_0 = tf.layers.dense(
