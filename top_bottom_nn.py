@@ -25,10 +25,11 @@ def parse_images(filename):
             imgfile = os.path.join(DATA_DIRECTORY, imgfile)
             _, image_f = image_reader.read(tf.train.string_input_producer([imgfile]))
             image = tf.image.decode_jpeg(image_f, channels=3)
-            resized_image = tf.image.resize_images([image], RESCALE_SIZE)
+            resized_image = tf.image.resize_images(image, RESCALE_SIZE)
             images.append(resized_image)
 
     return tf.convert_to_tensor(images), tf.convert_to_tensor(labels)
+    # return tf.train.batch(images, 100), tf.train.batch(labels, 100)
 
 def main(argv):
     # Create the Estimator
