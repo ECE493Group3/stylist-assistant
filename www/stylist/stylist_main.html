@@ -12,6 +12,13 @@
           <h2>{{client.name}}</h2>
           <p>{{client.notes}}</p>
         </ion-item>
+        <ion-item class="item-avatar client-request" ng-repeat="client in clientRequestList">
+          <img src={{client.imgUrl}}>
+          <h2>{{client.name}}</h2>
+          <p>{{client.notes}}</p>
+          <button class="button button-positive button-small">Accept</button>
+          <button class="button button-assertive button-small">Decline</button>
+        </ion-item>
         <ion-item class="item-icon-left" ng-click="addUser()">
           <i class="icon ion-plus"></i>
           <h2>Add another</h2>
@@ -74,34 +81,27 @@
           <div class="profilesubheader">
             <h4>Recommendations</h4>
             <button class="button button-small button-positive">Search</button>
-            <button class="button button-small button-positive" ng-click="edit()">Edit</button>
-            <a href="#/upload_images"><button class="button button-small button-positive" ng-show="delete_button">Add</button></a>
+            <a href="#/upload_images"><button class="button button-small button-positive">Edit</button></a>
           </div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
               <ion-item>
                 <img src="img/ionic.png" />
-                <a href="" class="delete" ng-show="delete_button"></a>
               </ion-item>
               <ion-item>
                 <img src="img/ionic.png" />
-                <a href="" class="delete" ng-show="delete_button"></a>
               </ion-item>
               <ion-item>
                 <img src="img/ionic.png" />
-                <a href="" class="delete" ng-show="delete_button"></a>
               </ion-item>
               <ion-item>
                 <img src="img/ionic.png" />
-                <a href="" class="delete" ng-show="delete_button"></a>
               </ion-item>
               <ion-item>
                 <img src="img/ionic.png" />
-                <a href="" class="delete" ng-show="delete_button"></a>
               </ion-item>
               <ion-item>
                 <img src="img/ionic.png" />
-                <a href="" class="delete" ng-show="delete_button"></a>
               </ion-item>
             </ion-scroll>
           </ion-list>

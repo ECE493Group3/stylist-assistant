@@ -114,6 +114,13 @@ angular.module('starter', ['ionic', 'firebase'])
       notes: "Client 3 is herebababab"
     },
   ];
+  $scope.clientRequestList = [
+    {
+      name: "ClientName4",
+      imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+      notes: "How you say broke in Spanish"
+    },
+  ];
 
   $scope.addUser = function(){
     var popUp = $ionicPopup.show({
@@ -268,6 +275,7 @@ angular.module('starter', ['ionic', 'firebase'])
     };
 
     Camera.getPicture(options).then(function(imageData){
+      // add photo to db and come back and update clothingPieces
       $scope.imgURI = imageData;
     },
     function(err){
@@ -285,12 +293,51 @@ angular.module('starter', ['ionic', 'firebase'])
     };
 
     Camera.getPicture(options).then(function(imageData){
+      // add photo to db and come back and update clothingPieces
       $scope.imgURI = imageData;
     },
     function(err){
       console.log(err);
     });
   };
+
+  $scope.clothingPieces; 
+  
+  // if user is stylist 
+  $scope.clothingPieces = [
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+    {
+      name: "avatar-finn",
+      imgURI: "img/ionic.png",
+    },
+  ];
+  // if user is client
+  // $scope.clothingPieces = []; 
+
+  $scope.remove = function(uristring) {
+    // remove photo from db and come back and update clothingPieces
+    console.log("remove " + uristring); 
+  }
+
 }])
 ; 
 
