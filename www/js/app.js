@@ -94,7 +94,21 @@ angular.module('starter', ['ionic'])
 })
 
 .controller("user_main_controller", [function(){
-
+  $scope.recommendedOutfits = [
+    {
+      "name": "Blue jeans and Grey hoodie",
+      "description": "light blue parasuco demin with grey oversized Topman hoodie.",
+      "image": "img/ionic.png"
+    }, {
+      "name": "Blue jeans and Grey hoodie",
+      "description": "light blue parasuco demin with grey oversized Topman hoodie.",
+      "image": "img/ionic.png"
+    }, {
+      "name": "Blue jeans and Grey hoodie",
+      "description": "light blue parasuco demin with grey oversized Topman hoodie.",
+      "image": "img/ionic.png"
+    }
+  ]
 }])
 .controller("stylist_main_controller", ['$scope', '$ionicPopup', function($scope, $ionicPopup){
   $scope.clientList = [
@@ -156,6 +170,11 @@ angular.module('starter', ['ionic'])
   $scope.edit = function() {
     $scope.delete_button = !$scope.delete_button;
   }
+
+  $scope.dressLog = [{ "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }]
+  $scope.recommendedItems = [{ "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }]
+  $scope.wardrobeItems = [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}]
+
 
 }])
 

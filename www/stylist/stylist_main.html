@@ -50,13 +50,9 @@
           </div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
+              <ion-item ng-repeat="item in dressLog">
+                <img src={{item.img}} />
+              </ion-item>
             </ion-scroll>
           </ion-list>
         </div>
@@ -67,13 +63,9 @@
           </div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
-              <ion-item><img src="img/ionic.png" /></ion-item>
+              <ion-item ng-repeat="item in wardrobeItems">
+                <img src={{item.img}} />
+              </ion-item>
             </ion-scroll>
           </ion-list>
         </div>
@@ -85,23 +77,8 @@
           </div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
-              <ion-item>
-                <img src="img/ionic.png" />
-              </ion-item>
-              <ion-item>
-                <img src="img/ionic.png" />
-              </ion-item>
-              <ion-item>
-                <img src="img/ionic.png" />
-              </ion-item>
-              <ion-item>
-                <img src="img/ionic.png" />
-              </ion-item>
-              <ion-item>
-                <img src="img/ionic.png" />
-              </ion-item>
-              <ion-item>
-                <img src="img/ionic.png" />
+              <ion-item ng-repeat="recommended in recommendedItems">
+                <img src={{recommended.img}} />
               </ion-item>
             </ion-scroll>
           </ion-list>

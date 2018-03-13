@@ -35,13 +35,13 @@
 
       <ion-content class="has-header has-footer padding">
 				<ion-list class="listofcards">
-					<ion-item>
+					<ion-item ng-repeat="recommendedOutfits">
 						<ion-card>
-							<img src="img/ionic.png" />
+							<img src={{img}} />
 							<div class="row">
 								<div class="col col-75">
-									<div class="card-title">Piece #1</div>
-									<p>featuring 1 article of clothing</p>
+									<div class="card-title">{{name}}</div>
+									<p>{{description}}</p>
 								</div>
 								<div class="col">
 									<button class="button button-positive">Wear</button>
