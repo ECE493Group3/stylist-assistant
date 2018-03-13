@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -178,19 +178,48 @@ angular.module('starter', ['ionic'])
 
 }])
 
-.controller("user_signin_controller", ['$scope', '$location' , function($scope, $location){
+.controller("user_signin_controller", ['$scope', '$location', '$firebaseAuth' , function($scope, $location, $firebaseAuth){
 
-  $scope.formSubmit = function(){
+  $scope.formSubmit = function(username, pword){
+    var username = $scope.username;
+    var pword = $scope.pword;
 
-    $location.path("/user_main");
-  }
-
+    firebase.auth().signInWithEmailAndPassword(username, pword)
+    .then(function(){
+      console.log("User Login Success");
+      $location.path("/user_main");
+    })
+    .catch(function(error){
+      console.log(error);
+    }); 
+  };
 }])
 
-.controller("user_register_controller", ['$scope', '$location' , function($scope, $location){
+.controller("user_register_controller", ['$scope', '$location', '$firebaseAuth', function($scope, $location, $firebaseAuth){
 
   $scope.formSubmit = function(){
-    $location.path("/user_main");
+    var email = "aaaregister@test.com";
+    var password = "password";
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(function(user){
+      if(user){
+        user.updateProfile({
+          displayName: "Hello World",
+          role: "User",
+        });
+        console.log("Successfully update user");
+
+        console.log("Username: " + user.displayName);
+        console.log("role: " + user.role);
+      }
+      console.log("Successfully created new user");
+      // $location.path("/user_main");
+    })
+    .catch(function(error){
+      console.log("Error creating new user");
+    })
+    
   };
 
   $scope.isValid = function(){
@@ -210,9 +239,11 @@ angular.module('starter', ['ionic'])
   }
 
 }])
-.controller("stylist_register_controller", ['$scope', '$location' , function($scope, $location){
+.controller("stylist_register_controller", ['$scope', '$location', 'ConnectDB', function($scope, $location, ConnectDB){
 
   $scope.formSubmit = function(){
+    // ConnectDB.connectDB();
+
     $location.path("/stylist_main");
   }
 
@@ -231,7 +262,6 @@ angular.module('starter', ['ionic'])
    states[Connection.CELL]     = 'Cell generic connection';
    states[Connection.NONE]     = 'No network connection';
 
-   //alert('Connection type: ' + states[networkState]);
   };
 })
 .factory('Camera', function($q){
@@ -328,7 +358,6 @@ angular.module('starter', ['ionic'])
   }
 
 }])
-;
-
+; 
 
 
