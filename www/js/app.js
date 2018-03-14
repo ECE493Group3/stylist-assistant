@@ -112,26 +112,26 @@ angular.module('starter', ['ionic', 'firebase'])
 }])
 
 .controller("stylist_main_controller", ['$scope', '$firebaseObject', function($scope, $firebaseObject){
-	// var ref = firebase.database().ref().child("personalstylist-788fb").child("clients");
-	// $scope.clientList = $firebaseObject(ref);
-	// data.$bindTo($scope, "clientList");
-	$scope.clientList = [
-		{
-			name: "ClientName1",
-			imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-			notes: "How you say broke in Spanish"
-		},
-		{
-			name: "ClientName2",
-			imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-			notes: "Client 2 is here"
-		},
-		{
-			name: "ClientName3",
-			imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-			notes: "Client 3 is herebababab"
-		},
-	];
+	var ref = firebase.database().ref().child("clients");
+	data = $firebaseObject(ref);
+	data.$bindTo($scope, "clientList");
+	// $scope.clientList = [
+	// 	{
+	// 		name: "ClientName1",
+	// 		imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+	// 		notes: "How you say broke in Spanish"
+	// 	},
+	// 	{
+	// 		name: "ClientName2",
+	// 		imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+	// 		notes: "Client 2 is here"
+	// 	},
+	// 	{
+	// 		name: "ClientName3",
+	// 		imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+	// 		notes: "Client 3 is herebababab"
+	// 	},
+	// ];
 	$scope.clientRequestList = [
 		{
 			name: "ClientName4",
@@ -140,37 +140,6 @@ angular.module('starter', ['ionic', 'firebase'])
 		},
 	];
 	
-	$scope.addUser = function(){
-		var popUp = $ionicPopup.show({
-			template:"<input type='text' ng-model='data.model'>",
-			title: "Title",
-			subTitle: "Subtitle",
-			scope: $scope,
-			buttons:[
-				{
-					text:"Cancel"
-				},
-				{
-					text:"Add User",
-					type: "button-positive",
-					onTap: function(e){
-						if(!$scope.data.model){
-							e.preventDefault();
-						}else{
-							return $scope.data.model;
-						}
-					}
-				},
-			]
-		});
-		var newClient = {
-			name: $scope.data.model,
-			imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-			notes: "adding new client"
-		};
-		$scope.clientList.push(newClient);
-	};
-	
 	$scope.edit = function() {
 		$scope.delete_button = !$scope.delete_button;
 	}
@@ -178,7 +147,6 @@ angular.module('starter', ['ionic', 'firebase'])
 	$scope.dressLog = [{ "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }]
 	$scope.recommendedItems = [{ "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }]
 	$scope.wardrobeItems = [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}]
-	
 	
 }])
 
@@ -352,7 +320,7 @@ angular.module('starter', ['ionic', 'firebase'])
 	};
 }])
 
-.controller("stylist_signin_controller", ['$scope', '$scope', function ($scope, $scope) {
+.controller("stylist_signin_controller", ['$scope', '$state', function ($scope, $state) {
 	var form = this;
 	form.formSubmit = function () {
 		console.log(form.user);

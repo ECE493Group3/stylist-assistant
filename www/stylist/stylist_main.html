@@ -8,9 +8,9 @@
       <ion-list>
 
         <ion-item class="item-avatar" ng-repeat="client in clientList">
-          <img src={{client.imgUrl}}>
-          <h2>{{client.name}}</h2>
-          <p>{{client.notes}}</p>
+          <img src={{client.clientinfo.img}}>
+          <h2>{{client.clientinfo.name}}</h2>
+          <p>{{client.clientinfo.notes}}</p>
         </ion-item>
         <ion-item class="item-avatar client-request" ng-repeat="client in clientRequestList">
           <img src={{client.imgUrl}}>
@@ -18,10 +18,6 @@
           <p>{{client.notes}}</p>
           <button class="button button-positive button-small">Accept</button>
           <button class="button button-assertive button-small">Decline</button>
-        </ion-item>
-        <ion-item class="item-icon-left" ng-click="addUser()">
-          <i class="icon ion-plus"></i>
-          <h2>Add another</h2>
         </ion-item>
       </ion-list>
     </ion-content>
