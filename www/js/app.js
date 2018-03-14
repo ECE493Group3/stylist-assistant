@@ -93,20 +93,20 @@ angular.module('starter', ['ionic', 'firebase'])
     $urlRouterProvider.otherwise("/welcome");
 })
 
-.controller("user_main_controller", [function(){
+.controller("user_main_controller", ['$scope', function($scope) {
   $scope.recommendedOutfits = [
     {
       "name": "Blue jeans and Grey hoodie",
       "description": "light blue parasuco demin with grey oversized Topman hoodie.",
-      "image": "img/ionic.png"
+      "img": "img/ionic.png"
     }, {
       "name": "Blue jeans and Grey hoodie",
       "description": "light blue parasuco demin with grey oversized Topman hoodie.",
-      "image": "img/ionic.png"
+      "img": "img/ionic.png"
     }, {
       "name": "Blue jeans and Grey hoodie",
       "description": "light blue parasuco demin with grey oversized Topman hoodie.",
-      "image": "img/ionic.png"
+      "img": "img/ionic.png"
     }
   ]
 }])
