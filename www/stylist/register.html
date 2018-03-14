@@ -8,23 +8,23 @@
       <img src="img/applogo.png" />
       <p>Register to connect with more clients, bring good style to everyone.</p>
     </div>
-    <form name="stylist_register_form" ng-submit="formSubmit()" ng-controller="stylist_register_controller">
+    <form name="stylist_register_form" ng-controller="stylist_register_controller as $ctrl">
       <ion-list inset>
         <ion-item>
-          <input type="text" name="username" ng-model="username" placeholder="Username" required>
+          <input type="text" name="username" ng-model="$ctrl.user.username" placeholder="Username" required>
           <span ng-show="stylist_register_form.username.$touched && stylist_register_form.username.$invalid">The username is required.</span>
         </ion-item>
         <ion-item>
-          <input type="password" name = "pword" ng-model = "pword" placeholder="Password" required>
+          <input type="password" name="pword" ng-model="$ctrl.user.password" placeholder="Password" required>
           <span ng-show="stylist_register_form.pword.$touched && stylist_register_form.pword.$invalid">The password is required.</span>
         </ion-item>
         <ion-item>
-          <input type="password" name = "re_pword" ng-model = "re_pword" placeholder="Retype password" required>
+          <input type="password" name="re_pword" ng-model="re_pword" placeholder="Retype password" required>
           <span ng-show="stylist_register_form.re_pword.$touched && stylist_register_form.re_pword.$invalid && isValid()">The retype password is required.</span>
         </ion-item>
       </ion-list>
 
-      <button ion-button icon-end class="button block" type="submit">Register</button>
+      <button class="button block button-positive" ng-click="$ctrl.formSubmit()">Sign-In</button>
       <button ion-button icon-end class="button block" type="reset">Clear</button>
     </form>
   </ion-content>

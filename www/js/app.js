@@ -201,13 +201,17 @@ angular.module('starter', ['ionic', 'firebase'])
 	};
 }])
 
-.controller("user_register_controller", ['$scope', '$location', '$firebaseAuth', function($scope, $location, $firebaseAuth){
+.controller("user_register_controller", ['$scope', '$state', '$firebaseAuth', function($scope, $state, $firebaseAuth){
 	
-	$scope.formSubmit = function(){
-		var email = "aaaregister@test.com";
-		var password = "password";
-		
-		firebase.auth().createUserWithEmailAndPassword(email, password)
+	var form = this;
+	form.formSubmit = function () {
+		console.log(form.user);
+
+		var username = form.user.username;
+		var password = form.user.password;
+		var stylist_code = form.user.stylist_code; 
+
+		firebase.auth().createUserWithEmailAndPassword(username, password)
 		.then(function(user){
 			if(user){
 				user.updateProfile({
@@ -215,12 +219,9 @@ angular.module('starter', ['ionic', 'firebase'])
 					role: "User",
 				});
 				console.log("Successfully update user");
-				
-				console.log("Username: " + user.displayName);
-				console.log("role: " + user.role);
 			}
 			console.log("Successfully created new user");
-			// $location.path("/user_main");
+			$state.go("user_main");
 		})
 		.catch(function(error){
 			console.log("Error creating new user");
@@ -238,7 +239,7 @@ angular.module('starter', ['ionic', 'firebase'])
 	};
 }])
 
-.controller("stylist_signin_controller", ['$scope', '$location' , function($scope, $location){
+.controller("stylist_signin_controller", ['$scope', '$scope' , function($scope, $scope){
 	var form = this;
 	form.formSubmit = function () {
 		console.log(form.user);
@@ -257,13 +258,32 @@ angular.module('starter', ['ionic', 'firebase'])
 	};
 }])
 
-.controller("stylist_register_controller", ['$scope', '$location', 'ConnectDB', function($scope, $location, ConnectDB){
-	
-	$scope.formSubmit = function(){
-		// ConnectDB.connectDB();
-		
-		$location.path("/stylist_main");
-	}
+.controller("stylist_register_controller", ['$scope', '$state', '$firebaseAuth', function ($scope, $state, $firebaseAuth) {
+
+	var form = this;
+	form.formSubmit = function () {
+		console.log(form.user);
+
+		var username = form.user.username;
+		var password = form.user.password;
+
+		firebase.auth().createUserWithEmailAndPassword(username, password)
+			.then(function (user) {
+				if (user) {
+					user.updateProfile({
+						displayName: "Hello World",
+						role: "User",
+					});
+					console.log("Successfully update user");
+				}
+				console.log("Successfully created new user");
+				$state.go("stylist_main");
+			})
+			.catch(function (error) {
+				console.log("Error creating new user");
+			})
+
+	};
 	
 }])
 

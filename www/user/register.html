@@ -4,22 +4,22 @@
       <img src="img/applogo.png" />
       <p>Register to get daily outfit recommendations, start dressing better today.</p>
     </div>
-    <form name="user_register_form" ng-submit="formSubmit()" ng-controller="user_register_controller">
+    <form name="user_register_form" ng-submit="formSubmit()" ng-controller="user_register_controller as $ctrl">
       <ion-list inset>
         <ion-item>
-          <input type="text" name ="username" ng-model="username" placeholder="Username" required>
+          <input type="text" name ="username" ng-model="$ctrl.user.username" placeholder="Username" required>
           <span ng-show="user_register_form.username.$touched && user_register_form.username.$invalid">The username is required.</span>
         </ion-item>
         <ion-item>
-          <input type="password" name = "pword" ng-model = "pword" placeholder="password" required>
+          <input type="password" name="pword" ng-model="$ctrl.user.password" placeholder="password" required>
           <span ng-show="user_register_form.pword.$touched && user_register_form.pword.$invalid">The password is required.</span>
         </ion-item>
         <ion-item>
-          <input type="password" name = "re_pword" ng-model = "re_pword" placeholder="RetypePpassword" required>
+          <input type="password" name="re_pword" ng-model="re_pword" placeholder="RetypePpassword" required>
           <span ng-show="(user_register_form.re_pword.$touched && user_register_form.re_pword.$invalid) || !isValid()">The retype password is required and matched.</span>
         </ion-item>
         <ion-item>
-          <input type="text" name = "stylist_code" ng-model = "stylist_code" placeholder="Stylist Code" required>
+          <input type="text" name="stylist_code" ng-model="$ctrl.user.stylist_code" placeholder="Stylist Code" required>
           <span ng-show="user_register_form.stylist_code.$touched && user_register_form.stylist_code.$invalid">The Stylist Code is required.</span>
         </ion-item>
       </ion-list>
