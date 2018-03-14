@@ -182,111 +182,6 @@ angular.module('starter', ['ionic', 'firebase'])
 	
 }])
 
-.controller("user_signin_controller", ['$scope', '$state', '$firebaseAuth' , function($scope, $state, $firebaseAuth){
-	var form = this;
-	form.formSubmit = function () {
-		console.log(form.user);
-		
-		var username = form.user.username;
-		var password = form.user.password;
-		
-		firebase.auth().signInWithEmailAndPassword(username, password)
-		.then(function(){
-			$state.go("user_main");
-			console.log("User Login Success");
-		})
-		.catch(function(error){
-			console.log(error);
-		}); 
-	};
-}])
-
-.controller("user_register_controller", ['$scope', '$state', '$firebaseAuth', function($scope, $state, $firebaseAuth){
-	
-	var form = this;
-	form.formSubmit = function () {
-		console.log(form.user);
-
-		var username = form.user.username;
-		var password = form.user.password;
-		var stylist_code = form.user.stylist_code; 
-
-		firebase.auth().createUserWithEmailAndPassword(username, password)
-		.then(function(user){
-			if(user){
-				user.updateProfile({
-					displayName: "Hello World",
-					role: "User",
-				});
-				console.log("Successfully update user");
-			}
-			console.log("Successfully created new user");
-			$state.go("user_main");
-		})
-		.catch(function(error){
-			console.log("Error creating new user");
-		})
-		
-	};
-	
-	$scope.isValid = function(){
-		if($scope.pword != $scope.re_pword){
-			return false;
-		}
-		else{
-			return true;
-		}
-	};
-}])
-
-.controller("stylist_signin_controller", ['$scope', '$scope' , function($scope, $scope){
-	var form = this;
-	form.formSubmit = function () {
-		console.log(form.user);
-		
-		var username = form.user.username;
-		var password = form.user.password;
-		
-		firebase.auth().signInWithEmailAndPassword(username, password)
-		.then(function () {
-			$state.go("stylist_main");
-			console.log("Stylist Login Success");
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-	};
-}])
-
-.controller("stylist_register_controller", ['$scope', '$state', '$firebaseAuth', function ($scope, $state, $firebaseAuth) {
-
-	var form = this;
-	form.formSubmit = function () {
-		console.log(form.user);
-
-		var username = form.user.username;
-		var password = form.user.password;
-
-		firebase.auth().createUserWithEmailAndPassword(username, password)
-			.then(function (user) {
-				if (user) {
-					user.updateProfile({
-						displayName: "Hello World",
-						role: "User",
-					});
-					console.log("Successfully update user");
-				}
-				console.log("Successfully created new user");
-				$state.go("stylist_main");
-			})
-			.catch(function (error) {
-				console.log("Error creating new user");
-			})
-
-	};
-	
-}])
-
 .service("network", function(){
 	this.checkConnection = function(){
 		var networkState = navigator.connection.type;
@@ -398,6 +293,111 @@ angular.module('starter', ['ionic', 'firebase'])
 		console.log("remove " + uristring); 
 	}
 	
+}])
+
+.controller("user_signin_controller", ['$scope', '$state', '$firebaseAuth', function ($scope, $state, $firebaseAuth) {
+	var form = this;
+	form.formSubmit = function () {
+		console.log(form.user);
+
+		var username = form.user.username;
+		var password = form.user.password;
+
+		firebase.auth().signInWithEmailAndPassword(username, password)
+			.then(function () {
+				$state.go("user_main");
+				console.log("User Login Success");
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+}])
+
+.controller("user_register_controller", ['$scope', '$state', '$firebaseAuth', function ($scope, $state, $firebaseAuth) {
+
+	var form = this;
+	form.formSubmit = function () {
+		console.log(form.user);
+
+		var username = form.user.username;
+		var password = form.user.password;
+		var stylist_code = form.user.stylist_code;
+
+		firebase.auth().createUserWithEmailAndPassword(username, password)
+			.then(function (user) {
+				if (user) {
+					user.updateProfile({
+						displayName: "Hello World",
+						role: "User",
+					});
+					console.log("Successfully update user");
+				}
+				console.log("Successfully created new user");
+				$state.go("user_main");
+			})
+			.catch(function (error) {
+				console.log("Error creating new user");
+			})
+
+	};
+
+	$scope.isValid = function () {
+		if ($scope.pword != $scope.re_pword) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	};
+}])
+
+.controller("stylist_signin_controller", ['$scope', '$scope', function ($scope, $scope) {
+	var form = this;
+	form.formSubmit = function () {
+		console.log(form.user);
+
+		var username = form.user.username;
+		var password = form.user.password;
+
+		firebase.auth().signInWithEmailAndPassword(username, password)
+			.then(function () {
+				$state.go("stylist_main");
+				console.log("Stylist Login Success");
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+}])
+
+.controller("stylist_register_controller", ['$scope', '$state', '$firebaseAuth', function ($scope, $state, $firebaseAuth) {
+
+	var form = this;
+	form.formSubmit = function () {
+		console.log(form.user);
+
+		var username = form.user.username;
+		var password = form.user.password;
+
+		firebase.auth().createUserWithEmailAndPassword(username, password)
+			.then(function (user) {
+				if (user) {
+					user.updateProfile({
+						displayName: "Hello World",
+						role: "User",
+					});
+					console.log("Successfully update user");
+				}
+				console.log("Successfully created new user");
+				$state.go("stylist_main");
+			})
+			.catch(function (error) {
+				console.log("Error creating new user");
+			})
+
+	};
+
 }])
 ; 
 
