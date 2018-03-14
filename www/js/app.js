@@ -178,16 +178,18 @@ angular.module('starter', ['ionic', 'firebase'])
 
 }])
 
-.controller("user_signin_controller", ['$scope', '$location', '$firebaseAuth' , function($scope, $location, $firebaseAuth){
+.controller("user_signin_controller", ['$scope', '$state', '$firebaseAuth' , function($scope, $state, $firebaseAuth){
+  var form = this;
+  form.formSubmit = function () {
+    console.log(form.user);
 
-  $scope.formSubmit = function(username, pword){
-    var username = $scope.username;
-    var pword = $scope.pword;
+    var username = form.user.username;
+    var password = form.user.password;
 
-    firebase.auth().signInWithEmailAndPassword(username, pword)
+    firebase.auth().signInWithEmailAndPassword(username, password)
     .then(function(){
+      $state.go("user_main");
       console.log("User Login Success");
-      $location.path("/user_main");
     })
     .catch(function(error){
       console.log(error);
