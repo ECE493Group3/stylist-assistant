@@ -115,23 +115,6 @@ angular.module('starter', ['ionic', 'firebase'])
 	var ref = firebase.database().ref().child("clients");
 	data = $firebaseObject(ref);
 	data.$bindTo($scope, "clientList");
-	// $scope.clientList = [
-	// 	{
-	// 		name: "ClientName1",
-	// 		imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-	// 		notes: "How you say broke in Spanish"
-	// 	},
-	// 	{
-	// 		name: "ClientName2",
-	// 		imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-	// 		notes: "Client 2 is here"
-	// 	},
-	// 	{
-	// 		name: "ClientName3",
-	// 		imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-	// 		notes: "Client 3 is herebababab"
-	// 	},
-	// ];
 	$scope.clientRequestList = [
 		{
 			name: "ClientName4",
