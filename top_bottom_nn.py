@@ -1,5 +1,6 @@
 import os
 import sys
+import cv2
 import cnn_vgg16
 
 import numpy as np
@@ -8,7 +9,7 @@ import tensorflow as tf
 tf.logging.set_verbosity(tf.logging.INFO)
 
 DATA_DIRECTORY = os.path.join('DATA', 'Img')
-RESCALE_SIZE = [224, 224]
+SIZE = 224
 SAMPLE_CATEGORY_IMG_FILE_TRAIN = "sample_category_img_train.txt"
 SAMPLE_CATEGORY_IMG_FILE_VALIDATION = "sample_category_img_validation.txt"
 
@@ -22,14 +23,16 @@ def parse_images(filename):
             imgfile, cat = line.split('\t')
             labels.append(int(cat) - 1)
 
-            imgfile = os.path.join(DATA_DIRECTORY, imgfile)
-            _, image_f = image_reader.read(tf.train.string_input_producer([imgfile]))
-            image = tf.image.decode_jpeg(image_f, channels=3)
-            resized_image = tf.image.resize_images(image, RESCALE_SIZE)
-            images.append(resized_image)
+            full_path = os.path.join(DATA_DIRECTORY, imgfile)
+            image_f = cv2.imread(full_path)
+            resized_image = cv2.resize(image_f, (SIZE, SIZE))
+            normalized_image = tf.image.per_image_standardization(resized_image)
+            images.append(normalized_image)
 
-    return tf.convert_to_tensor(images), tf.convert_to_tensor(labels)
-    # return tf.train.batch(images, 100), tf.train.batch(labels, 100)
+    slices = ((images, labels))
+    ds = tf.data.Dataset.from_tensor_slices(slices)
+    return ds.shuffle(len(images) + 1).batch(100)
+
 
 def main(argv):
     # Create the Estimator
@@ -44,7 +47,6 @@ def main(argv):
     if len(argv) > 1 and argv[1] == '-t':
         top_bottom_classifier.train(
                 input_fn=lambda: parse_images(SAMPLE_CATEGORY_IMG_FILE_TRAIN),
-                steps=20000,
                 hooks=[logging_hook])
 
     eval_results = top_bottom_classifier.evaluate(
