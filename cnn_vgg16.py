@@ -1,12 +1,13 @@
 #! /usr/bin/env python
-"""Implementation of VGG-16 for Top/Bottom/Full-body task."""
+"""Implementation of VGG-16 for image processing tasks"""
 
 import tensorflow as tf
 
 SIZE = 224
 N_LABELS = 3
+N_ATTRIBUTES = 1000
 
-def vgg16(features, labels, mode):
+def vgg16_general(features, labels, mode):
     """Model function for CNN."""
 
     input_layer = tf.reshape(features, [-1, SIZE, SIZE, 3])
@@ -147,8 +148,14 @@ def vgg16(features, labels, mode):
             units=4096,
             activation=tf.nn.relu)
 
+    return fc_4096_1
+
+def top_bottom_classifier_model(features, labels, mode):
+
+    penultimate_layer = vgg16_general(features, labels, mode)
+
     # Logits layer
-    logits = tf.layers.dense(inputs=fc_4096_1, units=3)
+    logits = tf.layers.dense(inputs=penultimate_layer, units=3)
 
     # Softmax
     softmax = tf.nn.softmax(logits, name="softmax_tensor")
@@ -178,6 +185,42 @@ def vgg16(features, labels, mode):
             "accuracy": tf.metrics.accuracy(
                 labels=labels,
                 predictions=predictions["classes"])
+            }
+
+    return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
+
+def attribute_tagging_model(features, labels, mode):
+
+    penultimate_layer = vgg16_general(features, labels, mode)
+
+    # Logits layer
+    logits = tf.layers.dense(inputs=penultimate_layer, units=N_ATTRIBUTES)
+
+    predictions = {
+      # Generate predictions (for PREDICT and EVAL mode)
+      "attributes": logits,
+      # Add `softmax_tensor` to the graph. It is used for PREDICT and by the
+      # `logging_hook`.
+      "probabilities": softmax
+    }
+
+    if mode == tf.estimator.ModeKeys.PREDICT:
+        return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
+
+    # Calculate Loss (for both TRAIN and EVAL modes)
+    loss = tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits)
+
+    # Configure the Training Op (for TRAIN mode)
+    if mode == tf.estimator.ModeKeys.TRAIN:
+        optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
+        train_op = optimizer.minimize(loss=loss, global_step=tf.train.get_global_step())
+        return tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
+
+    # Add evaluation metrics (for EVAL mode)
+    eval_metric_ops = {
+            "accuracy": tf.metrics.accuracy(
+                labels=labels,
+                predictions=predictions["attributes"])
             }
 
     return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)

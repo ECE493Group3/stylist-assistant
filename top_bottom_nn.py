@@ -38,7 +38,9 @@ def parse_images(filename):
 
 def main(argv):
     # Create the Estimator
-    top_bottom_classifier = tf.estimator.Estimator(model_fn=cnn_vgg16.vgg16, model_dir="top_bottom_convnet_model")
+    top_bottom_classifier = tf.estimator.Estimator(
+            model_fn=cnn_vgg16.top_bottom_classifier_model,
+            model_dir="top_bottom_convnet_model")
 
     # Set up logging for predictions
     # Log the values in the "Softmax" tensor with label "probabilities"
