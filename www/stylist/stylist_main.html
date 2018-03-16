@@ -6,16 +6,15 @@
     
     <ion-content class = "">
       <ion-list>
-
         <ion-item class="item-avatar" ng-repeat="client in clientList">
-          <img src={{client.clientinfo.img}}>
-          <h2>{{client.clientinfo.name}}</h2>
-          <p>{{client.clientinfo.notes}}</p>
+          <img src={{client.img}}>
+          <h2>{{client.name}}</h2>
+          <p>{{client.email}}</p>
         </ion-item>
         <ion-item class="item-avatar client-request" ng-repeat="client in clientRequestList">
-          <img src={{client.imgUrl}}>
+          <img src={{client.img}}>
           <h2>{{client.name}}</h2>
-          <p>{{client.notes}}</p>
+          <p>{{client.email}}</p>
           <button class="button button-positive button-small">Accept</button>
           <button class="button button-assertive button-small">Decline</button>
         </ion-item>

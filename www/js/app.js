@@ -111,17 +111,16 @@ angular.module('starter', ['ionic', 'firebase'])
 	]
 }])
 
-.controller("stylist_main_controller", ['$scope', '$firebaseObject', function($scope, $firebaseObject){
-	var ref = firebase.database().ref().child("clients");
-	data = $firebaseObject(ref);
-	data.$bindTo($scope, "clientList");
-	$scope.clientRequestList = [
-		{
-			name: "ClientName4",
-			imgUrl: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-			notes: "How you say broke in Spanish"
-		},
-	];
+.controller("stylist_main_controller", ['$scope', '$firebaseObject',  '$firebaseAuth', function($scope, $firebaseObject, $firebaseAuth){
+	firebase.auth().onAuthStateChanged(function (u) {
+		if (u) {
+			var stylistref = firebase.database().ref().child("stylists").child(u.uid).child("clients");
+			$scope.clientList = $firebaseObject(stylistref);
+			var stylistref = firebase.database().ref().child("stylists").child(u.uid).child("clientRequests");
+			$scope.clientRequestList = $firebaseObject(stylistref);
+		}
+	});
+
 	
 	$scope.edit = function() {
 		$scope.delete_button = !$scope.delete_button;
@@ -256,6 +255,7 @@ angular.module('starter', ['ionic', 'firebase'])
 
 		firebase.auth().signInWithEmailAndPassword(username, password)
 			.then(function () {
+				// confirm user
 				$state.go("user_main");
 				console.log("User Login Success");
 			})
@@ -313,6 +313,7 @@ angular.module('starter', ['ionic', 'firebase'])
 
 		firebase.auth().signInWithEmailAndPassword(username, password)
 			.then(function () {
+				// confirm stylist
 				$state.go("stylist_main");
 				console.log("Stylist Login Success");
 			})
