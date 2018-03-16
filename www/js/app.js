@@ -80,7 +80,8 @@ angular.module('starter', ['ionic', 'firebase'])
 	.state('user_recommend', {
 		cache:false,
 		url:"/user_recommend",
-		templateUrl:"user/user_recommend.html"             
+		templateUrl: "user/user_recommend.html",
+		controller: "user_main_controller"          
 	})    
 	.state('stylist_main',{
 		cache:false,
@@ -93,22 +94,17 @@ angular.module('starter', ['ionic', 'firebase'])
 	$urlRouterProvider.otherwise("/welcome");
 })
 
-.controller("user_main_controller", ['$scope', function($scope) {
-	$scope.recommendedOutfits = [
-		{
-			"name": "Blue jeans and Grey hoodie",
-			"description": "light blue parasuco demin with grey oversized Topman hoodie.",
-			"img": "img/ionic.png"
-		}, {
-			"name": "Blue jeans and Grey hoodie",
-			"description": "light blue parasuco demin with grey oversized Topman hoodie.",
-			"img": "img/ionic.png"
-		}, {
-			"name": "Blue jeans and Grey hoodie",
-			"description": "light blue parasuco demin with grey oversized Topman hoodie.",
-			"img": "img/ionic.png"
+.controller("user_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
+	firebase.auth().onAuthStateChanged(function (u) {
+		if (u) {
+			var userref = firebase.database().ref().child("users").child(u.uid);
+			$scope.user = $firebaseObject(userref);
 		}
-	]
+	});
+
+	$scope.selected = function (outfit) {
+		console.log("hey")
+	}
 }])
 
 .controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
@@ -118,17 +114,12 @@ angular.module('starter', ['ionic', 'firebase'])
 
 	firebase.auth().onAuthStateChanged(function (u) {
 		if (u) {
-			// sidebar
 			var stylistref = firebase.database().ref().child("stylists").child(u.uid).child("clients");
 			$scope.clientList = $firebaseObject(stylistref);
 			var stylistref = firebase.database().ref().child("stylists").child(u.uid).child("clientRequests");
 			$scope.clientRequestList = $firebaseObject(stylistref);; 
 		}
 	});
-
-	$scope.edit = function() {
-		$scope.delete_button = !$scope.delete_button;
-	}
 
 	$scope.loadClient = function(clientId) {
 		var stylistref = firebase.database().ref().child("users").child(clientId);

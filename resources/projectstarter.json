@@ -6,7 +6,7 @@
             "email": "askalburgi@gmail.com",
             "stylist": "DSzjEvbRcsPD5cnymJ01fZGoIrP2",
             "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-            "wardrobeitems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+            "wardrobeitems": [{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"}], 
             "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
             "recommendedoutfits": [
                 {
@@ -31,7 +31,7 @@
             "password": "password",
             "stylist": "DSzjEvbRcsPD5cnymJ01fZGoIrP2",
             "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-            "wardrobeitems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+            "wardrobeitems": [{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"}], 
             "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
             "recommendedoutfits": [
                 {
@@ -69,7 +69,7 @@
                     "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
                     "email": "askalburgi@gmail.com", 
                     "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-                    "wardrobeitems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+                    "wardrobeitems": [{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"}], 
                     "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
                     "recommendedoutfits": [
                         {
@@ -92,7 +92,7 @@
                     "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
                     "email": "user1@gmail.com", 
                     "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-                    "wardrobeitems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+                    "wardrobeitems": [{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"}], 
                     "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
                     "recommendedoutfits": [
                         {

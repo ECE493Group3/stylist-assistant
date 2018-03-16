@@ -6,44 +6,16 @@
 
   <ion-content class="has-header has-footer padding">
     <ion-list class="listofcards">
-      <ion-item>
+      <ion-item ng-repeat="(outfitid, outfit) in user.recommendedoutfits">
         <ion-card>
-          <img src="img/ionic.png" />
+          <img src={{outfit.image}} />
           <div class="row">
             <div class="col col-75">
-              <div class="card-title">Recommendation #1</div>
-              <p>featuring all the other things</p>
+              <div class="card-title">{{outfit.name}}</div>
+              <p>{{outfit.description}}</p>
             </div>
             <div class="col">
-              <button class="button button-positive">Select</button>
-            </div>
-          </div>
-        </ion-card>
-      </ion-item>
-      <ion-item>
-        <ion-card>
-          <img src="img/ionic.png" />
-          <div class="row">
-            <div class="col col-75">
-              <div class="card-title">Recommendation #2</div>
-              <p>featuring all the other things</p>
-            </div>
-            <div class="col">
-              <button class="button button-positive">Select</button>
-            </div>
-          </div>
-        </ion-card>
-      </ion-item>
-      <ion-item>
-        <ion-card>
-          <img src="img/ionic.png" />
-          <div class="row">
-            <div class="col col-75">
-              <div class="card-title">Recommendation #3</div>
-              <p>featuring all the other things</p>
-            </div>
-            <div class="col">
-              <button class="button button-positive">Select</button>
+              <button class="button button-positive" ng-click="selected(outfitid)">Select</button>
             </div>
           </div>
         </ion-card>
