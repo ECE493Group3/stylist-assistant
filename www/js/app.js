@@ -111,24 +111,33 @@ angular.module('starter', ['ionic', 'firebase'])
 	]
 }])
 
-.controller("stylist_main_controller", ['$scope', '$firebaseObject',  '$firebaseAuth', function($scope, $firebaseObject, $firebaseAuth){
+.controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
+	ionic.Platform.ready(function () {
+		$ionicSideMenuDelegate.toggleLeft();
+	});
+
 	firebase.auth().onAuthStateChanged(function (u) {
 		if (u) {
+			// sidebar
 			var stylistref = firebase.database().ref().child("stylists").child(u.uid).child("clients");
 			$scope.clientList = $firebaseObject(stylistref);
 			var stylistref = firebase.database().ref().child("stylists").child(u.uid).child("clientRequests");
-			$scope.clientRequestList = $firebaseObject(stylistref);
+			$scope.clientRequestList = $firebaseObject(stylistref);; 
 		}
 	});
 
-	
 	$scope.edit = function() {
 		$scope.delete_button = !$scope.delete_button;
 	}
-	
-	$scope.dressLog = [{ "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }]
-	$scope.recommendedItems = [{ "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }, { "img": "img/ionic.png" }]
-	$scope.wardrobeItems = [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}]
+
+	$scope.loadClient = function(clientId) {
+		var stylistref = firebase.database().ref().child("users").child(clientId);
+		$scope.client = $firebaseObject(stylistref);
+		$scope.dressLog = $firebaseObject(firebase.database().ref().child("users").child(clientId).child("dresslog"));
+		$scope.wardrobeItems = $firebaseObject(firebase.database().ref().child("users").child(clientId).child("wardrobeitems"));
+		$scope.recommendedItems = $firebaseObject(firebase.database().ref().child("users").child(clientId).child("recommendeditems"));
+		$ionicSideMenuDelegate.toggleLeft();
+	}
 	
 }])
 

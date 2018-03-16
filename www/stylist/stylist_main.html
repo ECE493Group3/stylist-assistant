@@ -1,17 +1,17 @@
 <ion-side-menus>
-  <ion-side-menu side = "left" width="200">  
+  <ion-side-menu side = "left" width="320" id="clientList">  
     <ion-header-bar class = "bar-positive">
       <ion-title>Clients</ion-title>
     </ion-header-bar>
     
     <ion-content class = "">
       <ion-list>
-        <ion-item class="item-avatar" ng-repeat="client in clientList">
+        <ion-item class="item-avatar" ng-repeat="(clientid, client) in clientList" ng-click="loadClient(clientid)">
           <img src={{client.img}}>
           <h2>{{client.name}}</h2>
           <p>{{client.email}}</p>
         </ion-item>
-        <ion-item class="item-avatar client-request" ng-repeat="client in clientRequestList">
+        <ion-item class="item-avatar client-request" ng-repeat="client in clientRequestList" ng-click="loadClient(client)">
           <img src={{client.img}}>
           <h2>{{client.name}}</h2>
           <p>{{client.email}}</p>
@@ -25,7 +25,7 @@
   <ion-side-menu-content>
     <ion-nav-bar class = "bar" animation = "no-animation">
       <ion-nav-back-button></ion-nav-back-button>
-      <ion-nav-title>ClientName1</ion-nav-title>
+      <ion-nav-title>{{client.name}}</ion-nav-title>
       <ion-nav-buttons side="left">
         <button class="button button-icon button-positive ion-navicon" menu-toggle="left"></button>
       </ion-nav-buttons>
@@ -35,7 +35,7 @@
       <ion-content class="has-header" id="profile">
         <div id="profileheader">
           <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png">
-          <h4>ClientName1</h4>
+          <h4>{{client.name}}</h4>
         </div>
 
         <div id="clientloglist" class="profile-section">
@@ -45,7 +45,7 @@
           </div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
-              <ion-item ng-repeat="item in dressLog">
+              <ion-item ng-repeat="item in client.dresslog">
                 <img src={{item.img}} />
               </ion-item>
             </ion-scroll>

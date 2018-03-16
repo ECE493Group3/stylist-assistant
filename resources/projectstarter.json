@@ -67,12 +67,48 @@
                 "JJmxTJiDAAdKkehR7JucOOJb4OZ2": {
                     "name": "Arjun Kalburgi",
                     "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-                    "email": "askalburgi@gmail.com"
+                    "email": "askalburgi@gmail.com", 
+                    "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+                    "wardrobeitems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+                    "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+                    "recommendedoutfits": [
+                        {
+                            "name": "Blue jeans and Grey hoodie", 
+                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
+                            "image": "img/ionic.png"
+                        },{
+                            "name": "Blue jeans and Grey hoodie", 
+                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
+                            "image": "img/ionic.png"
+                        },{
+                            "name": "Blue jeans and Grey hoodie", 
+                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
+                            "image": "img/ionic.png"
+                        }
+                    ]
                 }, 
                 "zvXKCzcZ11TnYptlGHOXM1iWUuH3": {
                     "name": "Inaccessible User",
                     "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-                    "email": "user1@gmail.com"
+                    "email": "user1@gmail.com", 
+                    "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+                    "wardrobeitems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+                    "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
+                    "recommendedoutfits": [
+                        {
+                            "name": "Blue jeans and Grey hoodie", 
+                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
+                            "image": "img/ionic.png"
+                        },{
+                            "name": "Blue jeans and Grey hoodie", 
+                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
+                            "image": "img/ionic.png"
+                        },{
+                            "name": "Blue jeans and Grey hoodie", 
+                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
+                            "image": "img/ionic.png"
+                        }
+                    ]
                 }
             }
         }
