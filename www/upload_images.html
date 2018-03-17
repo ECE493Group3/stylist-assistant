@@ -1,13 +1,12 @@
-<ion-view view-title="User Main">
+<ion-view>
     <ion-nav-bar class="bar" animation="no-animation">
+        <ion-nav-title>{{title.beginning}} {{title.type}} {{title.end}}</ion-nav-title>
         <ion-nav-buttons side="right">
-            <ion-nav-back-button class="ion-android-close"></ion-nav-back-button>
-            <ion-nav-back-button>Back</ion-nav-back-button>
-            <button class="button button-icon button-clear ion-android-close" menu-toggle="right"></button>
+            <button class="button button-icon button-clear ion-plus" menu-toggle="right"></button>
         </ion-nav-buttons>
     </ion-nav-bar>
     
-    <ion-content class="has-header" ng-controller="images_controller">
+    <ion-content class="has-header">
         <div class="padding">
             <div id="titlebrand">
                 <img src="img/applogo.png" />
@@ -34,7 +33,7 @@
 
         <div class="row myrow padding-top">
             <div class="item editimages col-25" ng-repeat="piece in clothingPieces">
-                <img src={{piece.imgURI}}>
+                <img src={{piece.img}}>
                 <button class="delete" ng-click="remove(piece.imgURI)"></button>
             </div>
         </div>

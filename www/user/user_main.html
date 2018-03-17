@@ -29,10 +29,9 @@
 					<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
 				</ion-nav-buttons>
 				<ion-nav-buttons side="right">
-					<a href="#/upload_images"><button class="button button-icon button-clear ion-plus" menu-toggle="right"></button></a>
+					<a href="#/upload_images/user/{{user.$id}}"><button class="button button-icon button-clear ion-plus" menu-toggle="right"></button></a>
 				</ion-nav-buttons>
 	    </ion-nav-bar>
-
       <ion-content class="has-header has-footer padding">
 				<ion-list class="listofcards">
 					<ion-item ng-repeat="piece in user.wardrobeitems">

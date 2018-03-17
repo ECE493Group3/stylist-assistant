@@ -48,8 +48,9 @@ angular.module('starter', ['ionic', 'firebase'])
 		templateUrl:"welcome.html"   
 	})
 	.state('upload_images', {
-		url: "/upload_images",
+		url: "/upload_images/:type/:id",
 		templateUrl: "upload_images.html",
+		controller: "images_controller"
 	})
 	.state('user_signin', {
 		cache:false,
@@ -167,28 +168,48 @@ angular.module('starter', ['ionic', 'firebase'])
 	}
 })
 
-.controller("images_controller", ["$scope", "Camera", function($scope, Camera){
+.controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", function($scope, $firebaseObject, $stateParams, Camera){
 	
-	$scope.takePhoto = function(){
+	console.log("hi"); 
+	console.log($stateParams); 
+	if ($stateParams.type == "user") {
+		var userref = firebase.database().ref().child("users").child($stateParams.id);
+		$scope.clothingPieces = $firebaseObject(userref.child("wardrobeitems"));
+		$scope.title = {
+			"beginning": "Your", 
+			"type": "Wardrobe", 
+			"end": "Items"
+		}
+	} else {
+		var userref = firebase.database().ref().child("users").child($stateParams.id);
+		$scope.clothingPieces = $firebaseObject(userref.child("recommendeditems"));
+		$scope.title = {
+			"beginning": "Your ",
+			"type": "Recommendations for ",
+			"end": $firebaseObject(userref.child("name"))
+		}
+	}
+
+	$scope.takePhoto = function () {
 		var options = {
-			quality:75,
+			quality: 75,
 			targetWidth: 200,
 			targetHeight: 200,
-			sourceType:1,
+			sourceType: 1,
 			correctOrientation: true,
 			saveToPhotoAlbum: true,
 		};
-		
-		Camera.getPicture(options).then(function(imageData){
+
+		Camera.getPicture(options).then(function (imageData) {
 			// add photo to db and come back and update clothingPieces
 			$scope.imgURI = imageData;
 		},
-		function(err){
-			console.log(err);
-		});
+			function (err) {
+				console.log(err);
+			});
 	};
-	
-	$scope.loadPhoto = function(){
+
+	$scope.loadPhoto = function () {
 		var options = {
 			quality: 75,
 			targetHeight: 200,
@@ -196,48 +217,16 @@ angular.module('starter', ['ionic', 'firebase'])
 			sourceType: 0,
 			correctOrientation: true
 		};
-		
-		Camera.getPicture(options).then(function(imageData){
+
+		Camera.getPicture(options).then(function (imageData) {
 			// add photo to db and come back and update clothingPieces
 			$scope.imgURI = imageData;
 		},
-		function(err){
-			console.log(err);
-		});
+			function (err) {
+				console.log(err);
+			});
 	};
-	
-	$scope.clothingPieces; 
-	
-	// if user is stylist 
-	$scope.clothingPieces = [
-		{
-			name: "avatar-finn",
-			imgURI: "img/ionic.png",
-		},
-		{
-			name: "avatar-finn",
-			imgURI: "img/ionic.png",
-		},
-		{
-			name: "avatar-finn",
-			imgURI: "img/ionic.png",
-		},
-		{
-			name: "avatar-finn",
-			imgURI: "img/ionic.png",
-		},
-		{
-			name: "avatar-finn",
-			imgURI: "img/ionic.png",
-		},
-		{
-			name: "avatar-finn",
-			imgURI: "img/ionic.png",
-		},
-	];
-	// if user is client
-	// $scope.clothingPieces = []; 
-	
+
 	$scope.remove = function(uristring) {
 		// remove photo from db and come back and update clothingPieces
 		console.log("remove " + uristring); 
