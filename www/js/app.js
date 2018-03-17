@@ -176,16 +176,16 @@ angular.module('starter', ['ionic', 'firebase'])
 		var userref = firebase.database().ref().child("users").child($stateParams.id);
 		$scope.clothingPieces = $firebaseObject(userref.child("wardrobeitems"));
 		$scope.title = {
-			"beginning": "Your", 
-			"type": "Wardrobe", 
-			"end": "Items"
+			"beginning": "Your Wardrobe Items", 
+			"end": {
+				"$value": ""
+			}
 		}
 	} else {
 		var userref = firebase.database().ref().child("users").child($stateParams.id);
 		$scope.clothingPieces = $firebaseObject(userref.child("recommendeditems"));
 		$scope.title = {
-			"beginning": "Your ",
-			"type": "Recommendations for ",
+			"beginning": "Style for",
 			"end": $firebaseObject(userref.child("name"))
 		}
 	}

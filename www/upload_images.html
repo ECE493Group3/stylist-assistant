@@ -1,9 +1,7 @@
 <ion-view>
     <ion-nav-bar class="bar" animation="no-animation">
-        <ion-nav-title>{{title.beginning}} {{title.type}} {{title.end}}</ion-nav-title>
-        <ion-nav-buttons side="right">
-            <button class="button button-icon button-clear ion-plus" menu-toggle="right"></button>
-        </ion-nav-buttons>
+        <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-title>{{title.beginning}} {{title.end.$value}}</ion-nav-title>
     </ion-nav-bar>
     
     <ion-content class="has-header">
@@ -11,7 +9,6 @@
             <div id="titlebrand">
                 <img src="img/applogo.png" />
             </div>
-
             <p>To ensure the best results, please input pictures that the Neural Net will be able to see the best. The next paragraph explains that lol </p>
             <img class="inlineimg" src="img/ionic.png" />
             <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
