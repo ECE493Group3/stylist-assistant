@@ -5,7 +5,7 @@
 # completely uncompressed
 
 # This generates a test sample of the data for the Top/Bottom/Full-body task,
-# as a tsv file
+# as two tsv files
 
 import os
 import sys
