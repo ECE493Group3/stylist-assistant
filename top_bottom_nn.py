@@ -1,6 +1,5 @@
 import os
 import sys
-import cv2
 import cnn_vgg16
 
 import numpy as np
@@ -8,7 +7,7 @@ import tensorflow as tf
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
-DATA_DIRECTORY = os.path.join('DATA', 'Img')
+DATA_DIRECTORY = os.path.join('DATA', 'Img_compressed')
 SIZE = 224
 SAMPLE_CATEGORY_IMG_FILE_TRAIN = "sample_category_img_train.txt"
 SAMPLE_CATEGORY_IMG_FILE_VALIDATION = "sample_category_img_validation.txt"
@@ -24,19 +23,22 @@ def parse_images(filename):
             labels.append(int(cat) - 1)
 
             full_path = os.path.join(DATA_DIRECTORY, imgfile)
-            image_f = cv2.imread(full_path)
-            resized_image = cv2.resize(image_f, (SIZE, SIZE))
-            normalized_image = tf.image.per_image_standardization(resized_image)
-            images.append(normalized_image)
+            images.append(full_path)
 
-    slices = ((images, labels))
+    def _process_img(img_path, label):
+        image_f = tf.read_file(img_path)
+        img_bytes = tf.image.decode_jpeg(image_f, channels=3)
+        normalized_image = tf.image.per_image_standardization(img_bytes)
+        return normalized_image, label
+
+    slices = (images, labels)
     ds = tf.data.Dataset.from_tensor_slices(slices)
-    return ds.shuffle(len(images) + 1).batch(100)
+    return ds.shuffle(len(images) + 1).map(_process_img).batch(20)
 
 
 def main(argv):
     # Create the Estimator
-    top_bottom_classifier = tf.estimator.Estimator(model_fn=cnn_vgg16.vgg16, model_dir="/tmp/top_bottom_convnet_model")
+    top_bottom_classifier = tf.estimator.Estimator(model_fn=cnn_vgg16.vgg16, model_dir="top_bottom_convnet_model")
 
     # Set up logging for predictions
     # Log the values in the "Softmax" tensor with label "probabilities"
