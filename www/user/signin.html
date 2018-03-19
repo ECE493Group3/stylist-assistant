@@ -4,6 +4,7 @@
       <img src="img/applogo.png" />
     </div>
     <form name="user_signin_form" ng-controller="user_signin_controller as $ctrl">
+      <p class="error" ng-bind="errorMsg"></p>
       <ion-list inset>
         <ion-item>
           <input type="email" name="username" ng-model="$ctrl.user.username" placeholder="Username" required>

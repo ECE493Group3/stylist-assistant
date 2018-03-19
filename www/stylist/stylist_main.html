@@ -1,10 +1,10 @@
 <ion-side-menus>
-  <ion-side-menu side = "left" width="320" id="clientList">  
+  <ion-side-menu side="left" width="300" id="clientList">  
     <ion-header-bar class = "bar-positive">
       <ion-title>Clients</ion-title>
     </ion-header-bar>
     
-    <ion-content class = "">
+    <ion-content>
       <ion-list>
         <ion-item class="item-avatar" ng-repeat="(clientid, client) in clientList" ng-click="loadClient(clientid)">
           <img src={{client.img}}>

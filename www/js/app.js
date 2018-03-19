@@ -110,7 +110,9 @@ angular.module('starter', ['ionic', 'firebase'])
 
 .controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
 	ionic.Platform.ready(function () {
-		$ionicSideMenuDelegate.toggleLeft();
+		if (!$ionicSideMenuDelegate.isOpen) {
+			$ionicSideMenuDelegate.toggleLeft()
+		}
 	});
 
 	firebase.auth().onAuthStateChanged(function (u) {
@@ -245,10 +247,31 @@ angular.module('starter', ['ionic', 'firebase'])
 		firebase.auth().signInWithEmailAndPassword(username, password)
 			.then(function () {
 				// confirm user
-				$state.go("user_main");
-				console.log("User Login Success");
+				firebase.auth().onAuthStateChanged(function (u) {
+					if (u) {
+						var stylistsref = firebase.database().ref("users")
+						stylistsref.child(u.uid).once('value', function (snapshot) {
+							var exists = (snapshot.val() !== null);
+							if (exists) {
+								$state.go("user_main");
+								console.log("User Login Success");
+							} else {
+								$scope.errorMsg = "This user is not a Client";
+								$scope.$apply();
+							}
+						});
+					}
+					$scope.errorMsg = "Could not find this user.";
+					$scope.$apply();
+				});
 			})
 			.catch(function (error) {
+				if (error.code == "auth/user-not-found") {
+					$scope.errorMsg = "Could not find this user.";
+				} else {
+					$scope.errorMsg = "Something went wrong, try again.";
+				}
+				$scope.$apply();
 				console.log(error);
 			});
 	};
@@ -303,10 +326,31 @@ angular.module('starter', ['ionic', 'firebase'])
 		firebase.auth().signInWithEmailAndPassword(username, password)
 			.then(function () {
 				// confirm stylist
-				$state.go("stylist_main");
-				console.log("Stylist Login Success");
+				firebase.auth().onAuthStateChanged(function (u) {
+					if (u) {
+						var stylistsref = firebase.database().ref("stylists")
+						stylistsref.child(u.uid).once('value', function (snapshot) {
+							var exists = (snapshot.val() !== null);
+							if (exists) {
+								$state.go("stylist_main");
+								console.log("Stylist Login Success");
+							} else {
+								$scope.errorMsg = "This user is not a Stylist"; 
+								$scope.$apply();
+							}
+						});
+					}
+					$scope.errorMsg = "Could not find this user."; 
+					$scope.$apply();
+				});
 			})
 			.catch(function (error) {
+				if (error.code == "auth/user-not-found") {
+					$scope.errorMsg = "Could not find this user."; 
+				} else {
+					$scope.errorMsg = "Something went wrong, try again."; 
+				}
+				$scope.$apply();
 				console.log(error);
 			});
 	};
