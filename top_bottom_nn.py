@@ -1,20 +1,16 @@
 import os
-import sys
-import cnn_vgg16
 
-import numpy as np
 import tensorflow as tf
+
+import cnn_vgg16
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
 DATA_DIRECTORY = os.path.join('DATA', 'Img_compressed')
-SIZE = 224
 SAMPLE_CATEGORY_IMG_FILE_TRAIN = "sample_category_img_train.txt"
 SAMPLE_CATEGORY_IMG_FILE_VALIDATION = "sample_category_img_validation.txt"
 
 def parse_images(filename):
-    image_reader = tf.WholeFileReader()
-
     images = []
     labels = []
     with open(filename, 'r') as tsv_f:
@@ -25,15 +21,8 @@ def parse_images(filename):
             full_path = os.path.join(DATA_DIRECTORY, imgfile)
             images.append(full_path)
 
-    def _process_img(img_path, label):
-        image_f = tf.read_file(img_path)
-        img_bytes = tf.image.decode_jpeg(image_f, channels=3)
-        normalized_image = tf.image.per_image_standardization(img_bytes)
-        return normalized_image, label
-
-    slices = (images, labels)
-    ds = tf.data.Dataset.from_tensor_slices(slices)
-    return ds.shuffle(len(images) + 1).map(_process_img).batch(20)
+    dataset = tf.data.Dataset.from_tensor_slices((images, labels))
+    return dataset.shuffle(len(images) + 1).map(cnn_vgg16.pre_process_image_file).batch(20)
 
 
 def main(argv):
@@ -58,5 +47,5 @@ def main(argv):
 
     print(eval_results)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     tf.app.run()
