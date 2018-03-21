@@ -44,7 +44,9 @@ def make_sample_table(sample_size, category_type):
                 imgfile, cat = line.split()
                 result.append((imgfile, category_type[int(cat)]))
 
-        return result
+        shuffled = random.sample(result, len(result))
+
+        return shuffled
 
 def make_tsvs(table):
 

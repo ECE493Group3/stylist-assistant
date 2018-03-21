@@ -48,7 +48,8 @@ def make_sample_table(sample_size):
         attr_table.append([filename] + converted_attr)
 
     print("Done reading attributes from file")
-    return attr_table
+    shuffled = random.sample(attr_table, len(attr_table))
+    return shuffled
 
 def make_tsvs(table):
     print("Making TSVs")
