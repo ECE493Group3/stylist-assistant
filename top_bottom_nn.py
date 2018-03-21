@@ -1,4 +1,5 @@
 import os
+import sys
 
 import tensorflow as tf
 
@@ -26,6 +27,25 @@ def parse_images(filename):
 
 
 def main(argv):
+
+    should_train = '--just-eval' not in argv
+
+    train_file = SAMPLE_CATEGORY_IMG_FILE_TRAIN
+    validation_file = SAMPLE_CATEGORY_IMG_FILE_VALIDATION
+
+    if '-t' in argv:
+        train_file = argv[argv.index('-t') + 1]
+
+    if '-v' in argv:
+        validation_file = argv[argv.index('-v') + 1]
+
+    if should_train:
+        print("Using training sample file %s" % train_file)
+    else:
+        print("Not training")
+
+    print("Using validation sample file %s" % validation_file)
+
     # Create the Estimator
     top_bottom_classifier = tf.estimator.Estimator(
             model_fn=cnn_vgg16.top_bottom_classifier_model,
@@ -37,15 +57,15 @@ def main(argv):
     logging_hook = tf.train.LoggingTensorHook(
           tensors=tensors_to_log, every_n_iter=50)
 
-    if len(argv) > 1 and argv[1] == '-t':
+    if should_train:
         top_bottom_classifier.train(
-                input_fn=lambda: parse_images(SAMPLE_CATEGORY_IMG_FILE_TRAIN),
+                input_fn=lambda: parse_images(train_file),
                 hooks=[logging_hook])
 
     eval_results = top_bottom_classifier.evaluate(
-            input_fn=lambda: parse_images(SAMPLE_CATEGORY_IMG_FILE_VALIDATION))
+            input_fn=lambda: parse_images(validation_file))
 
     print(eval_results)
 
 if __name__ == "__main__":
-    tf.app.run()
+    tf.app.run(argv=sys.argv)
