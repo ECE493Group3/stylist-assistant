@@ -162,10 +162,6 @@ def get_item_similarity(cloth1, cloth2):
 
 	return sum / (1 + len(union_c))
 
-def get_out_similarity(outfit1, outfit2):
-	print("Placeholder")
-
-
 if __name__=="__main__":
 
 	if not len(sys.argv) == 2:
@@ -180,15 +176,17 @@ if __name__=="__main__":
 	cat_types = get_category_types()
 	attr_types = get_attr_types()
 	get_category_attribute_label(cat_types, attr_types)
-	# make_tsvs(cloths_list)
+	
+	a = random.randint(0, len(cloths_list))
+	cloth_a = cloths_list[a]
+
 	with open(TSV_FILE_VALIDATION, 'w') as f:
-		for i in range(0, sample_size):
-			a = random.randint(0, len(cloths_list))
-			b = random.randint(0, len(cloths_list))
-			cloth_a = cloths_list[a]
-			cloth_b = cloths_list[b]
+		for i in range(0, len(cloths_list)):
+			
+			cloth_b = cloths_list[i]
 			sim = get_item_similarity(cloth_a, cloth_b)
 			f.write("Comparing: " + cloth_a.get_img_file() + ", " + cloth_b.get_img_file() + "\n Similarity: " + str(sim) + '\n')
 
+	print("Done")
 
 
