@@ -14,8 +14,8 @@ import random
 DATA_DIRECTORY = 'DATA'
 LIST_CATEGORY_IMG_FILE = os.path.join(DATA_DIRECTORY, 'Anno', 'list_category_img.txt')
 LIST_CATEGORY_CLOTH_FILE = os.path.join(DATA_DIRECTORY, 'Anno', 'list_category_cloth.txt')
-TSV_FILE_TRAIN = 'sample_category_img_train.txt'
-TSV_FILE_VALIDATION = 'sample_category_img_validation.txt'
+TSV_FILE_TRAIN = 'sample_type_img_train.txt'
+TSV_FILE_VALIDATION = 'sample_type_img_validation.txt'
 
 def get_category_types():
 

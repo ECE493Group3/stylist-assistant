@@ -8,8 +8,8 @@ import cnn_vgg16
 tf.logging.set_verbosity(tf.logging.INFO)
 
 DATA_DIRECTORY = os.path.join('DATA', 'Img_compressed')
-SAMPLE_CATEGORY_IMG_FILE_TRAIN = "sample_category_img_train.txt"
-SAMPLE_CATEGORY_IMG_FILE_VALIDATION = "sample_category_img_validation.txt"
+SAMPLE_TYPE_IMG_FILE_TRAIN = "sample_type_img_train.txt"
+SAMPLE_TYPE_IMG_FILE_VALIDATION = "sample_type_img_validation.txt"
 
 def parse_images(filename):
     images = []
@@ -30,8 +30,8 @@ def main(argv):
 
     should_train = '--just-eval' not in argv
 
-    train_file = SAMPLE_CATEGORY_IMG_FILE_TRAIN
-    validation_file = SAMPLE_CATEGORY_IMG_FILE_VALIDATION
+    train_file = SAMPLE_TYPE_IMG_FILE_TRAIN
+    validation_file = SAMPLE_TYPE_IMG_FILE_VALIDATION
 
     if '-t' in argv:
         train_file = argv[argv.index('-t') + 1]
