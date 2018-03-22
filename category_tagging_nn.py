@@ -55,7 +55,7 @@ def main(argv):
 
     # Set up logging for predictions
     # Log the values in the "Softmax" tensor with label "probabilities"
-    tensors_to_log = {"probabilities": "softmax_tensor"}
+    tensors_to_log = {"probabilities": cnn_vgg16.CATEGORY_LOGGING_TENSOR_NAME}
     logging_hook = tf.train.LoggingTensorHook(
           tensors=tensors_to_log, every_n_iter=50)
 

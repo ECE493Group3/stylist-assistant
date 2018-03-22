@@ -7,6 +7,10 @@ SIZE = 224
 N_LABELS = 3
 N_ATTRIBUTES = 1000
 
+TOP_BOTTOM_LOGGING_TENSOR_NAME = "softmax_tensor"
+CATEGORY_LOGGING_TENSOR_NAME = "softmax_tensor"
+ATTRIBUTE_LOGGING_TENSOR_NAME = "sigmoid_tensor"
+
 def pre_process_image_file(img_path, label):
     image_f = tf.read_file(img_path)
     img_bytes = tf.image.decode_jpeg(image_f, channels=3)
