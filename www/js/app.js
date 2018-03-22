@@ -292,39 +292,47 @@ angular.module('starter', ['ionic', 'firebase'])
 			.then(function (user) {
 				if (user) {
 					var stylistref = firebase.database().ref("stylists").orderByChild("email").equalTo(stylist_code).once('value', function (snapshot) {
-						var stylistId = Object.keys(snapshot.val())[0]
+						var exists = (snapshot.val() !== null);
+						if (!exists) {
 
-						// place in stylists
-						var userInStylist = firebase.database().ref("stylists").child(stylistId).child("clientRequests").child(user.uid); 
-						userInStylist.set({
-							name: username, 
-							img: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png", 
-							email: email
-						}); 
+							var stylistId = Object.keys(snapshot.val())[0]
 
-						// place in users 
-						var userref = firebase.database().ref("users").child(user.uid)
-						userref.set({
-							dressLog: [],
-							recommendeditems: [],
-							recommendedoutfits: [],
-							wardrobeitems: [],
-							stylist: stylistId,
-							email: email,
-							name: username,
-							img: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-						}); 
+							// place in stylists
+							var userInStylist = firebase.database().ref("stylists").child(stylistId).child("clientRequests").child(user.uid); 
+							userInStylist.set({
+								name: username, 
+								img: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png", 
+								email: email
+							}); 
+
+							// place in users 
+							var userref = firebase.database().ref("users").child(user.uid)
+							userref.set({
+								dressLog: [],
+								recommendeditems: [],
+								recommendedoutfits: [],
+								wardrobeitems: [],
+								stylist: stylistId,
+								email: email,
+								name: username,
+								img: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+							}); 
+
+							// update own profile
+							user.updateProfile({
+								displayName: username,
+								role: "User",
+							});
+
+							console.log("Successfully update user");
+							console.log("Successfully created new user");
+							$state.go("user_main");
+						} else {
+							$scope.errorMsg = "This email is not recognized as a stylist.";
+							$scope.$apply();
+						}
 					})
-					
-					// update own profile
-					user.updateProfile({
-						displayName: username,
-						role: "User",
-					});
-					console.log("Successfully update user");
 				}
-				console.log("Successfully created new user");
-				$state.go("user_main");
 			})
 			.catch(function (error) {
 				console.log("Error creating new user");
