@@ -234,10 +234,7 @@ if __name__=="__main__":
 	# 		collection.insert_one(input_cloth)
 
 	# 	print("Finish uploading to DB")
-	with open(TSV_FILE_VALIDATION, 'w') as f:
-		f.writelines(str(cloth) for cloth in cloths_list)
 
-	exit(1)
 
 	with open(TSV_FILE_VALIDATION, 'w') as f:
 		for j in range(0, sample_size):
