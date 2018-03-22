@@ -9,10 +9,15 @@
       <p>Register to connect with more clients, bring good style to everyone.</p>
     </div>
     <form name="stylist_register_form" ng-controller="stylist_register_controller as $ctrl">
+      <p class="error" ng-bind="errorMsg"></p>
       <ion-list inset>
         <ion-item>
           <input type="text" name="username" ng-model="$ctrl.user.username" placeholder="Username" required>
           <span ng-show="stylist_register_form.username.$touched && stylist_register_form.username.$invalid">The username is required.</span>
+        </ion-item>
+        <ion-item>
+          <input type="email" name="email" ng-model="$ctrl.user.email" placeholder="Email" required>
+          <span ng-show="stylist_register_form.email.$touched && stylist_register_form.email.$invalid">The email is required.</span>
         </ion-item>
         <ion-item>
           <input type="password" name="pword" ng-model="$ctrl.user.password" placeholder="Password" required>
@@ -24,7 +29,7 @@
         </ion-item>
       </ion-list>
 
-      <button class="button block button-positive" ng-click="$ctrl.formSubmit()">Sign-In</button>
+      <button class="button block button-positive" ng-click="$ctrl.formSubmit()">Register</button>
       <button ion-button icon-end class="button block" type="reset">Clear</button>
     </form>
   </ion-content>

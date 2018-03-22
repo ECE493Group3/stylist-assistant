@@ -284,14 +284,41 @@ angular.module('starter', ['ionic', 'firebase'])
 		console.log(form.user);
 
 		var username = form.user.username;
+		var email = form.user.email;
 		var password = form.user.password;
 		var stylist_code = form.user.stylist_code;
-
-		firebase.auth().createUserWithEmailAndPassword(username, password)
+		
+		firebase.auth().createUserWithEmailAndPassword(email, password)
 			.then(function (user) {
 				if (user) {
+					var stylistref = firebase.database().ref("stylists").orderByChild("email").equalTo(stylist_code).once('value', function (snapshot) {
+						var stylistId = Object.keys(snapshot.val())[0]
+
+						// place in stylists
+						var userInStylist = firebase.database().ref("stylists").child(stylistId).child("clientRequests").child(user.uid); 
+						userInStylist.set({
+							name: username, 
+							img: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png", 
+							email: email
+						}); 
+
+						// place in users 
+						var userref = firebase.database().ref("users").child(user.uid)
+						userref.set({
+							dressLog: [],
+							recommendeditems: [],
+							recommendedoutfits: [],
+							wardrobeitems: [],
+							stylist: stylistId,
+							email: email,
+							name: username,
+							img: "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+						}); 
+					})
+					
+					// update own profile
 					user.updateProfile({
-						displayName: "Hello World",
+						displayName: username,
 						role: "User",
 					});
 					console.log("Successfully update user");
@@ -301,6 +328,8 @@ angular.module('starter', ['ionic', 'firebase'])
 			})
 			.catch(function (error) {
 				console.log("Error creating new user");
+				$scope.errorMsg = "Error creating new user, this email may already be in use.";
+				$scope.$apply();
 			})
 
 	};
@@ -363,15 +392,25 @@ angular.module('starter', ['ionic', 'firebase'])
 		console.log(form.user);
 
 		var username = form.user.username;
+		var email = form.user.email; 
 		var password = form.user.password;
 
 		firebase.auth().createUserWithEmailAndPassword(username, password)
 			.then(function (user) {
 				if (user) {
+					var stylistref = firebase.database().ref("stylists").child(user.uid)
+					stylistref.set({
+						clientRequests: {},
+						clients: {},
+						email: email,
+						name: username,
+					})
 					user.updateProfile({
-						displayName: "Hello World",
-						role: "User",
+						email: email,
+						displayName: username,
+						role: "Stylist",
 					});
+
 					console.log("Successfully update user");
 				}
 				console.log("Successfully created new user");
@@ -379,6 +418,8 @@ angular.module('starter', ['ionic', 'firebase'])
 			})
 			.catch(function (error) {
 				console.log("Error creating new user");
+				$scope.errorMsg = "Error creating new user, this email may already be in use.";
+				$scope.$apply();
 			})
 
 	};
