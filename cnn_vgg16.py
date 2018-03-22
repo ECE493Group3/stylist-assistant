@@ -246,19 +246,19 @@ def attribute_tagging_model(features, labels, mode):
     # Logits layer
     logits = tf.layers.dense(inputs=penultimate_layer, units=N_ATTRIBUTES)
 
+    # Sigmoid
+    sigmoid = tf.nn.sigmoid(logits, name='sigmoid_tensor')
+
     predictions = {
-      # Generate predictions (for PREDICT and EVAL mode)
-      "attributes": logits,
-      # Add `softmax_tensor` to the graph. It is used for PREDICT and by the
-      # `logging_hook`.
-      "probabilities": softmax
+      "probabilities": sigmoid
     }
 
     if mode == tf.estimator.ModeKeys.PREDICT:
         return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
 
     # Calculate Loss (for both TRAIN and EVAL modes)
-    loss = tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits)
+    xentropies = tf.nn.sigmoid_cross_entropy_with_logits(labels=labels, logits=logits)
+    loss = tf.reduce_mean(xentropies)
 
     # Configure the Training Op (for TRAIN mode)
     if mode == tf.estimator.ModeKeys.TRAIN:
@@ -268,9 +268,9 @@ def attribute_tagging_model(features, labels, mode):
 
     # Add evaluation metrics (for EVAL mode)
     eval_metric_ops = {
-            "accuracy": tf.metrics.accuracy(
+            "root_mean_squared_error": tf.metrics.root_mean_squared_error(
                 labels=labels,
-                predictions=predictions["attributes"])
+                predictions=predictions["probabilities"])
             }
 
     return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
