@@ -103,8 +103,7 @@ angular.module('starter', ['ionic', 'firebase'])
 			firebase.database().ref("users").child(u.uid).child("wardrobeitems").once('value', function (snapshot) {
 				var exists = (snapshot.val() !== null);
 				if (!exists) {
-					console.log("hi"); 
-					$scope.emptyState = false; 
+					$scope.emptyState = false;
 				} else {
 					$scope.emptyState = true; 
 				}
@@ -134,11 +133,35 @@ angular.module('starter', ['ionic', 'firebase'])
 	});
 
 	$scope.loadClient = function(clientId) {
-		var stylistref = firebase.database().ref().child("users").child(clientId);
-		$scope.client = $firebaseObject(stylistref);
-		$scope.dressLog = $firebaseObject(firebase.database().ref().child("users").child(clientId).child("dresslog"));
-		$scope.wardrobeItems = $firebaseObject(firebase.database().ref().child("users").child(clientId).child("wardrobeitems"));
-		$scope.recommendedItems = $firebaseObject(firebase.database().ref().child("users").child(clientId).child("recommendeditems"));
+		var client = firebase.database().ref().child("users").child(clientId); 
+		$scope.client = $firebaseObject(client);
+		client.child("wardrobeitems").once('value', function (snapshot) {
+			var exists = (snapshot.val() !== null);
+			if (!exists) {
+				$scope.wardrobeItemsEmptyState = false;
+			} else {
+				$scope.wardrobeItemsEmptyState = true;
+				$scope.wardrobeItems = $firebaseObject(client.child("wardrobeitems"));
+			}
+		});
+		client.child("dresslog").once('value', function (snapshot) {
+			var exists = (snapshot.val() !== null);
+			if (!exists) {
+				$scope.dresslogEmptyState = false;
+			} else {
+				$scope.dresslogEmptyState = true;
+				$scope.dressLog = $firebaseObject(client.child("dresslog"));
+			}
+		});
+		client.child("recommendeditems").once('value', function (snapshot) {
+			var exists = (snapshot.val() !== null);
+			if (!exists) {
+				$scope.recommendedItemsEmptyState = false;
+			} else {
+				$scope.recommendedItemsEmptyState = true;
+				$scope.recommendedItems = $firebaseObject(client.child("recommendeditems"));
+			}
+		});
 		$ionicSideMenuDelegate.toggleLeft();
 	}
 	

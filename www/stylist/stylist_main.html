@@ -43,6 +43,7 @@
             <h4>Dress Log</h4>
             <button class="button button-small button-positive">Search</button>
           </div>
+          <div class="emptyStateMessage inline" ng-hide="dresslogEmptyState"><p>{{client.name}} hasn't selected any outfits yet, when they do it'll show up here.</p></div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
               <ion-item ng-repeat="item in client.dresslog">
@@ -56,6 +57,7 @@
             <h4>Wardrobe</h4>
             <button class="button button-small button-positive">Search</button>
           </div>
+          <div class="emptyStateMessage inline" ng-hide="wardrobeItemsEmptyState"><p>{{client.name}} hasn't uploaded any of their wardrobe yet, when they do it'll show up here.</p></div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
               <ion-item ng-repeat="item in wardrobeItems">
@@ -70,6 +72,7 @@
             <button class="button button-small button-positive">Search</button>
             <a href="#/upload_images/stylist/{{client.$id}}"><button class="button button-small button-positive">Edit</button></a>
           </div>
+          <div class="emptyStateMessage inline" ng-hide="recommendedItemsEmptyState"><p>You haven't suggested any styles for {{client.name}}. Click the Edit button to upload some.</p></div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
               <ion-item ng-repeat="recommended in recommendedItems">
