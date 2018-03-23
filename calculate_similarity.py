@@ -59,3 +59,38 @@ def get_item_similarity(root, cloth1, cloth2):
 
 	# return sum / (1 + len(union_c))
 	return 0.5 * cat_sim + 0.5 * attr_sim / (len(union_c))
+
+def get_outfit_similarity(root, outfit1, outfit2):
+	##########
+	# if len(outfit) == 1: full body
+	# if len(outfit) == 2: combinations, orders, outfit = [top, bottom]
+	##########
+
+	if(len(outfit1) != len(outfit2)):
+		return 0
+
+	if(len(outfit1) == 1):
+		outfit1_cat = set([outfit1[0].get_cat_label])
+		outfit2_cat = set([outfit2[0].get_cat_label])
+	else:
+		outfit1_cat = set([outfit1[0].get_cat_label, outfit1[1].get_cat_label])
+		outfit2_cat = set([outfit2[0].get_cat_label, outfit2[1].get_cat_label])
+
+	comm_cat = outfit1_cat & outfit2_cat
+	all_cat = outfit1_cat | outfit2_cat
+	cat_sim = len(comm_cat) / len(all_cat)
+
+	item_sim = 0
+	for i in range(len(outfit1)):
+		item_sim += get_item_similarity(root, outfit1[i], outfit2[i])
+
+	return 0.5 * cat_sim + 0.5 * item_sim
+
+
+
+
+
+
+
+
+
