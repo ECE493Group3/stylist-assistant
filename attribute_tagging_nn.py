@@ -26,7 +26,7 @@ def parse_images(filename):
 
     slices = (images, labels)
     dataset = tf.data.Dataset.from_tensor_slices(slices)
-    return dataset.shuffle(len(images) + 1).map(cnn_vgg16.pre_process_image_file).batch(20)
+    return dataset.shuffle(len(images) + 1).map(cnn_vgg16.pre_process_training_data).batch(20)
 
 def main(argv):
 

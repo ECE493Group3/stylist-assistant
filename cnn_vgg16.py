@@ -11,12 +11,15 @@ TOP_BOTTOM_LOGGING_TENSOR_NAME = "softmax_tensor"
 CATEGORY_LOGGING_TENSOR_NAME = "softmax_tensor"
 ATTRIBUTE_LOGGING_TENSOR_NAME = "sigmoid_tensor"
 
-def pre_process_image_file(img_path, label):
+def pre_process_image_filename(img_path):
     image_f = tf.read_file(img_path)
     img_bytes = tf.image.decode_jpeg(image_f, channels=3)
     resized_image = tf.image.resize_images(img_bytes, [SIZE, SIZE])
     normalized_image = tf.image.per_image_standardization(resized_image)
-    return normalized_image, label
+    return normalized_image
+
+def pre_process_training_data(img_path, label):
+    return pre_process_image_filename(normalized_image), label
 
 def vgg16_general(features, labels, mode):
     """Model function for CNN."""
