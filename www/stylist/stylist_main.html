@@ -32,7 +32,14 @@
     </ion-nav-bar>
 
     <ion-view>
-      <ion-content class="has-header" id="profile">
+      <div class="emptyStateMessage full stylist" ng-hide="emptyState">
+        <h3>Hey!</h3>
+        </br>
+        <p>Click on a client to the left to see their info. Keep track of them to make sure they're the most stylish they can be!
+        </p>
+        <p>Can't wait to see what you recommend for them!</p>
+      </div>
+      <ion-content class="has-header" id="profile" ng-show="emptyState">
         <div id="profileheader">
           <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png">
           <h4>{{client.name}}</h4>

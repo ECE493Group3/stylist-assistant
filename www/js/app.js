@@ -118,7 +118,7 @@ angular.module('starter', ['ionic', 'firebase'])
 
 .controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
 	ionic.Platform.ready(function () {
-		if (!$ionicSideMenuDelegate.isOpen) {
+		if ($ionicSideMenuDelegate.isOpen) {
 			$ionicSideMenuDelegate.toggleLeft()
 		}
 	});
@@ -132,9 +132,20 @@ angular.module('starter', ['ionic', 'firebase'])
 		}
 	});
 
+	showClient(); 
+
+	function showClient() {
+		if (!$scope.client) {
+			$scope.emptyState = false;
+		} else {
+			$scope.emptyState = true;
+		}
+	}
+
 	$scope.loadClient = function(clientId) {
 		var client = firebase.database().ref().child("users").child(clientId); 
 		$scope.client = $firebaseObject(client);
+		showClient(); 
 		client.child("wardrobeitems").once('value', function (snapshot) {
 			var exists = (snapshot.val() !== null);
 			if (!exists) {
