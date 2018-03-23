@@ -11,41 +11,28 @@ import os
 import sys
 import random
 
+import make_sample
+
 LIST_CATEGORY_IMG_FILE = os.path.join('DATA', 'Anno', 'list_category_img.txt')
 TSV_FILE_TRAIN = 'sample_category_img_train.txt'
 TSV_FILE_VALIDATION = 'sample_category_img_validation.txt'
 
-def make_sample_table(sample_size):
+def make_sample_table(sample_size, previous_images):
 
     random.seed()
 
     with open(LIST_CATEGORY_IMG_FILE) as f:
-
         lines = f.readlines()
-        n_images = int(lines[0])
-        images_to_be_used = set(random.sample(range(n_images), sample_size))
 
         result = []
         for i, line in enumerate(lines[2:]):
-            if i in images_to_be_used:
-                imgfile, cat = line.split()
+            imgfile, cat = line.split()
+            if imgfile not in previous_images:
                 result.append((imgfile, cat))
 
-        shuffled = random.sample(result, len(result))
+        sample = random.sample(result, min(sample_size, len(result)))
 
-        return shuffled
-
-def make_tsvs(table):
-
-    train_size = len(table) // 10 * 9
-    in_train = set(random.sample(range(len(table)), train_size))
-
-    train_table = [row for i, row in enumerate(table) if i in in_train]
-    validation_table = [row for i, row in enumerate(table) if i not in in_train]
-
-    for filename, table in zip([TSV_FILE_TRAIN, TSV_FILE_VALIDATION], [train_table, validation_table]):
-        with open(filename, 'w') as f:
-            f.writelines("{}\t{}\n".format(img, cat) for img, cat in table)
+        return sample
 
 if __name__=="__main__":
 
@@ -53,9 +40,9 @@ if __name__=="__main__":
         print("Pass in the sample size")
         exit(1)
 
-    print("Making tsv")
     sample_size = int(sys.argv[1])
-    table = make_sample_table(sample_size)
-    make_tsvs(table)
+    previous_images = make_sample.get_previous_images(TSV_FILE_TRAIN, TSV_FILE_VALIDATION)
+    table = make_sample_table(sample_size, previous_images)
+    make_sample.make_tsvs(table, TSV_FILE_TRAIN, TSV_FILE_VALIDATION)
 
     print("Done")
