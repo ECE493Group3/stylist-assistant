@@ -33,6 +33,14 @@
 				</ion-nav-buttons>
 	    </ion-nav-bar>
       <ion-content class="has-header has-footer padding">
+				<div class="emptyStateMessage full" ng-hide="emptyState">
+					<h3>Hey there {{user.name}},</h3> 
+					</br>
+					<p>Seems like you haven't added any wardrobe items yet! 
+						You can add them by pressing the "plus" button at the top right corner! 
+					</p>
+					<p>Can't wait to see all your great style!</p>					
+				</div>
 				<ion-list class="listofcards">
 					<ion-item ng-repeat="piece in user.wardrobeitems">
 						<ion-card>

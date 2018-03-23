@@ -1,3 +1,10 @@
 .error {
-    color: red; 
+    color: red;
+}
+
+.emptyStateMessage.full { 
+    height: 90vh;
+    width: 70%;
+    margin: 0 auto;
+    padding: 13% 0
 }

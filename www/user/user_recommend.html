@@ -5,6 +5,12 @@
 <ion-view view-title="User Recommended">
 
   <ion-content class="has-header has-footer padding">
+    <div class="emptyStateMessage full" ng-hide="emptyState">
+      <h3>Hey there {{user.name}},</h3>
+      </br>
+      <p>Your stylist hasn't added any styles for us to recommend you outfits. Once they do we'll update this area</p>
+      <p>Can't wait to see all your great style!</p>
+    </div>
     <ion-list class="listofcards">
       <ion-item ng-repeat="(outfitid, outfit) in user.recommendedoutfits">
         <ion-card>

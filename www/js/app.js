@@ -100,6 +100,15 @@ angular.module('starter', ['ionic', 'firebase'])
 		if (u) {
 			var userref = firebase.database().ref().child("users").child(u.uid);
 			$scope.user = $firebaseObject(userref);
+			firebase.database().ref("users").child(u.uid).child("wardrobeitems").once('value', function (snapshot) {
+				var exists = (snapshot.val() !== null);
+				if (!exists) {
+					console.log("hi"); 
+					$scope.emptyState = false; 
+				} else {
+					$scope.emptyState = true; 
+				}
+			});
 		}
 	});
 
@@ -293,7 +302,7 @@ angular.module('starter', ['ionic', 'firebase'])
 				if (user) {
 					var stylistref = firebase.database().ref("stylists").orderByChild("email").equalTo(stylist_code).once('value', function (snapshot) {
 						var exists = (snapshot.val() !== null);
-						if (!exists) {
+						if (exists) {
 
 							var stylistId = Object.keys(snapshot.val())[0]
 
@@ -311,7 +320,7 @@ angular.module('starter', ['ionic', 'firebase'])
 								dressLog: [],
 								recommendeditems: [],
 								recommendedoutfits: [],
-								wardrobeitems: [],
+								wardrobeitems: [{ description: "Add your wardrobe using the plus button at the top right." }],
 								stylist: stylistId,
 								email: email,
 								name: username,
