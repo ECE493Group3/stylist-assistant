@@ -41,7 +41,7 @@ def make_sample_table(sample_size, previous_images):
 
         attr = elems[1:]
         converted_attr = [value_convert[val] for val in attr]
-        attr_table.append([filename] + converted_attr)
+        attr_table.append(tuple([filename] + converted_attr))
 
     print("Done reading attributes from file")
 

@@ -5,11 +5,11 @@ import random
 def make_tsvs(table, train_file, validation_file):
     print("Making TSVs")
 
-    train_size = len(table) // 10 * 9
-    in_train = set(random.sample(range(len(table)), train_size))
+    validation_size = min((len(table) // 10), 1500)
 
-    train_table = [row for i, row in enumerate(table) if i in in_train]
-    validation_table = [row for i, row in enumerate(table) if i not in in_train]
+    validation_table = set(random.sample(table, validation_size))
+
+    train_table = [row for row in table if row not in validation_table]
 
     for filename, table in zip([train_file, validation_file], [train_table, validation_table]):
         with open(filename, 'w') as f:
