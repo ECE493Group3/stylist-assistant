@@ -19,7 +19,7 @@ def pre_process_image_filename(img_path):
     return normalized_image
 
 def pre_process_training_data(img_path, label):
-    return pre_process_image_filename(normalized_image), label
+    return pre_process_image_filename(img_path), label
 
 def vgg16_general(features, labels, mode):
     """Model function for CNN."""
@@ -172,7 +172,7 @@ def top_bottom_classifier_model(features, labels, mode):
     logits = tf.layers.dense(inputs=penultimate_layer, units=3)
 
     # Softmax
-    softmax = tf.nn.softmax(logits, name="softmax_tensor")
+    softmax = tf.nn.softmax(logits, name=TOP_BOTTOM_LOGGING_TENSOR_NAME)
 
     predictions = {
       # Generate predictions (for PREDICT and EVAL mode)
@@ -211,7 +211,7 @@ def category_classifier_model(features, labels, mode):
     logits = tf.layers.dense(inputs=penultimate_layer, units=50)
 
     # Softmax
-    softmax = tf.nn.softmax(logits, name="softmax_tensor")
+    softmax = tf.nn.softmax(logits, name=CATEGORY_LOGGING_TENSOR_NAME)
 
     predictions = {
       # Generate predictions (for PREDICT and EVAL mode)
@@ -250,7 +250,7 @@ def attribute_tagging_model(features, labels, mode):
     logits = tf.layers.dense(inputs=penultimate_layer, units=N_ATTRIBUTES)
 
     # Sigmoid
-    sigmoid = tf.nn.sigmoid(logits, name='sigmoid_tensor')
+    sigmoid = tf.nn.sigmoid(logits, name=ATTRIBUTE_LOGGING_TENSOR_NAME)
 
     predictions = {
       "probabilities": sigmoid
