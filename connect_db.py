@@ -93,7 +93,7 @@ def get_attr_labels(attr_v, attr_type):
 
 	return attr_label
 
-def get_category_attribute_label(category_type, attr_type, cloths_list):
+def get_category_attribute_label(category_type, attr_type, cloths_list, cloth_fullbody, cloth_top, cloth_bottom):
 	with open(LIST_CATEGORY_IMG_FILE) as cat_f, open(LIST_ATTR_IMG_FILE) as attr_f:
 		cat_lines = cat_f.readlines()
 		attr_lines = attr_f.readlines()
@@ -110,6 +110,13 @@ def get_category_attribute_label(category_type, attr_type, cloths_list):
 
 				attr_label = get_attr_labels(attr_v, attr_type)
 				temp = Cloth(cat_imgfile, category_type[int(cat)][0], category_type[int(cat)][1], attr_label)
+				if(category_type[int(cat)][0] == 1):
+					cloth_top.append(temp)
+				elif(category_type[int(cat)][0] == 2):
+					cloth_bottom.append(temp)
+				elif(category_type[int(cat)][0] == 3):
+					cloth_fullbody.append(temp)
+					
 				# temp.set_attr_v(attr_v, attr_type)
 				cloths_list.append(temp)
 

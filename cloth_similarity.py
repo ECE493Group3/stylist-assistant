@@ -1,5 +1,6 @@
 import anytree
 from anytree import Node, RenderTree, Walker
+from cloth import FULLBODY, COMBINATIONS
 
 def get_type_similarity(root, cloth1, cloth2):
 
@@ -14,10 +15,7 @@ def get_type_similarity(root, cloth1, cloth2):
 	# upward is a list of nodes to go upward to.
 	# common is common up node
 	# downward is a list of nodes to go downward to
-	# print("Cloth1_cat" + str(cloth1_cat))
-	# print("Cloth2_cat" + str(cloth2_cat))
-	# print("Cloth1_node: " + str(cloth1_node))
-	# print("Cloth2_node: " + str(cloth2_node))
+	
 	w = Walker()
 	upward, common, downward = w.walk(cloth1_node, cloth2_node)
 
@@ -32,7 +30,6 @@ def get_type_similarity(root, cloth1, cloth2):
 	elif(common.name == "Tops" or common.name =="Bottoms" or common.name == "Fullbody"):
 		return 0.25
 	else:
-		print("What do I miss")
 		return 0
 
 def get_attribute_similarity(attr, cloth1, cloth2):
@@ -40,6 +37,9 @@ def get_attribute_similarity(attr, cloth1, cloth2):
 		return 1
 	else:
 		return 0
+
+def have_words_in_common(attr1, attr2):
+	return bool(set(attr1.split()) & set(att2.split()))
 
 def get_item_similarity(root, cloth1, cloth2):
 	cat_sim = get_type_similarity(root, cloth1, cloth2)
@@ -52,39 +52,41 @@ def get_item_similarity(root, cloth1, cloth2):
 	for i in set_c:
 		if(cloth1.attr_label[i] == cloth2.attr_label[i]):
 			attr_sim += 1
+		elif(have_words_in_common(cloth1.attr_label[i], cloth2.attr_label[i])):
+			attr_sim += 0.25
 
 	union_c = set_c1 | set_c2
 	if(len(union_c) == 0):
 		return 0.5 * cat_sim
 
 	# return sum / (1 + len(union_c))
-	return 0.5 * cat_sim + 0.5 * attr_sim / (len(union_c))
+	return 0.9 * cat_sim + 0.1 * attr_sim / (len(union_c))
+
 
 def get_outfit_similarity(root, outfit1, outfit2):
-	##########
-	# if len(outfit) == 1: full body
-	# if len(outfit) == 2: combinations, orders, outfit = [top, bottom]
-	##########
 
-	if(len(outfit1) != len(outfit2)):
+	if(outfit1.get_type() != outfit2.get_type()):
 		return 0
 
-	if(len(outfit1) == 1):
-		outfit1_cat = set([outfit1[0].get_cat_label])
-		outfit2_cat = set([outfit2[0].get_cat_label])
+	if(outfit1.get_type() == FULLBODY):
+		outfit1_cat = set([outfit1.get_full_body()])
+		outfit2_cat = set([outfit2.get_full_body()])
 	else:
-		outfit1_cat = set([outfit1[0].get_cat_label, outfit1[1].get_cat_label])
-		outfit2_cat = set([outfit2[0].get_cat_label, outfit2[1].get_cat_label])
+		outfit1_cat = set([outfit1.get_top().get_cat_label(), outfit1.get_bottom().get_cat_label()])
+		outfit2_cat = set([outfit2.get_top().get_cat_label(), outfit2.get_bottom().get_cat_label()])
 
 	comm_cat = outfit1_cat & outfit2_cat
 	all_cat = outfit1_cat | outfit2_cat
 	cat_sim = len(comm_cat) / len(all_cat)
 
 	item_sim = 0
-	for i in range(len(outfit1)):
-		item_sim += get_item_similarity(root, outfit1[i], outfit2[i])
+	outfit1_cloths = outfit1.get_cloths()
+	outfit2_cloths = outfit2.get_cloths()
 
-	return 0.5 * cat_sim + 0.5 * item_sim
+	for i in range(len(outfit1.get_cloths())):
+		item_sim += get_item_similarity(root, outfit1_cloths[i], outfit2_cloths[i])
+
+	return 0.5 * cat_sim + 0.5 * item_sim / len(outfit1_cloths)
 
 
 
