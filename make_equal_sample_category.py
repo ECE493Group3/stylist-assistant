@@ -38,6 +38,9 @@ def make_sample(points_per_category=300):
         selected = random.sample(l, points_per_category)
         sample.extend(selected)
 
+    cat_to_index = {row[1]: i for i, row in enumerate(SELECTED_CATEGORIES)}
+    sample_with_indices = [(img, cat_to_index[num]) for img, num in sample]
+
     # validate
     for img, cat in sample:
         assert cat in category_name
@@ -50,9 +53,11 @@ def make_sample(points_per_category=300):
     for _, cnt in count.items():
         assert cnt == points_per_category
 
+    assert {i for img, i in sample_with_indices} == set(range(len(SELECTED_CATEGORIES)))
+
     # write output
     with open(OUTPUT_FILE, 'w') as f:
-        for img, cat in random.sample(sample, len(sample)):
+        for img, cat in random.sample(sample_with_indices, len(sample)):
             f.write("{}\t{}\n".format(img, cat))
 
     print("Done")
