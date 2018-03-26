@@ -7,7 +7,8 @@ from nn_config import SELECTED_CATEGORIES
 
 LIST_CATEGORY_CLOTH_FILE = os.path.join('DATA', 'Anno', 'list_category_cloth.txt')
 LIST_CATEGORY_IMG_FILE = os.path.join('DATA', 'Anno', 'list_category_img.txt')
-OUTPUT_FILE = "sample_equal_numbers.txt"
+TRAIN_OUTPUT_FILE = "sample_equal_numbers_train.txt"
+VALIDATION_OUTPUT_FILE = "sample_equal_numbers_validation.txt"
 
 def make_sample(points_per_category=300):
 
@@ -33,15 +34,24 @@ def make_sample(points_per_category=300):
         if cat_name in cats_to_use_set:
             sample_dict[cat_name].append((img, cat_number))
 
-    sample = []
+    points_per_validation = points_per_category // 20
+    points_per_training = points_per_category - points_per_validation
+    train_sample = []
+    validation_sample = []
+
     for name, l in sample_dict.items():
         selected = random.sample(l, points_per_category)
-        sample.extend(selected)
+        train_sample.extend(selected[:points_per_training])
+        validation_sample.extend(selected[points_per_training:])
 
     cat_to_index = {row[1]: i for i, row in enumerate(SELECTED_CATEGORIES)}
-    sample_with_indices = [(img, cat_to_index[num]) for img, num in sample]
+    train_sample_with_indices = [(img, cat_to_index[num]) for img, num in train_sample]
+    validation_sample_with_indices = [(img, cat_to_index[num])
+                                       for img, num in validation_sample]
 
-    # validate
+    # validate the sample
+    sample = validation_sample + train_sample
+    sample_with_indices = validation_sample_with_indices + train_sample_with_indices
     for img, cat in sample:
         assert cat in category_name
         assert category_name[cat] in img
@@ -56,8 +66,14 @@ def make_sample(points_per_category=300):
     assert {i for img, i in sample_with_indices} == set(range(len(SELECTED_CATEGORIES)))
 
     # write output
-    with open(OUTPUT_FILE, 'w') as f:
-        for img, cat in random.sample(sample_with_indices, len(sample)):
+    with open(TRAIN_OUTPUT_FILE, 'w') as f:
+        for img, cat in random.sample(train_sample_with_indices,
+                                     len(train_sample_with_indices)):
+            f.write("{}\t{}\n".format(img, cat))
+
+    with open(VALIDATION_OUTPUT_FILE, 'w') as f:
+        for img, cat in random.sample(validation_sample_with_indices,
+                                     len(validation_sample_with_indices)):
             f.write("{}\t{}\n".format(img, cat))
 
     print("Done")
