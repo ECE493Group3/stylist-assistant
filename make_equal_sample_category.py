@@ -3,36 +3,11 @@ import sys
 import random
 import collections
 
+from nn_config import SELECTED_CATEGORIES
+
 LIST_CATEGORY_CLOTH_FILE = os.path.join('DATA', 'Anno', 'list_category_cloth.txt')
 LIST_CATEGORY_IMG_FILE = os.path.join('DATA', 'Anno', 'list_category_img.txt')
 OUTPUT_FILE = "sample_equal_numbers.txt"
-
-CATEGORIES_TO_USE = [
-'Sweater',
-'Blazer',
-'Bomber',
-'Cardigan',
-'Hoodie',
-'Flannel',
-'Jacket',
-'Parka',
-'Poncho',
-'Tee',
-'Top',
-'Jersey',
-'Button-Down',
-'Tank',
-'Henley',
-'Jeans',
-'Chinos',
-'Joggers',
-'Sweatpants',
-'Shorts',
-'Trunks',
-'Sweatshorts',
-'Coat',
-# 'Cape',
-]
 
 def make_sample(points_per_category=300):
 
@@ -49,7 +24,7 @@ def make_sample(points_per_category=300):
     with open(LIST_CATEGORY_IMG_FILE) as f:
         lines = f.readlines()
 
-    cats_to_use_set = set(CATEGORIES_TO_USE)
+    cats_to_use_set = set(name for name, num in SELECTED_CATEGORIES)
 
     sample_dict = collections.defaultdict(list)
     for line in lines[2:]:
