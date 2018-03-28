@@ -3,6 +3,8 @@
 
 import tensorflow as tf
 
+from nn_config import SELECTED_CATEGORIES
+
 SIZE = 224
 N_LABELS = 3
 N_ATTRIBUTES = 1000
@@ -208,7 +210,7 @@ def category_classifier_model(features, labels, mode):
     penultimate_layer = vgg16_general(features, labels, mode)
 
     # Logits layer
-    logits = tf.layers.dense(inputs=penultimate_layer, units=50)
+    logits = tf.layers.dense(inputs=penultimate_layer, units=len(SELECTED_CATEGORIES))
 
     # Softmax
     softmax = tf.nn.softmax(logits, name=CATEGORY_LOGGING_TENSOR_NAME)
