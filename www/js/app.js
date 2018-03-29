@@ -118,9 +118,7 @@ angular.module('starter', ['ionic', 'firebase'])
 
 .controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
 	ionic.Platform.ready(function () {
-		if ($ionicSideMenuDelegate.isOpen) {
-			$ionicSideMenuDelegate.toggleLeft()
-		}
+		$ionicSideMenuDelegate.toggleLeft(true)
 	});
 
 	firebase.auth().onAuthStateChanged(function (u) {
