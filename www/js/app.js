@@ -159,7 +159,7 @@ angular.module('starter', ['ionic', 'firebase'])
 				$scope.dresslogEmptyState = false;
 			} else {
 				$scope.dresslogEmptyState = true;
-				$scope.dressLog = $firebaseObject(client.child("dresslog"));
+				$scope.dressLog = $firebaseObject(client.child("dresslog").orderByChild("date"));
 			}
 		});
 		client.child("recommendeditems").once('value', function (snapshot) {
