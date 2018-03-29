@@ -4,6 +4,7 @@ import sys
 import tensorflow as tf
 
 import cnn_vgg16
+import nn_config
 
 DEFAULT_IMG_CATEGORIES_FILE = os.path.join('DATA', 'Anno', 'list_category_cloth.txt')
 DEFAULT_IMG_ATTR_FILE = os.path.join('DATA', 'Anno', 'list_attr_cloth.txt')
@@ -34,7 +35,7 @@ class ImageProcessor(object):
 
         self.attribute_threshold = attribute_threshold
 
-        self.category_name = ImageProcessor._get_names(category_name_file)
+        self.category_name = [name for name, number in nn_config.SELECTED_CATEGORIES]
         self.attribute_name = ImageProcessor._get_names(attribute_name_file)
 
     @staticmethod
