@@ -5,10 +5,10 @@
 .emptyStateMessage.full {
     height: 90vh;
     width: 70%;
-    margin: 0 auto;
+    margin: 0 auto 0 0;
     padding: 13% 0
 }
 
 .emptyStateMessage.full.stylist {
-    padding: 13% 25% 13% 0%; 
+    padding: 13% 25% 13% 7%; 
 }
