@@ -176,10 +176,15 @@ angular.module('starter', ['ionic', 'firebase'])
 		$ionicSideMenuDelegate.toggleLeft(true);
 	}
 
+	$scope.acceptClient = function (clientId, client) {
+		firebase.database().ref().child('stylists/' + user.uid + '/clients/' + clientId).update(client); 
+
+		$scope.removeClient(clientId)
+	}
+
 	$scope.removeClient = function (clientId) {
 
-		var ref = firebase.database().ref().child('stylists/'+user.uid+'/clientRequests/');
-		ref.child(clientId).remove(function (error) {
+		firebase.database().ref().child('stylists/'+user.uid+'/clientRequests/'+clientId).remove(function (error) {
 			if (error) {
 				console.log("Error:", error);
 			} else {

@@ -15,7 +15,7 @@
           <img src={{client.img}}>
           <h2>{{client.name}}</h2>
           <p>{{client.email}}</p>
-          <button class="button button-positive button-small">Accept</button>
+          <button class="button button-positive button-small" ng-click="acceptClient(clientid, client)">Accept</button>
           <button class="button button-assertive button-small" ng-click="removeClient(clientid)">Decline</button>
         </ion-item>
       </ion-list>
