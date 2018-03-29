@@ -121,12 +121,14 @@ angular.module('starter', ['ionic', 'firebase'])
 		$ionicSideMenuDelegate.toggleLeft(true)
 	});
 
+	var user 
 	firebase.auth().onAuthStateChanged(function (u) {
 		if (u) {
 			var stylistref = firebase.database().ref().child("stylists").child(u.uid).child("clients");
 			$scope.clientList = $firebaseObject(stylistref);
 			var stylistref = firebase.database().ref().child("stylists").child(u.uid).child("clientRequests");
-			$scope.clientRequestList = $firebaseObject(stylistref);; 
+			$scope.clientRequestList = $firebaseObject(stylistref);
+			user = u; 
 		}
 	});
 
@@ -171,7 +173,20 @@ angular.module('starter', ['ionic', 'firebase'])
 				$scope.recommendedItems = $firebaseObject(client.child("recommendeditems"));
 			}
 		});
-		$ionicSideMenuDelegate.toggleLeft();
+		$ionicSideMenuDelegate.toggleLeft(true);
+	}
+
+	$scope.removeClient = function (clientId) {
+
+		var ref = firebase.database().ref().child('stylists/'+user.uid+'/clientRequests/');
+		ref.child(clientId).remove(function (error) {
+			if (error) {
+				console.log("Error:", error);
+			} else {
+				console.log("Removed successfully!");
+			}
+		});
+
 	}
 	
 }])

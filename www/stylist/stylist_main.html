@@ -11,12 +11,12 @@
           <h2>{{client.name}}</h2>
           <p>{{client.email}}</p>
         </ion-item>
-        <ion-item class="item-avatar client-request" ng-repeat="client in clientRequestList" ng-click="loadClient(client)">
+        <ion-item class="item-avatar client-request" ng-repeat="(clientid, client) in clientRequestList">
           <img src={{client.img}}>
           <h2>{{client.name}}</h2>
           <p>{{client.email}}</p>
           <button class="button button-positive button-small">Accept</button>
-          <button class="button button-assertive button-small">Decline</button>
+          <button class="button button-assertive button-small" ng-click="removeClient(clientid)">Decline</button>
         </ion-item>
       </ion-list>
     </ion-content>
