@@ -1,116 +1,237 @@
 {
-    "users": {
-        "JJmxTJiDAAdKkehR7JucOOJb4OZ2": {
-            "name": "Arjun Kalburgi",
-            "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-            "email": "askalburgi@gmail.com",
-            "stylist": "DSzjEvbRcsPD5cnymJ01fZGoIrP2",
-            "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-            "wardrobeitems": [{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"}], 
-            "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-            "recommendedoutfits": [
-                {
-                    "name": "Blue jeans and Grey hoodie", 
-                    "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                    "image": "img/ionic.png"
-                },{
-                    "name": "Blue jeans and Grey hoodie", 
-                    "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                    "image": "img/ionic.png"
-                },{
-                    "name": "Blue jeans and Grey hoodie", 
-                    "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                    "image": "img/ionic.png"
-                }
-            ]
+  "stylists" : {
+    "DSzjEvbRcsPD5cnymJ01fZGoIrP2" : {
+      "clientRequests" : {
+        "MhmSWiIoi8PQrlCpj7rGMsKr5Lr1" : {
+          "email" : "asfd@fads.com",
+          "img" : "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+          "name" : "asdf asdf"
         },
-        "zvXKCzcZ11TnYptlGHOXM1iWUuH3": {
-            "name": "Inaccessible User",
-            "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-            "email": "user1@gmail.com",
-            "password": "password",
-            "stylist": "DSzjEvbRcsPD5cnymJ01fZGoIrP2",
-            "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-            "wardrobeitems": [{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"}], 
-            "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-            "recommendedoutfits": [
-                {
-                    "name": "Blue jeans and Grey hoodie", 
-                    "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                    "image": "img/ionic.png"
-                },{
-                    "name": "Blue jeans and Grey hoodie", 
-                    "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                    "image": "img/ionic.png"
-                },{
-                    "name": "Blue jeans and Grey hoodie", 
-                    "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                    "image": "img/ionic.png"
-                }
-            ]
-
+        "n8ZcTiuUxBRGVfjgOQXirzonZVt1" : {
+          "email" : "aaaregister@test.com",
+          "img" : "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+          "name" : "Inaccessible User"
         }
-    }, 
-    "stylists": {
-        "DSzjEvbRcsPD5cnymJ01fZGoIrP2": {
-            "name": "Other Arjun Kalburgi",
-            "email": "kalburgi@ualberta.ca",
-            "password": "123456",
-            "clientRequests": {
-                "n8ZcTiuUxBRGVfjgOQXirzonZVt1": {
-                    "name": "Inaccessible User",
-                    "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-                    "email": "aaaregister@test.com"
-                }
-            },
-            "clients": {
-                "JJmxTJiDAAdKkehR7JucOOJb4OZ2": {
-                    "name": "Arjun Kalburgi",
-                    "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-                    "email": "askalburgi@gmail.com", 
-                    "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-                    "wardrobeitems": [{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"}], 
-                    "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-                    "recommendedoutfits": [
-                        {
-                            "name": "Blue jeans and Grey hoodie", 
-                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                            "image": "img/ionic.png"
-                        },{
-                            "name": "Blue jeans and Grey hoodie", 
-                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                            "image": "img/ionic.png"
-                        },{
-                            "name": "Blue jeans and Grey hoodie", 
-                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                            "image": "img/ionic.png"
-                        }
-                    ]
-                }, 
-                "zvXKCzcZ11TnYptlGHOXM1iWUuH3": {
-                    "name": "Inaccessible User",
-                    "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
-                    "email": "user1@gmail.com", 
-                    "dresslog": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-                    "wardrobeitems": [{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"},{"img": "img/ionic.png", "description": "a beautiful thing"}], 
-                    "recommendeditems": [{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"},{"img": "img/ionic.png"}], 
-                    "recommendedoutfits": [
-                        {
-                            "name": "Blue jeans and Grey hoodie", 
-                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                            "image": "img/ionic.png"
-                        },{
-                            "name": "Blue jeans and Grey hoodie", 
-                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                            "image": "img/ionic.png"
-                        },{
-                            "name": "Blue jeans and Grey hoodie", 
-                            "description": "light blue parasuco demin with grey oversized Topman hoodie.", 
-                            "image": "img/ionic.png"
-                        }
-                    ]
-                }
-            }
+      },
+      "clients" : {
+        "JJmxTJiDAAdKkehR7JucOOJb4OZ2" : {
+          "email" : "askalburgi@gmail.com",
+          "img" : "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+          "name" : "Arjun Kalburgi"
+        },
+        "hTBMvFmdNAVRAuc8TxPSTalkbRm2" : {
+          "email" : "sdf@sfd.com",
+          "img " : "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+          "name" : "hello moto"
+        },
+        "zvXKCzcZ11TnYptlGHOXM1iWUuH3" : {
+          "email" : "user1@gmail.com",
+          "img" : "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+          "name" : "Inaccessible User"
         }
+      },
+      "email" : "kalburgi@ualberta.ca",
+      "name" : "Other Arjun Kalburgi",
+      "password" : "123456"
     }
+  },
+  "users" : {
+    "JJmxTJiDAAdKkehR7JucOOJb4OZ2" : {
+      "dresslog": {
+        "-JiGh_89GA20JaasZBfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-01"
+        },
+        "-JiGh_31GA20Jaa34Bfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-02"
+        },
+        "-JiGh_31GA34JaasZBfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-03"
+        },
+        "-JiGh_31G230JaasZBfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-04"
+        },
+        "-JiGh_31G560JaasZBfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-05"
+        }
+      },
+      "email" : "askalburgi@gmail.com",
+      "img" : "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+      "name" : "Arjun Kalburgi",
+      "recommendeditems" : [ {
+          "img" : "img/ionic.png"
+        }, {
+          "img" : "img/ionic.png"
+        }, {
+          "img" : "img/ionic.png"
+        }, {
+          "img" : "img/ionic.png"
+        }, {
+          "img" : "img/ionic.png"
+      } ],
+      "recommendedoutfits" : { 
+        "-JiGh_31GA20JaasZBfa": {
+          "description" : "light blue parasuco demin with grey oversized Topman hoodie.",
+          "image" : "img/ionic.png",
+          "name" : "jeans and hoodie", 
+          "category-top": "hoodie", 
+          "category-bottom": "jeans", 
+          "category-full": null
+        }, 
+        "-JiGh_31GA2fdabpZBfa": {
+          "description" : "light blue parasuco demin with grey oversized Topman hoodie.",
+          "image" : "img/ionic.png",
+          "name" : "jeans and hoodie", 
+          "category-top": "hoodie", 
+          "category-bottom": "jeans", 
+          "category-full": null
+        }, 
+        "-JiGh_3erA20JabpZBfa": {
+          "description" : "light blue parasuco demin with grey oversized Topman hoodie.",
+          "image" : "img/ionic.png",
+          "name" : "jeans and hoodie", 
+          "category-top": "hoodie", 
+          "category-bottom": "jeans", 
+          "category-full": null
+        } 
+      },
+      "stylist" : "DSzjEvbRcsPD5cnymJ01fZGoIrP2",
+      "wardrobeitems": {
+        "-JiGh_31GA20JabpZBfa": {
+          "category": "hoodie",
+          "img": "img/ionic.png"
+        },
+        "-JiGh_31GA20JabpZwwa": {
+          "category": "blazer",
+          "img": "img/ionic.png"
+        },
+        "-JiGh_31GA20erbpZBfa": {
+          "category": "jeans",
+          "img": "img/ionic.png"
+        },
+        "-JiGh_31wer0JabpZBfa": {
+          "category": "sweatpants",
+          "img": "img/ionic.png"
+        },
+        "-JiGh_31GA20Jabsdffa": {
+          "category": "cardigan",
+          "img": "img/ionic.png"
+        }
+      }
+    },
+    "hTBMvFmdNAVRAuc8TxPSTalkbRm2" : {
+      "email" : "sdf@sfd.com",
+      "img" : "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+      "name" : "hello moto",
+      "stylist" : "DSzjEvbRcsPD5cnymJ01fZGoIrP2"
+    },
+    "zvXKCzcZ11TnYptlGHOXM1iWUuH3" : {
+      "dresslog": {
+        "-JiGh_89GA20JaasZBfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-01"
+        },
+        "-JiGh_31GA20Jaa34Bfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-02"
+        },
+        "-JiGh_31GA34JaasZBfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-03"
+        },
+        "-JiGh_31G230JaasZBfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-04"
+        },
+        "-JiGh_31G560JaasZBfa": {
+          "img": "img/ionic.png",
+          "date": "2018-03-05"
+        }
+      },
+      "email" : "user1@gmail.com",
+      "img" : "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+      "name" : "Inaccessible User",
+      "password" : "password",
+      "recommendeditems": [
+        {
+          "img": "img/ionic.png"
+        },
+        {
+          "img": "img/ionic.png"
+        },
+        {
+          "img": "img/ionic.png"
+        },
+        {
+          "img": "img/ionic.png"
+        },
+        {
+          "img": "img/ionic.png"
+        }
+      ],
+      "recommendedoutfits": {
+        "-JiGh_31GA20JaasZBfa": {
+          "description": "light blue parasuco demin with grey oversized Topman hoodie.",
+          "image": "img/ionic.png",
+          "name": "jeans and hoodie",
+          "category-top": "hoodie",
+          "category-bottom": "jeans",
+          "category-full": null
+        },
+        "-JiGh_31GA2fdabpZBfa": {
+          "description": "light blue parasuco demin with grey oversized Topman hoodie.",
+          "image": "img/ionic.png",
+          "name": "jeans and hoodie",
+          "category-top": "hoodie",
+          "category-bottom": "jeans",
+          "category-full": null
+        },
+        "-JiGh_3erA20JabpZBfa": {
+          "description": "light blue parasuco demin with grey oversized Topman hoodie.",
+          "image": "img/ionic.png",
+          "name": "jeans and hoodie",
+          "category-top": "hoodie",
+          "category-bottom": "jeans",
+          "category-full": null
+        }
+      },
+      "stylist" : "DSzjEvbRcsPD5cnymJ01fZGoIrP2",
+      "wardrobeitems" : { 
+        "-JiGh_31GA20JabpZBfa": {
+          "category": "hoodie", 
+          "img" : "img/ionic.png"
+        }, 
+        "-JiGh_31GA20JabpZwwa": {
+          "category": "blazer",   
+          "img" : "img/ionic.png"
+        }, 
+        "-JiGh_31GA20erbpZBfa": {
+          "category": "jeans",   
+          "img" : "img/ionic.png"
+        }, 
+        "-JiGh_31wer0JabpZBfa": {
+          "category": "sweatpants",   
+          "img" : "img/ionic.png"
+        }, 
+        "-JiGh_31GA20Jabsdffa": {
+          "category": "cardigan",   
+          "img" : "img/ionic.png"
+        }
+      } 
+    }, 
+    "MhmSWiIoi8PQrlCpj7rGMsKr5Lr1": {
+      "email": "asfd@fads.com",
+      "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+      "name": "asdf asdf"
+    },
+    "n8ZcTiuUxBRGVfjgOQXirzonZVt1": {
+      "email": "aaaregister@test.com",
+      "img": "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+      "name": "Inaccessible User"
+    }
+  }
 }
