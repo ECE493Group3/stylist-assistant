@@ -45,6 +45,7 @@ def make_sample(points_per_category=300):
         validation_sample.extend(selected[points_per_training:])
 
     cat_to_index = {row[1]: i for i, row in enumerate(SELECTED_CATEGORIES)}
+    index_names = [name for name, number in SELECTED_CATEGORIES]
     train_sample_with_indices = [(img, cat_to_index[num]) for img, num in train_sample]
     validation_sample_with_indices = [(img, cat_to_index[num])
                                        for img, num in validation_sample]
@@ -55,6 +56,11 @@ def make_sample(points_per_category=300):
     for img, cat in sample:
         assert cat in category_name
         assert category_name[cat] in img
+
+    for img, index in sample_with_indices:
+        index = int(index)
+        assert index >= 0 and index < len(index_names)
+        assert index_names[index] in img
 
     count = collections.Counter(cat for _, cat in sample)
     used = {category_name[key] for key in count.keys()}
