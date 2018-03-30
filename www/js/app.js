@@ -116,12 +116,10 @@ angular.module('starter', ['ionic', 'firebase'])
 			var cat = $firebaseObject(categoryRef); 
 			cat.$loaded().then(function () {
 				var filteredCategories = {}
-				// To iterate the key/value pairs of the object, use angular.forEach()
 				angular.forEach(cat, function (value, key) {
 					filteredCategories[value.category] = categories[value.category]; 
 				});
-				
-				$scope.categories = filteredCategories; 				
+				$scope.categories = filteredCategories;
 			});
 		}
 	});
@@ -524,138 +522,111 @@ angular.module('starter', ['ionic', 'firebase'])
 var categories = {
 	"Sweater": {
 		"name": "Sweater",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Blazer": {
 		"name": "Blazer",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Bomber": {
 		"name": "Bomber",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Cardigan": {
 		"name": "Cardigan",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Hoodie": {
 		"name": "Hoodie",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Flannel": {
 		"name": "Flannel",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Jacket": {
 		"name": "Jacket",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Parka": {
 		"name": "Parka",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Poncho": {
 		"name": "Poncho",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Tee": {
 		"name": "Tee",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Top": {
 		"name": "Top",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Jersey": {
 		"name": "Jersey",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"ButtonDown": {
 		"name": "ButtonDown",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Tank": {
 		"name": "Tank",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Henley": {
 		"name": "Henley",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Bottoms": {
 		"name": "Bottoms",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Pants": {
 		"name": "Pants",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Jeans": {
 		"name": "Jeans",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Chinos": {
 		"name": "Chinos",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Joggers": {
 		"name": "Joggers",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Sweatpants": {
 		"name": "Sweatpants",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Shorts": {
 		"name": "Shorts",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Trunks": {
 		"name": "Trunks",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Sweatshorts": {
 		"name": "Sweatshorts",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"FullBody": {
 		"name": "FullBody",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Coat": {
 		"name": "Coat",
-		"filter": true,
-		"present": true
+		"filter": true
 	},
 	"Cape": {
 		"name": "Cape",
-		"filter": true,
-		"present": true
+		"filter": true
 	}
 }
 

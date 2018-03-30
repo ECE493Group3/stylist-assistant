@@ -1,0 +1,110 @@
+{ 
+    "Sweater": {
+        "name": "Sweater",
+        "filter": true
+    }, 
+    "Blazer": {
+        "name": "Blazer",
+        "filter": true
+    }, 
+    "Bomber": {
+        "name": "Bomber",
+        "filter": true
+    }, 
+    "Cardigan": {
+        "name": "Cardigan",
+        "filter": true
+    }, 
+    "Hoodie": {
+        "name": "Hoodie",
+        "filter": true
+    }, 
+    "Flannel": {
+        "name": "Flannel",
+        "filter": true
+    }, 
+    "Jacket": {
+        "name": "Jacket",
+        "filter": true
+    }, 
+    "Parka": {
+        "name": "Parka",
+        "filter": true
+    }, 
+    "Poncho": {
+        "name": "Poncho",
+        "filter": true
+    }, 
+    "Tee": {
+        "name": "Tee",
+        "filter": true
+    }, 
+    "Top": {
+        "name": "Top",
+        "filter": true
+    }, 
+    "Jersey": {
+        "name": "Jersey",
+        "filter": true
+    }, 
+    "ButtonDown": {
+        "name": "ButtonDown",
+        "filter": true
+    }, 
+    "Tank": {
+        "name": "Tank",
+        "filter": true
+    }, 
+    "Henley": {
+        "name": "Henley",
+        "filter": true
+    }, 
+    "Bottoms": {
+        "name": "Bottoms",
+        "filter": true
+    }, 
+    "Pants": {
+        "name": "Pants",
+        "filter": true
+    }, 
+    "Jeans": {
+        "name": "Jeans",
+        "filter": true
+    }, 
+    "Chinos": {
+        "name": "Chinos",
+        "filter": true
+    }, 
+    "Joggers": {
+        "name": "Joggers",
+        "filter": true
+    }, 
+    "Sweatpants": {
+        "name": "Sweatpants",
+        "filter": true
+    }, 
+    "Shorts": {
+        "name": "Shorts",
+        "filter": true
+    }, 
+    "Trunks": {
+        "name": "Trunks",
+        "filter": true
+    }, 
+    "Sweatshorts": {
+        "name": "Sweatshorts",
+        "filter": true
+    }, 
+    "FullBody": {
+        "name": "FullBody",
+        "filter": true
+    }, 
+    "Coat": {
+        "name": "Coat",
+        "filter": true
+    }, 
+    "Cape": {
+        "name": "Cape",
+        "filter": true
+    }
+}

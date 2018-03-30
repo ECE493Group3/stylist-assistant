@@ -18,13 +18,14 @@
 			<p>Can't wait to see all your great style!</p>					
 		</div>
 		<ion-list class="listofcards">
-			<ion-item ng-repeat="piece in user.wardrobeitems">
+			<ion-item ng-repeat="piece in user.wardrobeitems" ng-show="categories.{{piece.category}}.filter">
 				<ion-card>
 					<img src={{piece.img}} />
 					<div class="row">
 						<div class="col col-75">
 							<!-- <div class="card-title">{{piece.name}}</div> -->
-							<p>{{piece.description}}</p>
+							<p>{{piece.category}}</p>
+							
 						</div>
 						<!-- <div class="col">
 							<button class="button button-positive" ng-click="selected(outfitid)">Wear</button>
