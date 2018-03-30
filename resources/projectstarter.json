@@ -75,34 +75,34 @@
       } ],
       "recommendedoutfits" : { 
         "-JiGh_31GA20JaasZBfa": {
-          "description" : "light blue parasuco demin with grey oversized Topman hoodie.",
+          "description" : "light blue parasuco demin with grey oversized Topman Hoodie.",
           "image" : "img/ionic.png",
-          "name" : "jeans and hoodie", 
-          "category-top": "hoodie", 
-          "category-bottom": "jeans", 
-          "category-full": null
+          "name" : "Jeans and Hoodie", 
+          "categorytop": "Hoodie", 
+          "categorybottom": "Jeans", 
+          "categoryfull": null
         }, 
         "-JiGh_31GA2fdabpZBfa": {
-          "description" : "light blue parasuco demin with grey oversized Topman hoodie.",
+          "description" : "light blue parasuco demin with grey oversized Topman Hoodie.",
           "image" : "img/ionic.png",
-          "name" : "jeans and hoodie", 
-          "category-top": "hoodie", 
-          "category-bottom": "jeans", 
-          "category-full": null
+          "name" : "Jeans and Hoodie", 
+          "categorytop": "Hoodie", 
+          "categorybottom": "Jeans", 
+          "categoryfull": null
         }, 
         "-JiGh_3erA20JabpZBfa": {
-          "description" : "light blue parasuco demin with grey oversized Topman hoodie.",
+          "description" : "light blue parasuco demin with grey oversized Topman Hoodie.",
           "image" : "img/ionic.png",
-          "name" : "jeans and hoodie", 
-          "category-top": "hoodie", 
-          "category-bottom": "jeans", 
-          "category-full": null
+          "name" : "Jeans and Hoodie", 
+          "categorytop": "Hoodie", 
+          "categorybottom": "Jeans", 
+          "categoryfull": null
         } 
       },
       "stylist" : "DSzjEvbRcsPD5cnymJ01fZGoIrP2",
       "wardrobeitems": {
         "-JiGh_31GA20JabpZBfa": {
-          "category": "hoodie",
+          "category": "Hoodie",
           "img": "img/ionic.png"
         },
         "-JiGh_31GA20JabpZwwa": {
@@ -110,7 +110,7 @@
           "img": "img/ionic.png"
         },
         "-JiGh_31GA20erbpZBfa": {
-          "category": "jeans",
+          "category": "Jeans",
           "img": "img/ionic.png"
         },
         "-JiGh_31wer0JabpZBfa": {
@@ -175,34 +175,34 @@
       ],
       "recommendedoutfits": {
         "-JiGh_31GA20JaasZBfa": {
-          "description": "light blue parasuco demin with grey oversized Topman hoodie.",
+          "description": "light blue parasuco demin with grey oversized Topman Hoodie.",
           "image": "img/ionic.png",
-          "name": "jeans and hoodie",
-          "category-top": "hoodie",
-          "category-bottom": "jeans",
-          "category-full": null
+          "name": "Jeans and Hoodie",
+          "categorytop": "Hoodie",
+          "categorybottom": "Jeans",
+          "categoryfull": null
         },
         "-JiGh_31GA2fdabpZBfa": {
-          "description": "light blue parasuco demin with grey oversized Topman hoodie.",
+          "description": "light blue parasuco demin with grey oversized Topman Hoodie.",
           "image": "img/ionic.png",
-          "name": "jeans and hoodie",
-          "category-top": "hoodie",
-          "category-bottom": "jeans",
-          "category-full": null
+          "name": "Jeans and Hoodie",
+          "categorytop": "Hoodie",
+          "category-bottom": "Jeans",
+          "categoryfull": null
         },
         "-JiGh_3erA20JabpZBfa": {
-          "description": "light blue parasuco demin with grey oversized Topman hoodie.",
+          "description": "light blue parasuco demin with grey oversized Topman Hoodie.",
           "image": "img/ionic.png",
-          "name": "jeans and hoodie",
-          "category-top": "hoodie",
-          "category-bottom": "jeans",
-          "category-full": null
+          "name": "Jeans and Hoodie",
+          "categorytop": "Hoodie",
+          "category-bottom": "Jeans",
+          "categoryfull": null
         }
       },
       "stylist" : "DSzjEvbRcsPD5cnymJ01fZGoIrP2",
       "wardrobeitems" : { 
         "-JiGh_31GA20JabpZBfa": {
-          "category": "hoodie", 
+          "category": "Hoodie", 
           "img" : "img/ionic.png"
         }, 
         "-JiGh_31GA20JabpZwwa": {
@@ -210,7 +210,7 @@
           "img" : "img/ionic.png"
         }, 
         "-JiGh_31GA20erbpZBfa": {
-          "category": "jeans",   
+          "category": "Jeans",   
           "img" : "img/ionic.png"
         }, 
         "-JiGh_31wer0JabpZBfa": {
