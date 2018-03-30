@@ -12,3 +12,7 @@
 .emptyStateMessage.full.stylist {
     padding: 13% 25% 13% 7%; 
 }
+
+.popover, .popover .bar-header {
+    border-radius: 15px !important; 
+}

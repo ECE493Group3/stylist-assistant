@@ -95,9 +95,11 @@ angular.module('starter', ['ionic', 'firebase'])
 	$urlRouterProvider.otherwise("/welcome");
 })
 
-.controller("user_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
+.controller("user_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicPopover', function ($scope, $firebaseObject, $firebaseAuth, $ionicPopover){
+	var user; 
 	firebase.auth().onAuthStateChanged(function (u) {
 		if (u) {
+			// user auth
 			var userref = firebase.database().ref().child("users").child(u.uid);
 			$scope.user = $firebaseObject(userref);
 			firebase.database().ref("users").child(u.uid).child("wardrobeitems").once('value', function (snapshot) {
@@ -108,12 +110,41 @@ angular.module('starter', ['ionic', 'firebase'])
 					$scope.emptyState = true; 
 				}
 			});
+
+			// filter setup
+			var categoryRef = firebase.database().ref().child('users/' + u.uid + '/wardrobeitems/').orderByChild("category")
+			var cat = $firebaseObject(categoryRef); 
+			cat.$loaded().then(function () {
+				var filteredCategories = {}
+				// To iterate the key/value pairs of the object, use angular.forEach()
+				angular.forEach(cat, function (value, key) {
+					filteredCategories[value.category] = categories[value.category]; 
+				});
+				
+				$scope.categories = filteredCategories; 				
+			});
 		}
 	});
 
 	$scope.selected = function (outfit) {
 		console.log("hey")
 	}
+
+	$ionicPopover.fromTemplateUrl('filter-popover.html', {
+		scope: $scope
+	}).then(function (popover) {
+		$scope.popover = popover;
+	});
+	$scope.openPopover = function ($event) {
+		$scope.popover.show($event);
+	};
+	$scope.closePopover = function () {
+		$scope.popover.hide();
+	};
+	//Cleanup the popover when we're done with it!
+	$scope.$on('$destroy', function () {
+		$scope.popover.remove();
+	});
 }])
 
 .controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
@@ -233,8 +264,6 @@ angular.module('starter', ['ionic', 'firebase'])
 
 .controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", function($scope, $firebaseObject, $stateParams, Camera){
 	
-	console.log("hi"); 
-	console.log($stateParams); 
 	if ($stateParams.type == "user") {
 		var userref = firebase.database().ref().child("users").child($stateParams.id);
 		$scope.clothingPieces = $firebaseObject(userref.child("wardrobeitems"));
@@ -369,10 +398,6 @@ angular.module('starter', ['ionic', 'firebase'])
 							// place in users 
 							var userref = firebase.database().ref("users").child(user.uid)
 							userref.set({
-								dressLog: [],
-								recommendeditems: [],
-								recommendedoutfits: [],
-								wardrobeitems: [{ description: "Add your wardrobe using the plus button at the top right." }],
 								stylist: stylistId,
 								email: email,
 								name: username,
@@ -496,4 +521,141 @@ angular.module('starter', ['ionic', 'firebase'])
 }])
 ; 
 
+var categories = {
+	"Sweater": {
+		"name": "Sweater",
+		"filter": true,
+		"present": true
+	},
+	"Blazer": {
+		"name": "Blazer",
+		"filter": true,
+		"present": true
+	},
+	"Bomber": {
+		"name": "Bomber",
+		"filter": true,
+		"present": true
+	},
+	"Cardigan": {
+		"name": "Cardigan",
+		"filter": true,
+		"present": true
+	},
+	"Hoodie": {
+		"name": "Hoodie",
+		"filter": true,
+		"present": true
+	},
+	"Flannel": {
+		"name": "Flannel",
+		"filter": true,
+		"present": true
+	},
+	"Jacket": {
+		"name": "Jacket",
+		"filter": true,
+		"present": true
+	},
+	"Parka": {
+		"name": "Parka",
+		"filter": true,
+		"present": true
+	},
+	"Poncho": {
+		"name": "Poncho",
+		"filter": true,
+		"present": true
+	},
+	"Tee": {
+		"name": "Tee",
+		"filter": true,
+		"present": true
+	},
+	"Top": {
+		"name": "Top",
+		"filter": true,
+		"present": true
+	},
+	"Jersey": {
+		"name": "Jersey",
+		"filter": true,
+		"present": true
+	},
+	"ButtonDown": {
+		"name": "ButtonDown",
+		"filter": true,
+		"present": true
+	},
+	"Tank": {
+		"name": "Tank",
+		"filter": true,
+		"present": true
+	},
+	"Henley": {
+		"name": "Henley",
+		"filter": true,
+		"present": true
+	},
+	"Bottoms": {
+		"name": "Bottoms",
+		"filter": true,
+		"present": true
+	},
+	"Pants": {
+		"name": "Pants",
+		"filter": true,
+		"present": true
+	},
+	"Jeans": {
+		"name": "Jeans",
+		"filter": true,
+		"present": true
+	},
+	"Chinos": {
+		"name": "Chinos",
+		"filter": true,
+		"present": true
+	},
+	"Joggers": {
+		"name": "Joggers",
+		"filter": true,
+		"present": true
+	},
+	"Sweatpants": {
+		"name": "Sweatpants",
+		"filter": true,
+		"present": true
+	},
+	"Shorts": {
+		"name": "Shorts",
+		"filter": true,
+		"present": true
+	},
+	"Trunks": {
+		"name": "Trunks",
+		"filter": true,
+		"present": true
+	},
+	"Sweatshorts": {
+		"name": "Sweatshorts",
+		"filter": true,
+		"present": true
+	},
+	"FullBody": {
+		"name": "FullBody",
+		"filter": true,
+		"present": true
+	},
+	"Coat": {
+		"name": "Coat",
+		"filter": true,
+		"present": true
+	},
+	"Cape": {
+		"name": "Cape",
+		"filter": true,
+		"present": true
+	}
+}
 

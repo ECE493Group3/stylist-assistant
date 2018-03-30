@@ -1,0 +1,12 @@
+<ion-popover-view>
+    <ion-header-bar>
+        <h1 class="title">Filter Categories</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-checkbox ng-repeat="category in categories" 
+                ng-checked="category.filter" 
+                ng-model="category.filter">{{category.name}}</ion-checkbox>
+        </ion-list>
+    </ion-content>
+</ion-popover-view>
