@@ -1,71 +1,41 @@
 <ion-view view-title="User Main">
-	<ion-side-menus>
-	  <!-- Left Menu -->
-	  <ion-side-menu side = "left" width="200">  
-	    <ion-header-bar class = "bar-positive">
-	      Options
-	    </ion-header-bar>
-	    <ion-content class = "padding">
-	      <ion-list>
-	        <ion-item href="#">
-	          All
-	        </ion-item>
-	        <ion-item href="#">
-	          Top
-	        </ion-item>
-	        <ion-item href="#">
-	          Bottom
-	        </ion-item>
-	        <ion-item href="#">
-	          Full Body
-	        </ion-item>
-	    </ion-content>
-	  </ion-side-menu>
+	<ion-nav-bar class="bar" animation = "no-animation">
+		<ion-nav-title>Your Wardrobe</ion-nav-title>
+		<ion-nav-buttons side="right">
+			<a href="#/upload_images/user/{{user.$id}}"><button class="button button-icon button-clear ion-plus" menu-toggle="right"></button></a>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+	<ion-content class="has-header has-footer padding">
+		<div class="emptyStateMessage full" ng-hide="emptyState">
+			<h3>Hey there {{user.name}},</h3> 
+			</br>
+			<p>Seems like you haven't added any wardrobe items yet! 
+				You can add them by pressing the "plus" button at the top right corner! 
+			</p>
+			<p>Can't wait to see all your great style!</p>					
+		</div>
+		<ion-list class="listofcards">
+			<ion-item ng-repeat="piece in user.wardrobeitems">
+				<ion-card>
+					<img src={{piece.img}} />
+					<div class="row">
+						<div class="col col-75">
+							<!-- <div class="card-title">{{piece.name}}</div> -->
+							<p>{{piece.description}}</p>
+						</div>
+						<!-- <div class="col">
+							<button class="button button-positive" ng-click="selected(outfitid)">Wear</button>
+						</div> -->
+					</div>
+				</ion-card>
+			</ion-item>
+		</ion-list>
+	</ion-content>
 
-	  <ion-side-menu-content>
-	    <ion-nav-bar class="bar" animation = "no-animation">
-	      <ion-nav-title>Your Wardrobe</ion-nav-title>
-				<ion-nav-buttons side="left">
-					<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-				</ion-nav-buttons>
-				<ion-nav-buttons side="right">
-					<a href="#/upload_images/user/{{user.$id}}"><button class="button button-icon button-clear ion-plus" menu-toggle="right"></button></a>
-				</ion-nav-buttons>
-	    </ion-nav-bar>
-      <ion-content class="has-header has-footer padding">
-				<div class="emptyStateMessage full" ng-hide="emptyState">
-					<h3>Hey there {{user.name}},</h3> 
-					</br>
-					<p>Seems like you haven't added any wardrobe items yet! 
-						You can add them by pressing the "plus" button at the top right corner! 
-					</p>
-					<p>Can't wait to see all your great style!</p>					
-				</div>
-				<ion-list class="listofcards">
-					<ion-item ng-repeat="piece in user.wardrobeitems">
-						<ion-card>
-							<img src={{piece.img}} />
-							<div class="row">
-								<div class="col col-75">
-									<!-- <div class="card-title">{{piece.name}}</div> -->
-									<p>{{piece.description}}</p>
-								</div>
-								<!-- <div class="col">
-									<button class="button button-positive" ng-click="selected(outfitid)">Wear</button>
-								</div> -->
-							</div>
-						</ion-card>
-					</ion-item>
-				</ion-list>
-			</ion-content>
-
-			<ion-tabs class="tabs" tabsPlacement="bottom">
-				<ion-tab title="Wardrobe" href="/user_main">
-				</ion-tab>
-				<ion-tab title="Recommended" href="/user_recommend">
-				</ion-tab>
-			</ion-tabs>
-
-	  </ion-side-menu-content>
-	</ion-side-menus>
+	<ion-tabs class="tabs" tabsPlacement="bottom">
+		<ion-tab title="Wardrobe" href="/user_main">
+		</ion-tab>
+		<ion-tab title="Recommended" href="/user_recommend">
+		</ion-tab>
+	</ion-tabs>
 </ion-view>
