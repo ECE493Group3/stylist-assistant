@@ -40,38 +40,68 @@
       "dresslog": {
         "-JiGh_89GA20JaasZBfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-01"
+          "date": "2018-03-01",
+          "categorytop": "Hoodie",
+          "categorybottom": "Jeans",
+          "categoryfull": "None"
         },
         "-JiGh_31GA20Jaa34Bfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-02"
+          "date": "2018-03-02",
+          "categorytop": "Henley",
+          "categorybottom": "Sweatpants",
+          "categoryfull": "None"
         },
         "-JiGh_31GA34JaasZBfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-03"
+          "date": "2018-03-03",
+          "categorytop": "Hoodie",
+          "categorybottom": "Jeans",
+          "categoryfull": "None"
         },
         "-JiGh_31G230JaasZBfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-04"
+          "date": "2018-03-04",
+          "categorytop": "None",
+          "categorybottom": "None",
+          "categoryfull": "Cape"
         },
         "-JiGh_31G560JaasZBfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-05"
+          "date": "2018-03-05",
+          "categorytop": "None",
+          "categorybottom": "None",
+          "categoryfull": "Coat"
         }
       },
       "email" : "askalburgi@gmail.com",
       "img" : "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
       "name" : "Arjun Kalburgi",
       "recommendeditems" : [ {
-          "img" : "img/ionic.png"
+          "img" : "img/ionic.png",
+          "categorytop": "Hoodie",
+          "categorybottom": "Jeans",
+          "categoryfull": "None"
         }, {
-          "img" : "img/ionic.png"
+          "img" : "img/ionic.png",
+          "categorytop": "Henley",
+          "categorybottom": "Sweatpants",
+          "categoryfull": "None"
         }, {
-          "img" : "img/ionic.png"
+          "img" : "img/ionic.png",
+          "categorytop": "Hoodie",
+          "categorybottom": "Jeans",
+          "categoryfull": "None"
         }, {
-          "img" : "img/ionic.png"
+          "img" : "img/ionic.png",
+          "categorytop": "None",
+          "categorybottom": "None",
+          "categoryfull": "Cape"
         }, {
-          "img" : "img/ionic.png"
+          "img" : "img/ionic.png",
+          "categorytop": "None",
+          "categorybottom": "None",
+          "categoryfull": "Coat"
       } ],
       "recommendedoutfits" : { 
         "-JiGh_31GA20JaasZBfa": {
@@ -133,23 +163,38 @@
       "dresslog": {
         "-JiGh_89GA20JaasZBfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-01"
+          "date": "2018-03-01",
+          "categorytop": "Hoodie",
+          "categorybottom": "Jeans",
+          "categoryfull": "None"
         },
         "-JiGh_31GA20Jaa34Bfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-02"
+          "date": "2018-03-02",
+          "categorytop": "Henley",
+          "categorybottom": "Sweatpants",
+          "categoryfull": "None"
         },
         "-JiGh_31GA34JaasZBfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-03"
+          "date": "2018-03-03",
+          "categorytop": "Hoodie",
+          "categorybottom": "Jeans",
+          "categoryfull": "None"
         },
         "-JiGh_31G230JaasZBfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-04"
+          "date": "2018-03-04",
+          "categorytop": "None",
+          "categorybottom": "None",
+          "categoryfull": "Cape"
         },
         "-JiGh_31G560JaasZBfa": {
           "img": "img/ionic.png",
-          "date": "2018-03-05"
+          "date": "2018-03-05",
+          "categorytop": "None",
+          "categorybottom": "None",
+          "categoryfull": "Coat"
         }
       },
       "email" : "user1@gmail.com",
@@ -158,19 +203,34 @@
       "password" : "password",
       "recommendeditems": [
         {
-          "img": "img/ionic.png"
+          "img": "img/ionic.png",
+          "categorytop": "Hoodie",
+          "categorybottom": "Jeans",
+          "categoryfull": "None"
         },
         {
-          "img": "img/ionic.png"
+          "img": "img/ionic.png",
+          "categorytop": "Henley",
+          "categorybottom": "Sweatpants",
+          "categoryfull": "None"
         },
         {
-          "img": "img/ionic.png"
+          "img": "img/ionic.png",
+          "categorytop": "Hoodie",
+          "categorybottom": "Jeans",
+          "categoryfull": "None"
         },
         {
-          "img": "img/ionic.png"
+          "img": "img/ionic.png",
+          "categorytop": "None",
+          "categorybottom": "None",
+          "categoryfull": "Cape"
         },
         {
-          "img": "img/ionic.png"
+          "img": "img/ionic.png",
+          "categorytop": "None",
+          "categorybottom": "None",
+          "categoryfull": "Coat"
         }
       ],
       "recommendedoutfits": {
