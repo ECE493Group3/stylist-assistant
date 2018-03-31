@@ -95,7 +95,7 @@ angular.module('starter', ['ionic', 'firebase'])
 	$urlRouterProvider.otherwise("/welcome");
 })
 
-.controller("user_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicPopover', function ($scope, $firebaseObject, $firebaseAuth, $ionicPopover){
+.controller("user_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicPopover', '$ionicTabsDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicPopover, $ionicTabsDelegate){
 	var user; 
 	firebase.auth().onAuthStateChanged(function (u) {
 		if (u) {
@@ -111,18 +111,46 @@ angular.module('starter', ['ionic', 'firebase'])
 				}
 			});
 
-			// filter setup
-			var categoryRef = firebase.database().ref().child('users/' + u.uid + '/wardrobeitems/').orderByChild("category")
+			// wardrobe filter setup
+			var categoryRef = firebase.database().ref().child('users/' + u.uid + '/wardrobeitems/')
 			var cat = $firebaseObject(categoryRef); 
 			cat.$loaded().then(function () {
-				var filteredCategories = {}
+				var filteredCategoriesWardrobe = {}
 				angular.forEach(cat, function (value, key) {
-					filteredCategories[value.category] = categories[value.category]; 
+					filteredCategoriesWardrobe[value.category] = categories[value.category]; 
 				});
-				$scope.categories = filteredCategories;
+				$scope.categories = filteredCategoriesWardrobe;
+				$scope.filteredCategoriesWardrobe = filteredCategoriesWardrobe;
+			});
+
+			// outfit filter setup
+			var outfitcategoryRef = firebase.database().ref().child('users/' + u.uid + '/recommendedoutfits/')
+			var ocat = $firebaseObject(outfitcategoryRef);
+			ocat.$loaded().then(function () {
+				var filteredCategoriesOutfits = {}
+				angular.forEach(ocat, function (value, key) {
+					if (value.categorybottom) {
+						filteredCategoriesOutfits[value.categorybottom] = categories[value.categorybottom];
+					}
+					if (value.categorytop) {
+						filteredCategoriesOutfits[value.categorytop] = categories[value.categorytop];
+					}
+					if (value.categoryfull) {
+						filteredCategoriesOutfits[value.categoryfull] = categories[value.categoryfull];
+					}
+				});
+				$scope.filteredCategoriesOutfits = filteredCategoriesOutfits;
 			});
 		}
 	});
+
+	$scope.tabClicked = function (tabnum) {
+		if (tabnum == 0) {
+			$scope.categories = $scope.filteredCategoriesWardrobe;
+		} else {
+			$scope.categories = $scope.filteredCategoriesOutfits;
+		}
+	}
 
 	$scope.selected = function (outfit) {
 		console.log("hey")
