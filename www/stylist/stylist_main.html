@@ -48,12 +48,12 @@
         <div id="clientloglist" class="profile-section">
           <div class="profilesubheader">
             <h4>Dress Log</h4>
-            <button class="button button-small button-positive">Search</button>
+            <button class="button button-small button-positive" ng-click="openPopover($event, 0)">Search</button>
           </div>
           <div class="emptyStateMessage inline" ng-hide="dresslogEmptyState"><p>{{client.name}} hasn't selected any outfits yet, when they do it'll show up here.</p></div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
-              <ion-item ng-repeat="item in client.dresslog">
+              <ion-item ng-repeat="item in client.dresslog" ng-show="filteredCategoriesLog.{{item.categorybottom}}.filter || filteredCategoriesLog.{{item.categorytop}}.filter || filteredCategoriesLog.{{item.categoryfull}}.filter">
                 <img src={{item.img}} />
               </ion-item>
             </ion-scroll>
@@ -62,12 +62,12 @@
         <div id="clientwardrobelist" class="profile-section">
           <div class="profilesubheader">
             <h4>Wardrobe</h4>
-            <button class="button button-small button-positive">Search</button>
+            <button class="button button-small button-positive" ng-click="openPopover($event, 1)">Search</button>
           </div>
           <div class="emptyStateMessage inline" ng-hide="wardrobeItemsEmptyState"><p>{{client.name}} hasn't uploaded any of their wardrobe yet, when they do it'll show up here.</p></div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
-              <ion-item ng-repeat="item in wardrobeItems">
+              <ion-item ng-repeat="item in wardrobeItems" ng-show="filteredCategoriesWardrobe.{{item.category}}.filter">
                 <img src={{item.img}} />
               </ion-item>
             </ion-scroll>
@@ -76,13 +76,13 @@
         <div id="recommendedlist" class="profile-section">
           <div class="profilesubheader">
             <h4>Recommendations</h4>
-            <button class="button button-small button-positive">Search</button>
+            <button class="button button-small button-positive" ng-click="openPopover($event, 3)">Search</button>
             <a href="#/upload_images/stylist/{{client.$id}}"><button class="button button-small button-positive">Edit</button></a>
           </div>
           <div class="emptyStateMessage inline" ng-hide="recommendedItemsEmptyState"><p>You haven't suggested any styles for {{client.name}}. Click the Edit button to upload some.</p></div>
           <ion-list class="horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
-              <ion-item ng-repeat="recommended in recommendedItems">
+              <ion-item ng-repeat="recommended in recommendedItems" ng-show="filteredCategoriesRecItems.{{recommended.categorybottom}}.filter || filteredCategoriesRecItems.{{recommended.categorytop}}.filter || filteredCategoriesRecItems.{{recommended.categoryfull}}.filter">
                 <img src={{recommended.img}} />
               </ion-item>
             </ion-scroll>

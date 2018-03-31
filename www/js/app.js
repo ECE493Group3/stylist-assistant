@@ -200,7 +200,7 @@ angular.module('starter', ['ionic', 'firebase'])
 	});
 }])
 
-.controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
+.controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', '$ionicPopover', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate, $ionicPopover){
 	ionic.Platform.ready(function () {
 		$ionicSideMenuDelegate.toggleLeft(true)
 	});
@@ -230,6 +230,8 @@ angular.module('starter', ['ionic', 'firebase'])
 		var client = firebase.database().ref().child("users").child(clientId); 
 		$scope.client = $firebaseObject(client);
 		showClient(); 
+
+		// wardrobe 
 		client.child("wardrobeitems").once('value', function (snapshot) {
 			var exists = (snapshot.val() !== null);
 			if (!exists) {
@@ -237,8 +239,17 @@ angular.module('starter', ['ionic', 'firebase'])
 			} else {
 				$scope.wardrobeItemsEmptyState = true;
 				$scope.wardrobeItems = $firebaseObject(client.child("wardrobeitems"));
+				$scope.wardrobeItems.$loaded().then(function () {
+					var filteredCategoriesWardrobe = {}
+					angular.forEach($scope.wardrobeItems, function (value, key) {
+						filteredCategoriesWardrobe[value.category] = categories[value.category];
+					});
+					$scope.filteredCategoriesWardrobe = filteredCategoriesWardrobe;
+				});
 			}
 		});
+
+		// dresslog
 		client.child("dresslog").once('value', function (snapshot) {
 			var exists = (snapshot.val() !== null);
 			if (!exists) {
@@ -246,8 +257,25 @@ angular.module('starter', ['ionic', 'firebase'])
 			} else {
 				$scope.dresslogEmptyState = true;
 				$scope.dressLog = $firebaseObject(client.child("dresslog").orderByChild("date"));
+				$scope.dressLog.$loaded().then(function () {
+					var filteredCategoriesLog = {}
+					angular.forEach($scope.dressLog, function (value, key) {
+						if (value.categorybottom != "None") {
+							filteredCategoriesLog[value.categorybottom] = categories[value.categorybottom];
+						}
+						if (value.categorytop != "None") {
+							filteredCategoriesLog[value.categorytop] = categories[value.categorytop];
+						}
+						if (value.categoryfull != "None") {
+							filteredCategoriesLog[value.categoryfull] = categories[value.categoryfull];
+						}
+					});
+					$scope.filteredCategoriesLog = filteredCategoriesLog;
+				});
 			}
 		});
+
+		// recommendations
 		client.child("recommendeditems").once('value', function (snapshot) {
 			var exists = (snapshot.val() !== null);
 			if (!exists) {
@@ -255,9 +283,25 @@ angular.module('starter', ['ionic', 'firebase'])
 			} else {
 				$scope.recommendedItemsEmptyState = true;
 				$scope.recommendedItems = $firebaseObject(client.child("recommendeditems"));
+				$scope.recommendedItems.$loaded().then(function () {
+					var filteredCategoriesRecItems = {}
+					angular.forEach($scope.recommendedItems, function (value, key) {
+						if (value.categorybottom != "None") {
+							filteredCategoriesRecItems[value.categorybottom] = categories[value.categorybottom];
+						}
+						if (value.categorytop != "None") {
+							filteredCategoriesRecItems[value.categorytop] = categories[value.categorytop];
+						}
+						if (value.categoryfull != "None") {
+							filteredCategoriesRecItems[value.categoryfull] = categories[value.categoryfull];
+						}
+					});
+					$scope.filteredCategoriesRecItems = filteredCategoriesRecItems;
+				});
 			}
 		});
-		$ionicSideMenuDelegate.toggleLeft(true);
+
+		$ionicSideMenuDelegate.toggleLeft(false);
 	}
 
 	$scope.acceptClient = function (clientId, client) {
@@ -277,7 +321,30 @@ angular.module('starter', ['ionic', 'firebase'])
 		});
 
 	}
-	
+
+	$ionicPopover.fromTemplateUrl('filter-popover.html', {
+		scope: $scope
+	}).then(function (popover) {
+		$scope.popover = popover;
+	});
+	$scope.openPopover = function ($event, listnum) {
+		if (listnum == 0) {
+			$scope.categories = $scope.filteredCategoriesLog; 
+		} if (listnum == 1) {
+			$scope.categories = $scope.filteredCategoriesWardrobe;
+		} else {
+			$scope.categories = $scope.filteredCategoriesRecItems;
+		}
+		
+		$scope.popover.show($event);
+	};
+	$scope.closePopover = function () {
+		$scope.popover.hide();
+	};
+	//Cleanup the popover when we're done with it!
+	$scope.$on('$destroy', function () {
+		$scope.popover.remove();
+	});
 }])
 
 .service("network", function(){
