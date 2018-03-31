@@ -82,7 +82,7 @@ angular.module('starter', ['ionic', 'firebase'])
 		cache:false,
 		url:"/user_recommend",
 		templateUrl: "user/user_recommend.html",
-		controller: "user_main_controller"          
+		controller: "user_recommend_controller"          
 	})    
 	.state('stylist_main',{
 		cache:false,
@@ -122,6 +122,41 @@ angular.module('starter', ['ionic', 'firebase'])
 				$scope.categories = filteredCategoriesWardrobe;
 				$scope.filteredCategoriesWardrobe = filteredCategoriesWardrobe;
 			});
+		}
+	});
+
+	$ionicPopover.fromTemplateUrl('filter-popover.html', {
+		scope: $scope
+	}).then(function (popover) {
+		$scope.popover = popover;
+	});
+	$scope.openPopover = function ($event) {
+		$scope.popover.show($event);
+	};
+	$scope.closePopover = function () {
+		$scope.popover.hide();
+	};
+	//Cleanup the popover when we're done with it!
+	$scope.$on('$destroy', function () {
+		$scope.popover.remove();
+	});
+}])
+
+.controller("user_recommend_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicPopover', '$ionicTabsDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicPopover, $ionicTabsDelegate) {
+	var user;
+	firebase.auth().onAuthStateChanged(function (u) {
+		if (u) {
+			// user auth
+			var userref = firebase.database().ref().child("users").child(u.uid);
+			$scope.user = $firebaseObject(userref);
+			firebase.database().ref("users").child(u.uid).child("wardrobeitems").once('value', function (snapshot) {
+				var exists = (snapshot.val() !== null);
+				if (!exists) {
+					$scope.emptyState = false;
+				} else {
+					$scope.emptyState = true;
+				}
+			});
 
 			// outfit filter setup
 			var outfitcategoryRef = firebase.database().ref().child('users/' + u.uid + '/recommendedoutfits/')
@@ -139,21 +174,13 @@ angular.module('starter', ['ionic', 'firebase'])
 						filteredCategoriesOutfits[value.categoryfull] = categories[value.categoryfull];
 					}
 				});
-				$scope.filteredCategoriesOutfits = filteredCategoriesOutfits;
+				$scope.categories = filteredCategoriesOutfits;
 			});
 		}
 	});
 
-	$scope.tabClicked = function (tabnum) {
-		if (tabnum == 0) {
-			$scope.categories = $scope.filteredCategoriesWardrobe;
-		} else {
-			$scope.categories = $scope.filteredCategoriesOutfits;
-		}
-	}
-
 	$scope.selected = function (outfit) {
-		console.log("hey")
+		console.log($scope.categories);
 	}
 
 	$ionicPopover.fromTemplateUrl('filter-popover.html', {
@@ -172,6 +199,7 @@ angular.module('starter', ['ionic', 'firebase'])
 		$scope.popover.remove();
 	});
 }])
+
 
 .controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
 	ionic.Platform.ready(function () {
