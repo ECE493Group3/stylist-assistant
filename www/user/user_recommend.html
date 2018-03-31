@@ -15,17 +15,17 @@
 			<p>Can't wait to see all your great style!</p>
 		</div>
 		<ion-list class="listofcards">
-			<ion-item ng-repeat="(outfitid, outfit) in user.recommendedoutfits">
+			<ion-item ng-repeat="(outfitid, outfit) in user.recommendedoutfits"  ng-show="categories.{{outfit.categorybottom}}.filter || categories.{{outfit.categorytop}}.filter || categories.{{outfit.categoryfull}}.filter">
 					<ion-card>
 						<img src={{outfit.image}} />
 						<div class="row">
-								<div class="col col-75">
-										<div class="card-title">{{outfit.name}}</div>
-										<p>{{outfit.description}}</p>
-								</div>
-								<div class="col">
-										<button class="button button-positive" ng-click="selected(outfitid)">Select</button>
-								</div>
+							<div class="col col-75">
+									<div class="card-title">{{outfit.name}}</div>
+									<p>{{outfit.description}}</p>
+							</div>
+							<div class="col">
+									<button class="button button-positive" ng-click="selected(outfitid)">Select</button>
+							</div>
 						</div>
 					</ion-card>
 			</ion-item>

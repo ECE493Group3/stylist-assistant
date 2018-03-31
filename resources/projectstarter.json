@@ -80,7 +80,7 @@
           "name" : "Jeans and Hoodie", 
           "categorytop": "Hoodie", 
           "categorybottom": "Jeans", 
-          "categoryfull": null
+          "categoryfull": "None"
         }, 
         "-JiGh_31GA2fdabpZBfa": {
           "description" : "light blue parasuco demin with grey oversized Topman Hoodie.",
@@ -88,15 +88,15 @@
           "name" : "Jeans and Hoodie", 
           "categorytop": "Hoodie", 
           "categorybottom": "Jeans", 
-          "categoryfull": null
+          "categoryfull": "None"
         }, 
         "-JiGh_3erA20JabpZBfa": {
-          "description" : "light blue parasuco demin with grey oversized Topman Hoodie.",
+          "description" : "Sick black cape.",
           "image" : "img/ionic.png",
-          "name" : "Jeans and Hoodie", 
-          "categorytop": "Hoodie", 
-          "categorybottom": "Jeans", 
-          "categoryfull": null
+          "name" : "Cape", 
+          "categorytop": "None", 
+          "categorybottom": "None", 
+          "categoryfull": "Cape"
         } 
       },
       "stylist" : "DSzjEvbRcsPD5cnymJ01fZGoIrP2",
@@ -180,23 +180,23 @@
           "name": "Jeans and Hoodie",
           "categorytop": "Hoodie",
           "categorybottom": "Jeans",
-          "categoryfull": null
+          "categoryfull": "None"
         },
         "-JiGh_31GA2fdabpZBfa": {
           "description": "light blue parasuco demin with grey oversized Topman Hoodie.",
           "image": "img/ionic.png",
           "name": "Jeans and Hoodie",
           "categorytop": "Hoodie",
-          "category-bottom": "Jeans",
-          "categoryfull": null
+          "categorybottom": "Jeans",
+          "categoryfull": "None"
         },
         "-JiGh_3erA20JabpZBfa": {
-          "description": "light blue parasuco demin with grey oversized Topman Hoodie.",
+          "description": "Sick black cape.",
           "image": "img/ionic.png",
-          "name": "Jeans and Hoodie",
-          "categorytop": "Hoodie",
-          "category-bottom": "Jeans",
-          "categoryfull": null
+          "name": "Cape",
+          "categorytop": "None",
+          "categorybottom": "None",
+          "categoryfull": "Cape"
         }
       },
       "stylist" : "DSzjEvbRcsPD5cnymJ01fZGoIrP2",

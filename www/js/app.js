@@ -164,13 +164,13 @@ angular.module('starter', ['ionic', 'firebase'])
 			ocat.$loaded().then(function () {
 				var filteredCategoriesOutfits = {}
 				angular.forEach(ocat, function (value, key) {
-					if (value.categorybottom) {
+					if (value.categorybottom != "None") {
 						filteredCategoriesOutfits[value.categorybottom] = categories[value.categorybottom];
 					}
-					if (value.categorytop) {
+					if (value.categorytop != "None") {
 						filteredCategoriesOutfits[value.categorytop] = categories[value.categorytop];
 					}
-					if (value.categoryfull) {
+					if (value.categoryfull != "None") {
 						filteredCategoriesOutfits[value.categoryfull] = categories[value.categoryfull];
 					}
 				});
@@ -199,7 +199,6 @@ angular.module('starter', ['ionic', 'firebase'])
 		$scope.popover.remove();
 	});
 }])
-
 
 .controller("stylist_main_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicSideMenuDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicSideMenuDelegate){
 	ionic.Platform.ready(function () {
@@ -576,6 +575,9 @@ angular.module('starter', ['ionic', 'firebase'])
 ; 
 
 var categories = {
+	"None": {
+		"filter": false
+	},
 	"Sweater": {
 		"name": "Sweater",
 		"filter": true
