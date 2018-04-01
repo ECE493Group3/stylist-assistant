@@ -142,10 +142,11 @@ angular.module('starter', ['ionic', 'firebase'])
 	});
 }])
 
-.controller("user_recommend_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicPopover', '$ionicTabsDelegate', function ($scope, $firebaseObject, $firebaseAuth, $ionicPopover, $ionicTabsDelegate) {
+.controller("user_recommend_controller", ['$scope', '$firebaseObject', '$firebaseAuth', '$ionicPopover', '$ionicTabsDelegate', '$ionicLoading', function ($scope, $firebaseObject, $firebaseAuth, $ionicPopover, $ionicTabsDelegate, $ionicLoading) {
 	var user;
 	firebase.auth().onAuthStateChanged(function (u) {
 		if (u) {
+			user = u; 
 			// user auth
 			var userref = firebase.database().ref().child("users").child(u.uid);
 			$scope.user = $firebaseObject(userref);
@@ -180,7 +181,18 @@ angular.module('starter', ['ionic', 'firebase'])
 	});
 
 	$scope.selected = function (outfit) {
-		console.log($scope.categories);
+		$ionicLoading.show({ template: 'Item Added!', noBackdrop: true, duration: 1000 });
+		
+		// make date 
+		var td = new Date(); 
+		var mm = td.getMonth() + 1; 
+		var dd = td.getDate();
+		outfit["date"] = [td.getFullYear(),
+							(mm > 9 ? '' : '0') + mm,
+							(dd > 9 ? '' : '0') + dd
+						].join('-')
+
+		firebase.database().ref().child('users/' + user.uid + '/dresslog').push(outfit);
 	}
 
 	$ionicPopover.fromTemplateUrl('filter-popover.html', {
