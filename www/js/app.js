@@ -382,11 +382,20 @@ angular.module('starter', ['ionic', 'firebase'])
 	}
 })
 
-.controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", function($scope, $firebaseObject, $stateParams, Camera){
+.controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", "$ionicPopover", function($scope, $firebaseObject, $stateParams, Camera, $ionicPopover){
 	
 	if ($stateParams.type == "user") {
 		var userref = firebase.database().ref().child("users").child($stateParams.id);
-		$scope.clothingPieces = $firebaseObject(userref.child("wardrobeitems"));
+		$scope.wardrobePieces = $firebaseObject(userref.child("wardrobeitems"));
+		$scope.wardrobePieces.$loaded().then(function () {
+			var filteredCategoriesWardrobe = {}
+			angular.forEach($scope.wardrobePieces, function (value, key) {
+				filteredCategoriesWardrobe[value.category] = categories[value.category];
+			});
+			$scope.categories = filteredCategoriesWardrobe;
+			console.log($scope.categories)
+		});
+
 		$scope.title = {
 			"beginning": "Your Wardrobe Items", 
 			"end": {
@@ -395,7 +404,23 @@ angular.module('starter', ['ionic', 'firebase'])
 		}
 	} else {
 		var userref = firebase.database().ref().child("users").child($stateParams.id);
-		$scope.clothingPieces = $firebaseObject(userref.child("recommendeditems"));
+		$scope.recommendedPieces = $firebaseObject(userref.child("recommendeditems"));
+		$scope.recommendedPieces.$loaded().then(function () {
+			var filteredCategoriesRecItems = {}
+			angular.forEach($scope.recommendedPieces, function (value, key) {
+				if (value.categorybottom != "None") {
+					filteredCategoriesRecItems[value.categorybottom] = categories[value.categorybottom];
+				}
+				if (value.categorytop != "None") {
+					filteredCategoriesRecItems[value.categorytop] = categories[value.categorytop];
+				}
+				if (value.categoryfull != "None") {
+					filteredCategoriesRecItems[value.categoryfull] = categories[value.categoryfull];
+				}
+			});
+			$scope.categories = filteredCategoriesRecItems;
+		});
+
 		$scope.title = {
 			"beginning": "Style for",
 			"end": $firebaseObject(userref.child("name"))
@@ -443,7 +468,22 @@ angular.module('starter', ['ionic', 'firebase'])
 		// remove photo from db and come back and update clothingPieces
 		console.log("remove " + uristring); 
 	}
-	
+
+	$ionicPopover.fromTemplateUrl('filter-popover.html', {
+		scope: $scope
+	}).then(function (popover) {
+		$scope.popover = popover;
+	});
+	$scope.openPopover = function ($event) {
+		$scope.popover.show($event);
+	};
+	$scope.closePopover = function () {
+		$scope.popover.hide();
+	};
+	//Cleanup the popover when we're done with it!
+	$scope.$on('$destroy', function () {
+		$scope.popover.remove();
+	});
 }])
 
 .controller("user_signin_controller", ['$scope', '$state', '$firebaseAuth', function ($scope, $state, $firebaseAuth) {
