@@ -48,7 +48,7 @@
         <div id="clientloglist" class="profile-section">
           <div class="profilesubheader">
             <h4>Dress Log</h4>
-            <button class="button button-small button-positive" ng-click="openPopover($event, 0)">Search</button>
+            <button class="button button-small button-positive" ng-click="openPopover($event, 0)">Filter</button>
           </div>
           <div class="emptyStateMessage inline" ng-hide="dresslogEmptyState"><p>{{client.name}} hasn't selected any outfits yet, when they do it'll show up here.</p></div>
           <ion-list class="horizontal-images">
@@ -62,7 +62,7 @@
         <div id="clientwardrobelist" class="profile-section">
           <div class="profilesubheader">
             <h4>Wardrobe</h4>
-            <button class="button button-small button-positive" ng-click="openPopover($event, 1)">Search</button>
+            <button class="button button-small button-positive" ng-click="openPopover($event, 1)">Filter</button>
           </div>
           <div class="emptyStateMessage inline" ng-hide="wardrobeItemsEmptyState"><p>{{client.name}} hasn't uploaded any of their wardrobe yet, when they do it'll show up here.</p></div>
           <ion-list class="horizontal-images">
@@ -76,7 +76,7 @@
         <div id="recommendedlist" class="profile-section">
           <div class="profilesubheader">
             <h4>Recommendations</h4>
-            <button class="button button-small button-positive" ng-click="openPopover($event, 3)">Search</button>
+            <button class="button button-small button-positive" ng-click="openPopover($event, 3)">Filter</button>
             <a href="#/upload_images/stylist/{{client.$id}}"><button class="button button-small button-positive">Edit</button></a>
           </div>
           <div class="emptyStateMessage inline" ng-hide="recommendedItemsEmptyState"><p>You haven't suggested any styles for {{client.name}}. Click the Edit button to upload some.</p></div>
