@@ -32,8 +32,15 @@ class ServerHTTP(BaseHTTPRequestHandler):
 					'''
 			self.wfile.write(buf)
 		else:
-			imgname = self.path[1:]
-			print("File request is: "+ imgname)
+
+			# Retrieve user email
+			imgname = query[0][1:]
+
+			parameters = query[1].split("=")
+			email = parameters[1]
+
+
+			print("File request is: "+ imgname + " username: " + email)
 
 			if os.path.exists(imgname):
 				imgfile = open(imgname, 'rb').read()
@@ -55,16 +62,17 @@ class ServerHTTP(BaseHTTPRequestHandler):
 
 		# import pdb; pdb.set_trace()
 		query = urllib.splitquery(path)
-		print(query)
+		imgname = query[0][1:]
 
-		# if(self.path != "/"):
+		parameters = query[1].split("=")
+		email = parameters[1]
+
 		length = int(self.headers.getheader('Content-length', 0))
-		# length = int(self.headers['Content-length'])
 		
 		data = urllib.unquote(self.rfile.read(int(length)))
-		print("length: " + str(length))
+		print("length: " + str(length) + " username: " + email)
 
-		with open(path[1:], 'wb') as imgfile:
+		with open(imgname, 'wb') as imgfile:
 			
 			imgfile.write(data)
 
@@ -73,6 +81,13 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		self.end_headers()
 
 		print("End of POST Request")
+
+		buf = "IMAGEURL"
+		self.wfile.write(buf)
+
+		print("Send out buf: " + buf)
+
+
 
 if __name__ == '__main__':
 	http_server = HTTPServer(('', PORT), ServerHTTP)

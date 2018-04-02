@@ -17,7 +17,7 @@ LIST_ATTR_IMG_FILE = os.path.join(DATA_DIRECTORY, 'Anno', 'list_attr_img.txt')
 LIST_ATTR_CLOTH_FILE = os.path.join(DATA_DIRECTORY, 'Anno', 'list_attr_cloth.txt')
 
 
-def write_to_db(input_list):
+def write_to_db(input_list, user_email):
 
 	# Connect to Mongodb
 	client = MongoClient(db_host, db_port)
@@ -32,7 +32,8 @@ def write_to_db(input_list):
 	if(input_list != 0):
 		for i, cloth in enumerate(input_list):
 			input_cloth = {
-				"_id": str(i),
+				# "_id": str(i),
+				"email": user_email,
 				"img_file": cloth.get_img_file(),
 				"cat_type": cloth.get_cat_type(),
 				"cat_label": cloth.get_cat_label(),

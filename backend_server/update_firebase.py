@@ -3,12 +3,19 @@ from firebase_admin import credentials
 from firebase_admin import db
 
 def get_uid(user_email):
-	ref = db.reference('/users/').get()
+	# connect_firebase()
+	try:
+		ref = db.reference('/users/').get()
+	except:
+		connect_firebase()
+		ref = db.reference('/users/').get()
 
 	for uid in ref:
 		em = db.reference('/users/'+ uid).child('email').get()
 		if em == user_email:
 			return uid
+
+
 
 def connect_firebase():
 	# Fetch the service account key JSON file contents
@@ -19,7 +26,7 @@ def connect_firebase():
 		})
 
 if __name__ == '__main__':
-	connect_firebase()
+	# connect_firebase()
 
 	c = get_uid("asfd@fads.com")
 	print c
