@@ -1,13 +1,23 @@
+import os
+
+
 FULLBODY = 0
 COMBINATIONS = 1
+
+DATA_DIRECTORY = 'image-processing/DATA'
+
+LIST_CATEGORY_CLOTH_FILE = os.path.join(DATA_DIRECTORY, 'Anno', 'list_category_cloth.txt')
+
 
 class Cloth:
 
 	def __init__(self, img_file, cat_type, cat_label, attr_label={}):
 		self.img_file = img_file
+		if cat_type == "":
+			cat_type = self.get_category_type(cat_label)
 		self.cat_type = cat_type
+
 		self.cat_label = cat_label
-		# self.attr_v = attr_v
 		self.attr_label = attr_label
 
 	def get_cat_type(self):
@@ -21,6 +31,17 @@ class Cloth:
 
 	def get_img_file(self):
 		return self.img_file
+
+	def get_category_type(self, cat_label):
+
+		with open(LIST_CATEGORY_CLOTH_FILE) as f:
+			for i, line in enumerate(f.readlines()[2:]):
+				label, typ = line.split()
+				if label == cat_label:
+					return typ
+
+		return cat_type
+
 
 	def __str__(self):
 		img_file_s = "img_file: " + str(self.img_file) + "\n"

@@ -31,7 +31,6 @@ def create_nodes():
 		for node in cloth_dict[parent]:
 			x =Node(node, parent = parent_node)
 
-
 	return root_cloth
 
 if __name__ == '__main__':

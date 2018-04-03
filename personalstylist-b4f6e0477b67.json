@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "personalstylist-788fb",
+  "private_key_id": "b4f6e0477b67b0474fb821ba87f87f0ec145f518",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCe9kmC5b785HwW\nbS/ozQb/C+0Z9GjiDK68qAdTYdwZ5LtPRgbUnxxL2ceSOq3PJhsRV+a6CJIqSHVs\nozhXncMhmkN/0U7ErgkPzYc2S9g3PLAgq4tKItZimK89Oez8+u7XP5vpWMCcR+5p\nPH3lfBMHUP3sODsFNoDimKBXNnBdGGZqJ1l5xbllFLOz/Rnho4ftNQnMnGvH17Hh\n/Hz1u/CreXTTUp5qGrQujuLobavSRUtm488lV5O2lMCNUWZuoGKBUeF+e0awEnQ5\n4VVEWJVj//br9SIfxFh04p097Rik5LRQ1A7omYQ5fveL2t4QgWXI4BC23HD/3PEg\n5lGZjIOHAgMBAAECggEAOnV9nFdscOmAHulBrL412/bhV+Gz7qnWWwf6RbZf8N/W\n6LTqjygCinyJMeRFhkBPxQWMEw9S3ZzvHig6cLJSkBmAyFFLw/Xy3C5sEtI6rjmx\n1hnwLC/6oqDfFUenuXN5AYzhhCPBFdg4O9hkvk/uWYr2Dviw795W8L5LfTdGhF1/\nL19GR5SihH7wurcdfmzrjkN0UaAthEqTcpttXNAYQ++woy1KwDIzL4uDwyPYtg1+\ni84SnYfhEEVrvlE8O18iFTKSXqbqAk9n3lb2CrWbXA+C4DluguBDGHr+fQST5zbV\nPLhkYD+meH/jDhExCydksncF0fAYucw5zR/nE2YTuQKBgQDfHuIiTNNViYRgznIY\na97U9cDbI86/fLSXMPG4MvIikQFlxFUznKBE3XYuhqzvycMjOFKDcOCz1/Gdr+kt\nATTXjqCVSSX+/PdOkzIR6Ai1z/Wqk5hMrPIrSGNYtuIWAlCYvihRJEZ13lcjIqCI\nEdgbGzAh9KtU1/bJzgCi6lzU3wKBgQC2Yw2KP/HaRdcP733tmNDS8l2shVp2dnvF\npYjkOwbj0bibPDJiH/OKOBSFjeKTtBsZMl5vMOteE157fXzYjlPjfMSv3U7FxaWv\nQi74OdJVjrsQ5IuPyFQWBWnZaZKAisnkNN5tXpFdwIU55aHoSiqpLSP6PbfjOBen\nu0/lzte+WQKBgQC2Sl0m+O2Q7RGipgjBuyALjd1LLS41dIV3IR3cCIObii1CH+4c\nhNLMcMOlr5KLNqSfmdyQVyC+zqcw1hAEHQA3POgmD+VjNvo20DwQNSsooAdunbfI\nrWQNyM6iJIkCwlFm+bWm1aRbmJRIuHm/shSF0Oi6VVPFtcyDhDMw55mAsQKBgCJ9\nPq07BFgbRtzrk+ufLzYEwPQDz6SBKUypzeYix13DZd5tFrX5hstHaZILz6HQuCMe\npD7wiEGk9gPyKe6lk3V8PZFoDyJVCszGfi1QedbWA8fhAAczgbscUPTdAugt1pnB\n6aHS9Tg+VLMrGl/bzo9pStliXGiqTcbZI/W4FJIZAoGAXTONUisveEKEn2dGu4ad\n2PRhdOPewGiIolMQbzioqcRbxnWh+Y2k4vmTqm0EdhKk6W/VSz7ODa/iKPqKRQkv\nt3nxH/jFhecBkOwWMbtBMiqyAlwWSdbmcTrjNm9Q/hZhYfiVdLItAg27rCp1Jq6e\nzVgOBFBN/OVelEgeSfvkoWg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "personalstylist-788fb@appspot.gserviceaccount.com",
+  "client_id": "115594227905618359684",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/personalstylist-788fb%40appspot.gserviceaccount.com"
+}
