@@ -42,7 +42,7 @@ def write_to_db(input_list, user_email):
 
 	print("Finish uploading to DB")
 
-def fetch_cloth(img_file):
+def fetch_cloth(img_file, user_email):
 
 	# Connect to Mongodb
 	client = MongoClient(db_host, db_port)
@@ -53,11 +53,24 @@ def fetch_cloth(img_file):
 	# Getting Collection
 	collection = db['stylist']
 
-	doc = collection.find_one({"$and": [{"img_file":img_file}, {"email":"test@abc.com"}]})
+	doc = collection.find_one({"$and": [{"img_file":img_file}, {"email":user_email}]})
 
 	cloth = Cloth(doc['img_file'], doc['cat_type'], doc['cat_label'], doc['attr_label'])
 
 	return cloth
+
+def delete_cloth(img_file, user_email):
+	# Connect to Mongodb
+	client = MongoClient(db_host, db_port)
+	
+	# Getting DB
+	db = client['stylist_db']
+	
+	# Getting Collection
+	collection = db['stylist']
+
+	doc = collection.remove({"$and": [{"img_file": img_file}, {"email": user_email}]})
+
 
 def get_category_types():
 
@@ -129,5 +142,5 @@ if __name__ == '__main__':
 	# get_category_attribute_label(cat_type, attr_type, cloths_list)
 
 	# write_to_db(cloths_list, "test@abc.com")
-	c = fetch_cloth("img/Sheer_Pleated-Front_Blouse/img_00000020.jpg")
-	print(str(c))
+	delete_cloth("img/Sheer_Pleated-Front_Blouse/img_00000020.jpg", "test@abc.com")
+	# print(str(c))
