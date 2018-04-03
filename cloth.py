@@ -32,6 +32,12 @@ class Cloth:
 	def get_img_file(self):
 		return self.img_file
 
+	def set_cat_label(cat_label):
+		self.cat_label = cat_label
+
+	def set_attr_label(attr_label):
+		self.attr_label = attr_label
+
 	def get_category_type(self, cat_label):
 
 		with open(LIST_CATEGORY_CLOTH_FILE) as f:

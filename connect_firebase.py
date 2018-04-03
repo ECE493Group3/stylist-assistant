@@ -60,7 +60,6 @@ def connect_firebase():
 		})
 
 if __name__ == '__main__':
-	# connect_firebase()
 
 	c = get_uid("askalburgi@gmail.com")
 	wardrobe = get_wardrobe(c)
@@ -69,9 +68,7 @@ if __name__ == '__main__':
 		print(str(i))
 
 	update_recommended_outfits(c, [])
-
+	
 	print c
 
 	exit(1)
-	c = get_uid('aaaregister@test.com')
-	print c

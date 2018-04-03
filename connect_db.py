@@ -6,7 +6,7 @@ import os
 from cloth import Cloth
 
 db_host = "localhost"
-db_port = 12707
+db_port = 27017
 
 DATA_DIRECTORY = 'image-processing/DATA'
 
@@ -32,7 +32,6 @@ def write_to_db(input_list, user_email):
 	if(input_list != 0):
 		for i, cloth in enumerate(input_list):
 			input_cloth = {
-				# "_id": str(i),
 				"email": user_email,
 				"img_file": cloth.get_img_file(),
 				"cat_type": cloth.get_cat_type(),
@@ -54,7 +53,7 @@ def fetch_cloth(img_file):
 	# Getting Collection
 	collection = db['stylist']
 
-	doc = collection.find_one({"img_file":"img_file"})
+	doc = collection.find_one({"$and": [{"img_file":img_file}, {"email":"test@abc.com"}]})
 
 	cloth = Cloth(doc['img_file'], doc['cat_type'], doc['cat_label'], doc['attr_label'])
 
@@ -94,11 +93,16 @@ def get_attr_labels(attr_v, attr_type):
 
 	return attr_label
 
-def get_category_attribute_label(category_type, attr_type, cloths_list, cloth_fullbody, cloth_top, cloth_bottom):
+def get_category_attribute_label(category_type, attr_type, cloths_list):
 	with open(LIST_CATEGORY_IMG_FILE) as cat_f, open(LIST_ATTR_IMG_FILE) as attr_f:
 		cat_lines = cat_f.readlines()
 		attr_lines = attr_f.readlines()
+
 		for cat, attr in zip(cat_lines[2:], attr_lines[2:]):
+
+			if len(cloths_list) > 100:
+				return
+
 			cat_imgfile, cat = cat.split()
 			
 			break_index = attr.find(' ')
@@ -111,14 +115,19 @@ def get_category_attribute_label(category_type, attr_type, cloths_list, cloth_fu
 
 				attr_label = get_attr_labels(attr_v, attr_type)
 				temp = Cloth(cat_imgfile, category_type[int(cat)][0], category_type[int(cat)][1], attr_label)
-				if(category_type[int(cat)][0] == 1):
-					cloth_top.append(temp)
-				elif(category_type[int(cat)][0] == 2):
-					cloth_bottom.append(temp)
-				elif(category_type[int(cat)][0] == 3):
-					cloth_fullbody.append(temp)
 					
-				# temp.set_attr_v(attr_v, attr_type)
 				cloths_list.append(temp)
 
 
+
+if __name__ == '__main__':
+	
+	# cat_type = get_category_types()
+	# attr_type = get_attr_types()
+	# cloths_list = []
+
+	# get_category_attribute_label(cat_type, attr_type, cloths_list)
+
+	# write_to_db(cloths_list, "test@abc.com")
+	c = fetch_cloth("img/Sheer_Pleated-Front_Blouse/img_00000020.jpg")
+	print(str(c))
