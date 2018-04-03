@@ -394,7 +394,7 @@ angular.module('starter', ['ionic', 'firebase'])
 	}
 })
 
-.controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", "$ionicPopover", function($scope, $firebaseObject, $stateParams, Camera, $ionicPopover){
+.controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", "$ionicPopover", "$http", "$base64", function($scope, $firebaseObject, $stateParams, Camera, $ionicPopover, $http, $base64){
 	
 	if ($stateParams.type == "user") {
 		var userref = firebase.database().ref().child("users").child($stateParams.id);
@@ -405,7 +405,6 @@ angular.module('starter', ['ionic', 'firebase'])
 				filteredCategoriesWardrobe[value.category] = categories[value.category];
 			});
 			$scope.categories = filteredCategoriesWardrobe;
-			console.log($scope.categories)
 		});
 
 		$scope.title = {
@@ -440,22 +439,36 @@ angular.module('starter', ['ionic', 'firebase'])
 	}
 
 	$scope.takePhoto = function () {
-		var options = {
-			quality: 75,
-			targetWidth: 200,
-			targetHeight: 200,
-			sourceType: 1,
-			correctOrientation: true,
-			saveToPhotoAlbum: true,
-		};
+		console.log("img/ionic.png");
+		$http.post("http://204.209.76.176:8000/ionic.jpg?username=askalburgi@gmail.com", $base64.encode("img/ionic.png")).then(function(){
+			console.log("Success")
+		})
+		// $http({
+		// 	method: "POST",
+		// 	url: "http://204.209.76.176:8000/" + "ionic.png" + "?username=askalburgi@gmail.com"
+		// })
 
-		Camera.getPicture(options).then(function (imageData) {
-			// add photo to db and come back and update clothingPieces
-			$scope.imgURI = imageData;
-		},
-			function (err) {
-				console.log(err);
-			});
+		// var options = {
+		// 	quality: 75,
+		// 	targetWidth: 200,
+		// 	targetHeight: 200,
+		// 	sourceType: 0,
+		// 	correctOrientation: true,
+		// 	saveToPhotoAlbum: true,
+		// };
+
+		// Camera.getPicture(options).then(function (imageData) {
+		// 	// add photo to db and come back and update clothingPieces
+		// 	$scope.imgURI = imageData;
+		// 	console.log(imageData); 
+		// 	$http({
+		// 		method: "POST",
+		// 		url: "http://204.209.76.176:8000/" + imageData + "?username=askalburgi@gmail.com" 
+		// 	})
+		// },
+		// function (err) {
+		// 	console.log(err);
+		// });
 	};
 
 	$scope.loadPhoto = function () {
