@@ -447,30 +447,14 @@ angular.module('starter', ['ionic', 'firebase'])
 	}
 
 	$scope.takePhoto = function () {
-		// console.log("img/ionic.png");
-
-		// $http.get("http://204.209.76.176:8000/img_006.jpg?username=abc@gmail.com").then(
-		// 	function success(response){
-		// 		$scope.test_img = response.data
-		// 		console.log(response);
-		// 	}, function error(response){
-		// 		console.log("Error:" +response);
-		// 	});
-
-		// var image = angular.element(document.querySelector('abcde'));
-		// console.log(image);
-		// $http.post("http://204.209.76.176:8000/ionic.jpg?username=abc@gmail.com", image);
-
-		// $http.post("http://204.209.76.176:8000/ionic.jpg?username=abc@gmail.com", $scope.testimg);
-		// console.log($scope.testimg);
-		// console.log("Done post request");
 		var options = {
 			quality: 75,
 			targetWidth: 200,
 			targetHeight: 200,
-			sourceType: 0,
+			sourceType: 1,
 			correctOrientation: true,
 			saveToPhotoAlbum: true,
+			destinationType: 0,
 		};
 
 		Camera.getPicture(options).then(function (imageData) {
