@@ -4,7 +4,7 @@ import urllib
 import os
 import sys
 import cgi
-
+import base64
 from image_processor import ImageProcessor
 
 PORT = 8000
@@ -73,20 +73,25 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		email = parameters[1]
 
 		length = int(self.headers.getheader('Content-length', 0))
-		data = self.rfile.read(int(length))
+		imgdata = self.rfile.read(int(length))
 		print("length: " + str(length) + " username: " + email)
-
+		
+		data = base64.b64decode(imgdata)
 		with open(imgname, 'wb') as imgfile:
 			imgfile.write(data)
-
+		
+		self.send_response(200)
+		self.end_headers()
+		
 		_, cat_name, _, attributes_names = self._image_characteristics(imgname)
 		print("The image category is: {}".format(cat_name))
 		print("The image attributes are: {}".format(attributes_names))
-		self.send_response(200)
-		self.send_header("test", "this")
-		self.end_headers()
+		#self.send_response(200)
+		#self.send_header("test", "this")
+		#self.end_headers()
 
 		print("End of POST Request")
+		
 
 		buf = "IMAGEURL"
 		self.wfile.write(buf)
