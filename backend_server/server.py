@@ -6,6 +6,10 @@ import sys
 import cgi
 import base64
 from image_processor import ImageProcessor
+from connect_firebase import *
+from cloth import Cloth, Outfit, FULLBODY, COMBINATIONS
+from cloth_similarity import *
+from cloth_hierarchy import *
 
 PORT = 8000
 
@@ -48,8 +52,7 @@ class ServerHTTP(BaseHTTPRequestHandler):
 				imgfile = open(imgname, 'rb').read().encode('base64').replace('\n','')
 				self.send_response(200)
 				content = "data:image/jpg;base64,{0}".format(imgfile)
-				self.send_header('Content-type', 'text/html')
-			
+				self.send_header('Content-type', 'text/html')			
 				self.send_header('Content-length', str(len(content)))
 				self.send_header("Access-Control-Allow-Origin", "*")
 				self.end_headers()
@@ -82,6 +85,8 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		
 		self.send_response(200)
 		self.end_headers()
+
+		print("End of POST request")
 		
 		_, cat_name, _, attributes_names = self._image_characteristics(imgname)
 		print("The image category is: {}".format(cat_name))
@@ -90,14 +95,11 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		#self.send_header("test", "this")
 		#self.end_headers()
 
-		print("End of POST Request")
+		print("End of NN")
 		
-
-		buf = "IMAGEURL"
-		self.wfile.write(buf)
-
-		print("Send out buf: " + buf)
-
+		update_wardrobe(email, data, cat_name)
+		
+		print("Update Firebase")
 
 	def _image_characteristics(self, img_path):
 		"""Read the file and use the neural networks to predict the
@@ -110,6 +112,19 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		category, category_name = ip.predict_category(img_path)
 		attributes, attributes_names = ip.predict_attributes(img_path)
 		return category, category_name, attributes, attributes_names
+	
+	def _update_recommend_outfit(self, user_email):
+
+		reference = []
+		root_cloth = create_nodes()
+		
+		wardrobe = get_wardrobe(user_email)
+
+		wardrobe_outfits = []
+		possible_outfit_from_wardrobe(wardrobe, wardrobe_outfits)
+
+		print("Done Making wardrobe")
+
 
 if __name__ == '__main__':
 	http_server = HTTPServer(('', PORT), ServerHTTP)
