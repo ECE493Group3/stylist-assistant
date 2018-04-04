@@ -5,6 +5,8 @@ import os
 import sys
 import cgi
 
+from image_processor import ImageProcessor
+
 PORT = 8000
 
 class ServerHTTP(BaseHTTPRequestHandler):
@@ -36,20 +38,23 @@ class ServerHTTP(BaseHTTPRequestHandler):
 			# Retrieve user email
 			imgname = query[0][1:]
 
-			parameters = query[1].split("=")
-			email = parameters[1]
+			#parameters = query[1].split("=")
+			#email = parameters[1]
 
 
-			print("File request is: "+ imgname + " username: " + email)
+			#print("File request is: "+ imgname + " username: " + email)
 
 			if os.path.exists(imgname):
-				imgfile = open(imgname, 'rb').read()
+				imgfile = open(imgname, 'rb').read().encode('base64').replace('\n','')
 				self.send_response(200)
-				# self.send_header('Content-type', 'image/jpg')
-				self.send_header('Content-length', sys.getsizeof(imgfile))
+				content = "data:image/jpg;base64,{0}".format(imgfile)
+				self.send_header('Content-type', 'text/html')
+			
+				self.send_header('Content-length', str(len(content)))
+				self.send_header("Access-Control-Allow-Origin", "*")
 				self.end_headers()
-				self.wfile.write(imgfile)
-
+				self.wfile.write(content)
+				print("File length: " + str(sys.getsizeof(content)))
 			else:
 				self.send_response(404)
 
@@ -68,14 +73,15 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		email = parameters[1]
 
 		length = int(self.headers.getheader('Content-length', 0))
-		
-		data = urllib.unquote(self.rfile.read(int(length)))
+		data = self.rfile.read(int(length))
 		print("length: " + str(length) + " username: " + email)
 
 		with open(imgname, 'wb') as imgfile:
-			
 			imgfile.write(data)
 
+		_, cat_name, _, attributes_names = self._image_characteristics(imgname)
+		print("The image category is: {}".format(cat_name))
+		print("The image attributes are: {}".format(attributes_names))
 		self.send_response(200)
 		self.send_header("test", "this")
 		self.end_headers()
@@ -88,6 +94,17 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		print("Send out buf: " + buf)
 
 
+	def _image_characteristics(self, img_path):
+		"""Read the file and use the neural networks to predict the
+		image characteristics.
+
+		Assumes the training data is in the image-processing directory,
+		with its default names.
+		"""
+		ip = ImageProcessor()
+		category, category_name = ip.predict_category(img_path)
+		attributes, attributes_names = ip.predict_attributes(img_path)
+		return category, category_name, attributes, attributes_names
 
 if __name__ == '__main__':
 	http_server = HTTPServer(('', PORT), ServerHTTP)
