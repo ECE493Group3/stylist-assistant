@@ -101,6 +101,8 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		
 		print("Update Firebase")
 
+		_update_recommend_outfit(email)
+
 	def _image_characteristics(self, img_path):
 		"""Read the file and use the neural networks to predict the
 		image characteristics.
@@ -123,7 +125,9 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		wardrobe_outfits = []
 		possible_outfit_from_wardrobe(wardrobe, wardrobe_outfits)
 
-		print("Done Making wardrobe")
+		recommend_outfits = recommend_outfits(root_cloth, wardrobe, reference)
+
+		update_recommend_outfits(user_email, recommend_outfits)
 
 
 if __name__ == '__main__':
