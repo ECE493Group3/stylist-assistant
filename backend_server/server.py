@@ -38,20 +38,23 @@ class ServerHTTP(BaseHTTPRequestHandler):
 			# Retrieve user email
 			imgname = query[0][1:]
 
-			parameters = query[1].split("=")
-			email = parameters[1]
+			#parameters = query[1].split("=")
+			#email = parameters[1]
 
 
-			print("File request is: "+ imgname + " username: " + email)
+			#print("File request is: "+ imgname + " username: " + email)
 
 			if os.path.exists(imgname):
-				imgfile = open(imgname, 'rb').read()
+				imgfile = open(imgname, 'rb').read().encode('base64').replace('\n','')
 				self.send_response(200)
-				# self.send_header('Content-type', 'image/jpg')
-				self.send_header('Content-length', sys.getsizeof(imgfile))
+				content = "data:image/jpg;base64,{0}".format(imgfile)
+				self.send_header('Content-type', 'text/html')
+			
+				self.send_header('Content-length', str(len(content)))
+				self.send_header("Access-Control-Allow-Origin", "*")
 				self.end_headers()
-				self.wfile.write(imgfile)
-
+				self.wfile.write(content)
+				print("File length: " + str(sys.getsizeof(content)))
 			else:
 				self.send_response(404)
 
