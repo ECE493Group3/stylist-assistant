@@ -394,8 +394,8 @@ angular.module('starter', ['ionic', 'firebase'])
 	}
 })
 
-.controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", "$ionicPopover", "$http", "$base64", function($scope, $firebaseObject, $stateParams, Camera, $ionicPopover, $http, $base64){
-	
+.controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", "$ionicPopover", "$http", function($scope, $firebaseObject, $stateParams, Camera, $ionicPopover, $http){
+
 	if ($stateParams.type == "user") {
 		var userref = firebase.database().ref().child("users").child($stateParams.id);
 		$scope.wardrobePieces = $firebaseObject(userref.child("wardrobeitems"));
@@ -440,14 +440,23 @@ angular.module('starter', ['ionic', 'firebase'])
 
 	$scope.takePhoto = function () {
 		console.log("img/ionic.png");
-		$http.post("http://204.209.76.176:8000/ionic.jpg?username=askalburgi@gmail.com", $base64.encode("img/ionic.png")).then(function(){
-			console.log("Success")
-		})
-		// $http({
-		// 	method: "POST",
-		// 	url: "http://204.209.76.176:8000/" + "ionic.png" + "?username=askalburgi@gmail.com"
-		// })
 
+		$http.get("http://204.209.76.176:8000/img_006.jpg?username=abc@gmail.com").then(
+			function success(response){
+				$scope.test_img = response.data
+				console.log(response);
+			}, function error(response){
+				console.log("Error:" +response);
+			});
+
+		// var reader = new FileReader();
+		// reader.onload = function(){callback(reader.result)};
+		// // console.log(reader.readAsBinaryString($scope.img));
+		// // console.log(reader.readAsDataURL($scope.img));
+
+		// $http.post("http://204.209.76.176:8000/ionic.jpg?username=abc@gmail.com", $scope.testimg);
+		// console.log($scope.testimg);
+		// console.log("Done post request");
 		// var options = {
 		// 	quality: 75,
 		// 	targetWidth: 200,
@@ -461,10 +470,8 @@ angular.module('starter', ['ionic', 'firebase'])
 		// 	// add photo to db and come back and update clothingPieces
 		// 	$scope.imgURI = imageData;
 		// 	console.log(imageData); 
-		// 	$http({
-		// 		method: "POST",
-		// 		url: "http://204.209.76.176:8000/" + imageData + "?username=askalburgi@gmail.com" 
-		// 	})
+		// 	$http.post("http://204.209.76.176:8000/img_006.jpg?username=abc@gmail.com", imageData);
+		// 	console.log("Done post request");
 		// },
 		// function (err) {
 		// 	console.log(err);
