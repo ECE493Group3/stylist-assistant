@@ -36,6 +36,7 @@ angular.module('starter', ['ionic', 'firebase'])
 // Disable Animation
 .config(function($ionicConfigProvider) {
 	$ionicConfigProvider.views.transition('none');
+	$ionicConfigProvider.tabs.position('bottom');
 })
 
 // UI Routers
