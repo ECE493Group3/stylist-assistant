@@ -456,7 +456,8 @@ angular.module('starter', ['ionic', 'firebase'])
 			// firebase.database().ref().push({"img": postConent});
 
 			console.log(imageData); 
-			$http.post("http://204.209.76.176:8000/temp.jpg?username=abc@gmail.com", imageData);
+			var uname = $rootScope.username;
+			$http.post("http://204.209.76.176:8000/temp.jpg?username="+uname, imageData);
 			console.log("Done post request");
 		},
 		function (err) {
@@ -471,7 +472,6 @@ angular.module('starter', ['ionic', 'firebase'])
 			targetWidth: 200,
 			sourceType: 0,
 			correctOrientation: true
-			destinationType: 0,
 		};
 
 		Camera.getPicture(options).then(function (imageData) {
@@ -522,6 +522,7 @@ angular.module('starter', ['ionic', 'firebase'])
 						stylistsref.child(u.uid).once('value', function (snapshot) {
 							var exists = (snapshot.val() !== null);
 							if (exists) {
+								$rootScope.currentUser = username
 								$state.go("user_main");
 								console.log("User Login Success");
 							} else {
