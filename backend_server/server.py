@@ -91,9 +91,6 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		_, cat_name, _, attributes_names = self._image_characteristics(imgname)
 		print("The image category is: {}".format(cat_name))
 		print("The image attributes are: {}".format(attributes_names))
-		#self.send_response(200)
-		#self.send_header("test", "this")
-		#self.end_headers()
 
 		print("End of NN")
 		
