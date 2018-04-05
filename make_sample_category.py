@@ -4,9 +4,6 @@
 # is in the working directory, in a subdirectory called 'DATA', and
 # completely uncompressed
 
-# This generates a test sample of the data for the Top/Bottom/Full-body task,
-# as two tsv files
-
 import os
 import sys
 import random
