@@ -16,3 +16,8 @@
 .popover, .popover .bar-header {
     border-radius: 15px !important; 
 }
+
+.platform-android .bar .title {
+    text-align: center; 
+    top: unset; 
+}

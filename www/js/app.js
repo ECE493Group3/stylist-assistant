@@ -37,6 +37,7 @@ angular.module('starter', ['ionic', 'firebase'])
 .config(function($ionicConfigProvider) {
 	$ionicConfigProvider.views.transition('none');
 	$ionicConfigProvider.tabs.position('bottom');
+	$ionicConfigProvider.navBar.alignTitle('center'); 
 })
 
 // UI Routers
