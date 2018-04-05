@@ -396,7 +396,7 @@ angular.module('starter', ['ionic', 'firebase'])
 	}
 })
 
-.controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", "$ionicPopover", "$http", function($scope, $firebaseObject, $stateParams, Camera, $ionicPopover, $http){
+.controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", "$ionicPopover", "$http", "$rootScope", function($scope, $firebaseObject, $stateParams, Camera, $ionicPopover, $http, $rootScope){
 
 	if ($stateParams.type == "user") {
 		var userref = firebase.database().ref().child("users").child($stateParams.id);
@@ -459,10 +459,9 @@ angular.module('starter', ['ionic', 'firebase'])
 			// add photo to db and come back and update clothingPieces
 			$scope.imgURI = imageData;
 			postConent = "data:image/jpg;base64,"+imageData;
-			// firebase.database().ref().push({"img": postConent});
-
+			
 			console.log(imageData); 
-			var uname = $rootScope.username;
+			var uname = $rootScope.currentUser;
 			$http.post("http://204.209.76.176:8000/temp.jpg?username="+uname, imageData);
 			console.log("Done post request");
 		},
@@ -511,7 +510,7 @@ angular.module('starter', ['ionic', 'firebase'])
 	});
 }])
 
-.controller("user_signin_controller", ['$scope', '$state', '$firebaseAuth', function ($scope, $state, $firebaseAuth) {
+.controller("user_signin_controller", ['$scope', '$state', '$firebaseAuth', '$rootScope', function ($scope, $state, $firebaseAuth, $rootScope) {
 	var form = this;
 	form.formSubmit = function () {
 		console.log(form.user);
