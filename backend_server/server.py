@@ -34,7 +34,7 @@ class ServerHTTP(BaseHTTPRequestHandler):
 					<body>
 						<h1>Directory</h1>
 					</body>
-					</html>
+			</html>
 					'''
 			self.wfile.write(buf)
 		else:
@@ -49,11 +49,11 @@ class ServerHTTP(BaseHTTPRequestHandler):
 			#print("File request is: "+ imgname + " username: " + email)
 
 			if os.path.exists(imgname):
-				imgfile = open(imgname, 'rb').read().encode('base64').replace('\n','')
+				imgfile = open(imgname, 'rb').read()
 				self.send_response(200)
-				content = "data:image/jpg;base64,{0}".format(imgfile)
-				self.send_header('Content-type', 'text/html')			
-				self.send_header('Content-length', str(len(content)))
+				content = "<img src='{0}' />".format(imgfile)
+				#self.send_header('Content-type', 'text/html')			
+				#self.send_header('Content-length', str(len(content)))
 				self.send_header("Access-Control-Allow-Origin", "*")
 				self.end_headers()
 				self.wfile.write(content)
@@ -94,11 +94,11 @@ class ServerHTTP(BaseHTTPRequestHandler):
 
 		print("End of NN")
 		
-		update_wardrobe(email, data, cat_name)
+		update_wardrobe(email, imgdata, cat_name)
 		
 		print("Update Firebase")
 
-		_update_recommend_outfit(email)
+		#_update_recommend_outfit(email)
 
 	def _image_characteristics(self, img_path):
 		"""Read the file and use the neural networks to predict the

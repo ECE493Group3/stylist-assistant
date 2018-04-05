@@ -18,14 +18,14 @@ def get_uid(user_email):
 			return uid
 
 def get_wardrobe(user_email):
-
+	user_id = get_uid(user_email)
 	try:
 		ref = db.reference('/users/'+user_id+'/wardrobeitems').get()
 	except:
 		connect_firebase()
 		ref = db.reference('/users/'+user_id+'/wardrobeitems').get()
 
-	user_id = get_uid(user_email)
+	#user_id = get_uid(user_email)
 	wardrobe = []
 	for items in ref:
 		img_file = db.reference('/users/'+user_id+'/wardrobeitems/'+items).child('img').get()
@@ -36,30 +36,30 @@ def get_wardrobe(user_email):
 	return wardrobe
 
 def update_wardrobe(user_email, imageURL, category):
-
+	user_id = get_uid(user_email)
 	try:
-		ref = db.reference('/users/'+user_id+'/wardrobeitems')
+		ref = db.reference('/users/'+str(user_id)+'/wardrobeitems')
 	except:
 		connect_firebase()
-		ref = db.reference('/users/'+user_id+'/wardrobeitems')
+		ref = db.reference('/users/'+str(user_id)+'/wardrobeitems')
 
-	user_id = get_uid(user_email)
 	wardrobeitems = {
-		"category": str(cloth_item.get_cat_label()),
-		"imageURL": str(imageURL),
+		"category": str(category),
+		"img": "data:image/jpg;base64," + str(imageURL),
 	}
 
 	ref.push(wardrobeitems)
 	
 def update_recommended_outfits(user_email, recommend_outfits):
-
+	
+	user_id = get_uid(user_email)
 	try:
 		ref = db.reference('/users/'+user_id+'/recommendedoutfits')
 	except:
 		connect_firebase()
 		ref = db.reference('/users/'+user_id+'/recommendedoutfits')
 
-	user_id = get_uid(user_email)
+	#user_id = get_uid(user_email)
 	for out in recommend_outfits:
 		if (outfit.get_type() == FULLBODY):
 			category = str(outfit.get_full_body().get_cat_label())
