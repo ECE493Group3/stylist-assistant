@@ -396,14 +396,6 @@ angular.module('starter', ['ionic', 'firebase'])
 
 .controller("images_controller", ["$scope", '$firebaseObject', "$stateParams", "Camera", "$ionicPopover", "$http", function($scope, $firebaseObject, $stateParams, Camera, $ionicPopover, $http){
 
-	// $http.get("http://204.209.76.176:8000/img_006.jpg?username=abc@gmail.com").then(
-	// 	function success(response){
-	// 		$scope.test_img = response.data
-	// 		console.log(response);
-	// 	}, function error(response){
-	// 		console.log("Error:" +response);
-	// 	});
-
 	if ($stateParams.type == "user") {
 		var userref = firebase.database().ref().child("users").child($stateParams.id);
 		$scope.wardrobePieces = $firebaseObject(userref.child("wardrobeitems"));
@@ -461,10 +453,10 @@ angular.module('starter', ['ionic', 'firebase'])
 			// add photo to db and come back and update clothingPieces
 			$scope.imgURI = imageData;
 			postConent = "data:image/jpg;base64,"+imageData;
-			firebase.database().ref().push({"img": postConent});
+			// firebase.database().ref().push({"img": postConent});
 
 			console.log(imageData); 
-			$http.post("http://204.209.76.176:8000/img_006.jpg?username=abc@gmail.com", imageData);
+			$http.post("http://204.209.76.176:8000/temp.jpg?username=abc@gmail.com", imageData);
 			console.log("Done post request");
 		},
 		function (err) {
@@ -479,6 +471,7 @@ angular.module('starter', ['ionic', 'firebase'])
 			targetWidth: 200,
 			sourceType: 0,
 			correctOrientation: true
+			destinationType: 0,
 		};
 
 		Camera.getPicture(options).then(function (imageData) {
