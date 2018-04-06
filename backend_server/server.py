@@ -4,14 +4,26 @@ import urllib
 import os
 import sys
 import cgi
+import signal
 import base64
 from image_processor import ImageProcessor
 from connect_firebase import *
 from cloth import Cloth, Outfit, FULLBODY, COMBINATIONS
 from cloth_similarity import *
 from cloth_hierarchy import *
+from recommender import *
 
 PORT = 8000
+
+http_server = ""
+
+def signal_handler(signal, frame):
+	print('\nTerminate Server\n')
+	http_server.shutdown
+	sys.exit(0)
+
+#signal.signal(signal.SIGINT, signal_handler)
+
 
 class ServerHTTP(BaseHTTPRequestHandler):
 
@@ -98,7 +110,7 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		
 		print("Update Firebase")
 
-		#_update_recommend_outfit(email)
+		self._update_recommend_outfit(email)
 
 	def _image_characteristics(self, img_path):
 		"""Read the file and use the neural networks to predict the
@@ -114,19 +126,26 @@ class ServerHTTP(BaseHTTPRequestHandler):
 	
 	def _update_recommend_outfit(self, user_email):
 
-		reference = []
+		
 		root_cloth = create_nodes()
 		
+		reference = get_reference(user_email)
 		wardrobe = get_wardrobe(user_email)
-
+		print("Wardrobe size: " + str(len(wardrobe)) + " Reference Size: " + str(len(reference)))
 		wardrobe_outfits = []
 		possible_outfit_from_wardrobe(wardrobe, wardrobe_outfits)
+		
+		print("Wardrobe outfit size: " + str(len(wardrobe_outfits)))
 
-		recommend_outfits = recommend_outfits(root_cloth, wardrobe, reference)
-
-		update_recommend_outfits(user_email, recommend_outfits)
+		r_outfits = recommend_outfits(root_cloth, wardrobe_outfits, reference)
+		print("Recommend_outfit: " + str(len(r_outfits)))
+		
+		update_recommended_outfits(user_email, r_outfits)
 
 
 if __name__ == '__main__':
+	signal.signal(signal.SIGINT, signal_handler)
+	print("Server started\n")
 	http_server = HTTPServer(('', PORT), ServerHTTP)
 	http_server.serve_forever()
+	#print("Start Server")
