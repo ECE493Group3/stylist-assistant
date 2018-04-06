@@ -28,13 +28,13 @@
         <div class="padding">
             <button class="button button-small button-positive margin" style="float:right;" ng-click="openPopover($event)">Filter</button>
             <div class="row myrow padding-top">
-                <div class="item editimages col-25" ng-repeat="piece in wardrobePieces" ng-show="categories.{{piece.category}}.filter">
+                <div class="item editimages col-25" ng-repeat="(pieceid, piece) in wardrobePieces" ng-show="categories.{{piece.category}}.filter">
                     <img src={{piece.img}}>
-                    <button class="delete" ng-click="remove(piece.imgURI)"></button>
+                    <button class="delete" ng-click="remove(pieceid)"></button>
                 </div>
-                <div class="item editimages col-25" ng-repeat="piece in recommendedPieces" ng-show="categories.{{piece.categorybottom}}.filter || categories.{{piece.categorytop}}.filter || categories.{{piece.categoryfull}}.filter">
+                <div class="item editimages col-25" ng-repeat="(pieceid, piece) in recommendedPieces" ng-show="categories.{{piece.categorybottom}}.filter || categories.{{piece.categorytop}}.filter || categories.{{piece.categoryfull}}.filter">
                     <img src={{piece.img}}>
-                    <button class="delete" ng-click="remove(piece.imgURI)"></button>
+                    <button class="delete" ng-click="remove(pieceid)"></button>
                 </div>
             </div>
         </div>

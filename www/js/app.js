@@ -488,9 +488,17 @@ angular.module('starter', ['ionic', 'firebase'])
 			});
 	};
 
-	$scope.remove = function(uristring) {
-		// remove photo from db and come back and update clothingPieces
-		console.log("remove " + uristring); 
+	$scope.remove = function(piece_id) {
+		// remove photo from db 
+		if ($stateParams.type == "user") {
+			firebase.database().ref().child('users/' + $stateParams.id + '/wardrobeitems/' + piece_id).remove(function (error) {
+				if (error) console.log("Error:", error);
+			});
+		} else {
+			firebase.database().ref().child('users/' + $stateParams.id + '/recommendeditems/' + piece_id).remove(function (error) {
+				if (error) console.log("Error:", error);
+			});
+		}
 	}
 
 	$ionicPopover.fromTemplateUrl('filter-popover.html', {
