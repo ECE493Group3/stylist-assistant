@@ -92,12 +92,14 @@ class ServerHTTP(BaseHTTPRequestHandler):
 		print("length: " + str(length) + " username: " + email)
 		
 		data = base64.b64decode(imgdata)
+#		data = imgdata
 		with open(imgname, 'wb') as imgfile:
 			imgfile.write(data)
 		
 		self.send_response(200)
 		self.end_headers()
-
+		
+#		imgdata = base64.b64encode(imgdata)
 		print("End of POST request")
 		
 		_, cat_name, _, attributes_names = self._image_characteristics(imgname)

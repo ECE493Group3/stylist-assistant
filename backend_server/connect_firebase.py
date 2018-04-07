@@ -60,7 +60,7 @@ def get_wardrobe(user_email):
 	for items in ref:
 		img_file = db.reference('/users/'+user_id+'/wardrobeitems/'+items).child('img').get()
 		cat = db.reference('/users/'+user_id+'/wardrobeitems/'+items).child('category').get()
-		c = Cloth(img_file, "", cat)
+		c = Cloth(img_file, "", cat, img_id = str(items))
 		wardrobe.append(c)
 
 	return wardrobe
