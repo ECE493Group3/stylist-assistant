@@ -21,3 +21,10 @@
     text-align: center; 
     top: unset; 
 }
+
+@import url("https://use.typekit.net/kmt3uyl.css");
+h1,h2,h3,h4,h5,h6,.tab-title,.button-positive:not(.button-small) {
+    font-family: "eloquent-jf-pro", serif; 
+    font-style: italic; 
+    font-weight: bold;
+}

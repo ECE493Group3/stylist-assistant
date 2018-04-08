@@ -42,7 +42,6 @@
       <ion-content class="has-header" id="profile" ng-show="emptyState">
         <div id="profileheader">
           <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png">
-          <h4>{{client.name}}</h4>
         </div>
 
         <div id="clientloglist" class="profile-section">
@@ -51,10 +50,21 @@
             <button class="button button-small button-positive" ng-click="openPopover($event, 0)">Filter</button>
           </div>
           <div class="emptyStateMessage inline" ng-hide="dresslogEmptyState"><p>{{client.name}} hasn't selected any outfits yet, when they do it'll show up here.</p></div>
-          <ion-list class="horizontal-images">
+          <ion-list class="listofcards horizontal-images">
             <ion-scroll direction="x" class="wide-as-needed">
               <ion-item ng-repeat="item in client.dresslog" ng-show="filteredCategoriesLog.{{item.categorybottom}}.filter || filteredCategoriesLog.{{item.categorytop}}.filter || filteredCategoriesLog.{{item.categoryfull}}.filter">
-                <img src={{item.img}} />
+                <div class="card">
+                  <div class="row" ng-show="item.imgfull == 'None'">
+                    <div class="col col-50">
+                      <img src={{item.imgtop}} />
+                    </div>
+                    <div class="col col-50">
+                      <img src={{item.imgbottom}} />
+                    </div>
+                  </div>
+                  <img src={{item.imgfull}} ng-hide="item.imgfull == 'None'" />
+                  <div class="row">{{item.date}}</div>
+                </div>
               </ion-item>
             </ion-scroll>
           </ion-list>
@@ -65,10 +75,13 @@
             <button class="button button-small button-positive" ng-click="openPopover($event, 1)">Filter</button>
           </div>
           <div class="emptyStateMessage inline" ng-hide="wardrobeItemsEmptyState"><p>{{client.name}} hasn't uploaded any of their wardrobe yet, when they do it'll show up here.</p></div>
-          <ion-list class="horizontal-images">
+          <ion-list class="listofcards horizontal-images width">
             <ion-scroll direction="x" class="wide-as-needed">
               <ion-item ng-repeat="item in wardrobeItems" ng-show="filteredCategoriesWardrobe.{{item.category}}.filter">
-                <img src={{item.img}} />
+                <div class="card">
+                  <img class="row" src={{item.img}} />
+                  <div class="row">{{item.category}}</div>
+                </div>
               </ion-item>
             </ion-scroll>
           </ion-list>
@@ -80,10 +93,14 @@
             <a href="#/stylist_upload_images/stylist/{{client.$id}}"><button class="button button-small button-positive">Edit</button></a>
           </div>
           <div class="emptyStateMessage inline" ng-hide="recommendedItemsEmptyState"><p>You haven't suggested any styles for {{client.name}}. Click the Edit button to upload some.</p></div>
-          <ion-list class="horizontal-images">
+          <ion-list class="listofcards horizontal-images width">
             <ion-scroll direction="x" class="wide-as-needed">
               <ion-item ng-repeat="recommended in recommendedItems" ng-show="filteredCategoriesRecItems.{{recommended.categorybottom}}.filter || filteredCategoriesRecItems.{{recommended.categorytop}}.filter || filteredCategoriesRecItems.{{recommended.categoryfull}}.filter">
-                <img src={{recommended.img}} />
+                <div class="card">
+                  <img class="row" src={{recommended.img}} />
+                  <div class="row" ng-show="recommended.categoryfull == 'None'">{{recommended.categorytop}} & {{recommended.categorybottom}}</div>
+                  <div class="row" ng-hide="recommended.categoryfull == 'None'">{{recommended.categoryfull}}</div>
+                </div>
               </ion-item>
             </ion-scroll>
           </ion-list>

@@ -16,26 +16,26 @@
 		</div>
 		<ion-list class="listofcards">
 			<ion-item ng-repeat="(outfitid, outfit) in user.recommendedoutfits"  ng-show="categories.{{outfit.categorybottom}}.filter || categories.{{outfit.categorytop}}.filter || categories.{{outfit.categoryfull}}.filter">
-					<ion-card>
-						<div class="row" ng-show="outfit.imgfull == 'None'">
-							<div class="col col-50">
-								<img src={{outfit.imgtop}} />
-							</div>
-							<div class="col col-50">
-								<img src={{outfit.imgbottom}} />
-							</div>
+				<ion-card>
+					<div class="row" ng-show="outfit.imgfull == 'None'">
+						<div class="col col-50">
+							<img src={{outfit.imgtop}} />
 						</div>
-						<img src={{outfit.imgfull}}  ng-hide="outfit.imgfull == 'None'" />
-						<div class="row">
-							<div class="col col-75">
-									<div class="card-title">{{outfit.name}}</div>
-									<p>{{outfit.description}}</p>
-							</div>
-							<div class="col">
-									<button class="button button-positive" ng-click="selected(outfit)">Select</button>
-							</div>
+						<div class="col col-50">
+							<img src={{outfit.imgbottom}} />
 						</div>
-					</ion-card>
+					</div>
+					<img src={{outfit.imgfull}}  ng-hide="outfit.imgfull == 'None'" />
+					<div class="row">
+						<div class="col col-75">
+								<div class="card-title">{{outfit.name}}</div>
+								<p>{{outfit.description}}</p>
+						</div>
+						<div class="col">
+								<button class="button button-small button-positive" ng-click="selected(outfit)">Select</button>
+						</div>
+					</div>
+				</ion-card>
 			</ion-item>
 		</ion-list>
 	</ion-content>

@@ -9,3 +9,19 @@ ion-list.listofcards ion-item {
 ion-list .col button {
     float: right;
 }
+
+.listofcards.horizontal-images .card {
+    width: 200px;
+    display: inline-block;
+}
+
+.listofcards.horizontal-images:not(.width) .card img {
+    width: 100%;
+    height: 100%;
+}
+
+.listofcards.horizontal-images.width .card img {
+    width: 100%;
+    background: white;
+    padding: 10px;
+}
