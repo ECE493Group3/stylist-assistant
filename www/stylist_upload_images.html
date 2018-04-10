@@ -22,7 +22,7 @@
         </div>
         <div id="footer-copywrite" class="padding-top">
             <button class="button button-positive" ng-click="takePhoto()" ng-hide="hasImage">Upload pictures</button>
-            <div ng-show="hasImage && !(isFullBody || isCombination)">
+            <div ng-show="hasImage && !(isCombination || isFullbody)">
                 <p>Please choose an outfit type</p>
                 <select name="typeValue" ng-model="typeValue" ng-change="showType()">
                     <option value="COMBINATIONS">Top + Bottom Piece Outfit</option>
