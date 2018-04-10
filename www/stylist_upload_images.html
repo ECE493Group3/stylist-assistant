@@ -21,7 +21,7 @@
             
         </div>
         <div id="footer-copywrite" class="padding-top">
-            <button class="button button-positive" ng-click="takePhoto()">Upload pictures</button>
+            <button class="button button-positive" ng-click="takePhoto()" ng-hide="hasImage">Upload pictures</button>
             <div ng-show="hasImage">
                 <select name="typeValue" ng-model="typeValue" ng-change="showType()">
                     <option value="COMBINATIONS">Combinations</option>
@@ -64,7 +64,7 @@
                     <option value="Sweatshorts">Sweatshorts</option>
                 </select>
             </div>
-            <button ng-click="uploadOutfit()">Upload Outfit</button>
+            <button class="button button-positive" ng-click="uploadOutfit()" ng-show="hasImage">Upload Outfit</button>
 
             <div class="alternativeoption">
                 alternatively,
