@@ -71,7 +71,3 @@ ENV/
 *.swp
 *.swo
 tags
-
-# ignore data files
-DATA/*
-*.txt
