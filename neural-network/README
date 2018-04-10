@@ -1,6 +1,6 @@
 # DESCRIPTION
 
-This repository contains a collection of scripts whose purpose
+This directory contains a collection of scripts whose purpose
 is to train a neural network and provide training data to be used
 in predictions.
 
@@ -33,6 +33,8 @@ Install the following Python packages:
 - opencv-python (https://pypi.python.org/pypi/opencv-python/3.4.0.12)
 
 We recommend using a virtual environment (https://virtualenv.pypa.io/en/stable/)
+
+Make sure to run the training in a powerful enough machine, with many CPUs or GPUs.
 
 # RUNNING THE SCRIPTS
 
@@ -135,7 +137,7 @@ the predicted category and attributes to stdout.
 
 # UNUSED SCRIPTS
 
-This repository includes some scripts that are not used anymore but were used in the past.
+This directory includes some scripts that are not used anymore but were used in the past.
 They are preserved if you want to use them.
 
 ## make_sample_top_bottom.py and top_bottom_nn.py
