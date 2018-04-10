@@ -679,6 +679,7 @@ angular.module('starter', ['ionic', 'firebase'])
 		console.log(form.user);
 
 		var username = form.user.username;
+		$rootScope.currentUser = username
 		var password = form.user.password;
 
 		firebase.auth().signInWithEmailAndPassword(username, password)
@@ -690,11 +691,12 @@ angular.module('starter', ['ionic', 'firebase'])
 						stylistsref.child(u.uid).once('value', function (snapshot) {
 							var exists = (snapshot.val() !== null);
 							if (exists) {
-								$rootScope.currentUser = username
 								$state.go("user_main");
 								console.log("User Login Success");
 							} else {
 								$scope.errorMsg = "This user is not a Client";
+								delete $rootScope.currentUser;
+
 								$scope.$apply();
 							}
 						});
