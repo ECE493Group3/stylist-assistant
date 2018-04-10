@@ -9,27 +9,34 @@
             <div id="titlebrand">
                 <img src="img/applogo.png" />
             </div>
-            <img class="inlineimg" src="{{text.image}}" />
-            <p>To ensure the best results, please input pictures that the Fashion Magic will be able to understand better.</p>
-            <p>{{text.description}}</p>
+            <div class="row">
+                <div class="col">
+                    <img class="" style="width: 100%; max-width: 300px;" src="{{text.image}}" />
+                </div>
+                <div class="col">
+                    <p>To ensure the best results, please input pictures that the Fashion Magic will be able to understand better.</p>
+                    <p>{{text.description}}</p>
+                </div>
+            </div>
+            
         </div>
         <div id="footer-copywrite" class="padding-top">
             <button class="button button-positive" ng-click="takePhoto()">Upload pictures</button>
             <div ng-show="hasImage">
-                <select name="typeValue" ng-model = "typeValue" ng-change = "showType()">
-                    <option value = "COMBINATIONS">Combinations</option>
-                    <option value = "FULLBODY">Fullbody</option>
+                <select name="typeValue" ng-model="typeValue" ng-change="showType()">
+                    <option value="COMBINATIONS">Combinations</option>
+                    <option value="FULLBODY">Fullbody</option>
                 </select>
             </div>
             <div ng-show="isFullbody">
                 <select ng-model="fullbody_cat">
-                    <option value = "Coat">Coat</option>
-                    <option value = "Cape">Cape</option>
+                    <option value="Coat">Coat</option>
+                    <option value="Cape">Cape</option>
                 </select>
             </div>
             <div ng-show="isCombination">
                 <select ng-model="top_cat">
-                    <option value = "Sweater">Sweater</option>
+                    <option value="Sweater">Sweater</option>
                     <option value="Blazer">Blazer</option>
                     <option value="Bomber">Bomber</option>
                     <option value="Cardigan">Cardigan</option>
@@ -47,14 +54,14 @@
                 </select>
                 <br>
                 <select ng-model="bottom_cat">
-                    <option value = "Pants">Pants</option>
-                    <option value = "Jeans">Jeans</option>
-                    <option value = "Chinos">Chinos</option>
-                    <option value = "Joggers">Joggers</option>
-                    <option value = "Sweatpants">Sweatpants</option>
-                    <option value = "Shorts">Shorts</option>
-                    <option value = "Trunks">Trunks</option>
-                    <option value = "Sweatshorts">Sweatshorts</option>
+                    <option value="Pants">Pants</option>
+                    <option value="Jeans">Jeans</option>
+                    <option value="Chinos">Chinos</option>
+                    <option value="Joggers">Joggers</option>
+                    <option value="Sweatpants">Sweatpants</option>
+                    <option value="Shorts">Shorts</option>
+                    <option value="Trunks">Trunks</option>
+                    <option value="Sweatshorts">Sweatshorts</option>
                 </select>
             </div>
             <button ng-click="uploadOutfit()">Upload Outfit</button>
