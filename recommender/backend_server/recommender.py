@@ -38,11 +38,12 @@ def recommend_outfits(root, wardrobe_outfit, reference):
 			sim = get_outfit_similarity(root, out, ref)
 			#print(str(out) + " and " + str(ref) + " similarity: " + str(sim))
 			outfit = {"outfit":out, "similarity":sim}
-			recommend.append(outfit) 						
+			if outfit not in recommend:
+				recommend.append(outfit)
 
 	recommend = sorted(recommend, key=lambda r:r['similarity'], reverse = True)
 	#recommend = filter(lambda r:r['similarity'] >= 0.01, recommend)
-	
+
 	return recommend[:10]
 
 def recommend_piece(root, cloth1, wardrobe, reference):
@@ -88,7 +89,6 @@ def recommend_piece(root, cloth1, wardrobe, reference):
 def possible_outfit_from_wardrobe(wardrobe, possible_out):
 
 	for item_1 in wardrobe:
-		#import pdb;pdb.set_trace()
 		if(item_1.get_cat_type() == FULLBODY_CLOTH):
 			t = Outfit(item_1)
 			if(t not in possible_out):

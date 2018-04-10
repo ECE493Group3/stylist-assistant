@@ -23,13 +23,16 @@ def get_reference(user_email):
 	try:
 		ref = db.rference('/users/'+user_id+'/recommendeditems').get()
 	except:
-	#	connect_firebase()
 		ref = db.reference('/users/'+user_id+'/recommendeditems').get()
 	
+	if ref is None:
+		print("No recommended items in database")
+		return []
+
 	reference = []
 	for items in ref:
 		#print(str(items))
-		
+
 		full_body = db.reference('/users/'+user_id+'/recommendeditems/'+ str(items)).child('categoryfull').get()
 		if(full_body != 'None'):
 			c = Cloth("", "", full_body)
@@ -39,12 +42,12 @@ def get_reference(user_email):
 		elif(full_body == 'None'):
 			top = db.reference('/users/'+user_id+'/recommendeditems/'+items).child('categorytop').get()
 			top_c = Cloth("", "", top)
-			
+
 			bottom = db.reference('/users/'+user_id+'/recommendeditems/'+items).child('categorybottom').get()
 			bottom_c = Cloth("","", bottom)
 			outfit = Outfit(top_c, bottom_c, COMBINATIONS)
 			reference.append(outfit)
-	
+
 	return reference
 
 def get_wardrobe(user_email):

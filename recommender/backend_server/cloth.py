@@ -91,20 +91,14 @@ class Outfit:
 			bottom_s = "Bottoms: " + str(self.bottom) + "\n"
 			return type_s + top_s + bottom_s
 
-		# return "Error"
-	
 	def __eq__(self, other):
 		if(self.get_type() != other.get_type()):
-			return false
-		
+			return False
+
 		cloth_self = self.get_cloths()
 		cloth_other = other.get_cloths()
-		
-		for i in range(cloth_self):
-			if(cloth_self[i].get_img_id() != cloth_other[i].get_img_id()):
-				return false
 
-		return true
+		return all(cs.get_img_id() == co.get_img_id() for cs, co in zip(cloth_self, cloth_other))
 
 	def get_type(self):
 		return self.type
