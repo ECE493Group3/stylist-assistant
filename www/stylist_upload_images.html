@@ -75,8 +75,11 @@
                 </div>
             </div>
 
-            <div class="padding-top">
-                <button class="button button-positive" ng-click="uploadOutfit()" ng-show="hasImage && (isFullBody || isCombination)">Upload Outfit</button>
+            <div class="row padding-top">
+                <img src={{postConent}} style="width: 70%; height:auto; margin: 0 auto;" />
+            </div>
+            <div id="footer-copywrite" class="padding-top">
+                <button class="button button-positive" ng-click="uploadOutfit()" ng-show="hasImage && (isFullbody || isCombination)">Upload Outfit</button>
                 <div class="alternativeoption" ng-show="hasImage && (isFullBody || isCombination)">
                     alternatively,
                     <a href="" ng-click="loadPhoto()">upload from gallery</a>

@@ -596,6 +596,11 @@ angular.module('starter', ['ionic', 'firebase'])
 		}
 
 		console.log("finish upload")
+
+		$scope.hasImage = false;
+		$scope.isCombination = false;
+		$scope.isFullbody = false;
+		$scope.postConent = null;
 	}
 	
 	$scope.takePhoto = function () {

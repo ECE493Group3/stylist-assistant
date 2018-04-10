@@ -9,9 +9,15 @@
             <div id="titlebrand">
                 <img src="img/applogo.png" />
             </div>
-            <img class="inlineimg" src="{{text.image}}" />
-            <p>To ensure the best results, please input pictures that the Fashion Magic will be able to understand better.</p>
-            <p>{{text.description}}</p>
+            <div class="row">
+                <div class="col">
+                    <img class="" style="width: 100%; max-width: 300px;" src="{{text.image}}" />
+                </div>
+                <div class="col">
+                    <p>To ensure the best results, please input pictures that the Fashion Magic will be able to understand better.</p>
+                    <p>{{text.description}}</p>
+                </div>
+            </div>
         </div>
         <div id="footer-copywrite" class="padding-top">
             <button class="button button-positive" ng-click="takePhoto()">Upload pictures</button>
