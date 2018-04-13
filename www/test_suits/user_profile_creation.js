@@ -128,6 +128,7 @@ describe("User Profile Creation", function(){
     expect(browser.getCurrentUrl()).toEqual("http://localhost:"+PORT+"/#/user_main");
 
     console.log("restore_data: " + restore_data);
+    done(); 
   });
 
   it("Profile registration, username already exists", function(){
@@ -148,6 +149,7 @@ describe("User Profile Creation", function(){
     expect(el.getText()).toBe('Error creating new user, this email may already be in use.');
 
     // restore_data(restore_data);
+    done(); 
   });
 
   it("Profile registration, stylist does not exist", function(){
@@ -167,5 +169,6 @@ describe("User Profile Creation", function(){
 
     var el = element(by.binding('errorMsg'));
     expect(el.getText()).toBe('This email is not recognized as a stylist.');
+    done(); 
   });
 });
