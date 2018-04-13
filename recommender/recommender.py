@@ -15,10 +15,9 @@ import random
 import anytree
 from anytree import Node, RenderTree, Walker
 
-from cloth import Cloth, Outfit, FULLBODY, COMBINATIONS
+from cloth import Cloth, Outfit, FULLBODY, COMBINATIONS, TOP_CLOTH, BOTTOM_CLOTH, FULLBODY_CLOTH
 from cloth_similarity import *
 from cloth_hierarchy import *
-from connect_db import *
 
 TSV_FILE_VALIDATION_5050 = 'sample_cloth_s_5050.txt'
 TSV_FILE_VALIDATION_9010 = 'sample_cloth_s_9010.txt'
@@ -30,32 +29,34 @@ def make_tsvs(table):
 	with open(TSV_FILE_VALIDATION, 'w') as f:
 		f.writelines(str(img) for img in table)
 
-def recommend_outfit(root, wardrobe, reference):
+def recommend_outfits(root, wardrobe_outfit, reference):
 	recommend = []
-	possible_out = possible_outfit_from_wardrobe(wardrobe)
+	#possible_out = possible_outfit_from_wardrobe(wardrobe)
 
-	for out in possible_out:
+	for out in wardrobe_outfit:
 		for ref in reference:
 			sim = get_outfit_similarity(root, out, ref)
+			#print(str(out) + " and " + str(ref) + " similarity: " + str(sim))
 			outfit = {"outfit":out, "similarity":sim}
-			recommend.append(outfit) 						
+			if outfit not in recommend:
+				recommend.append(outfit)
 
 	recommend = sorted(recommend, key=lambda r:r['similarity'], reverse = True)
-	recommend = filter(lambda r:r['similarity'] >= 0.5, recommend)
+	#recommend = filter(lambda r:r['similarity'] >= 0.01, recommend)
 
-	return recommend
+	return recommend[:10]
 
 def recommend_piece(root, cloth1, wardrobe, reference):
 
 	recommend = []
 	cloth1_cat_type = cloth1.get_cat_type()
 
-	if(cloth1_cat_type() == 3):
+	if(cloth1_cat_type() == FULLBODY_CLOTH):
 		return -1
 
-	if(cloth1.get_cat_type() == 1):
+	if(cloth1.get_cat_type() == TOP_CLOTH):
 		for i in wardrobe:
-			if(i.get_cat_type() == cloth1.get_cat_type() or i.get_cat_type() == 3):
+			if(i.get_cat_type() == cloth1.get_cat_type() or i.get_cat_type() == FULLBODY_CLOTH):
 				continue
 			for ref in reference:
 				t = Outfit(cloth1, i, COMBINATIONS)
@@ -68,10 +69,10 @@ def recommend_piece(root, cloth1, wardrobe, reference):
 
 		return recommend
 
-	if(cloth1.get_cat_type() == 2):
+	if(cloth1.get_cat_type() == BOTTOM_CLOTH):
 		# Need to find a top
 		for i in wardrobe:
-			if(i.get_cat_type() == cloth1.get_cat_type or i.get_cat_type() == 3):
+			if(i.get_cat_type() == cloth1.get_cat_type or i.get_cat_type() == FULLBODY_CLOTH):
 				continue
 			for ref in reference:
 				t = Outfit(i, cloth1, COMBINATIONS)
@@ -88,7 +89,7 @@ def recommend_piece(root, cloth1, wardrobe, reference):
 def possible_outfit_from_wardrobe(wardrobe, possible_out):
 
 	for item_1 in wardrobe:
-		if(item_1.get_cat_type() == 3):
+		if(item_1.get_cat_type() == FULLBODY_CLOTH):
 			t = Outfit(item_1)
 			if(t not in possible_out):
 				possible_out.append(t)
@@ -97,18 +98,17 @@ def possible_outfit_from_wardrobe(wardrobe, possible_out):
 		for item_2 in wardrobe:
 			if(item_1.get_cat_type() == item_2.get_cat_type()):
 				continue
-			elif(item_2.get_cat_type() == 3):
+			elif(item_2.get_cat_type() == FULLBODY_CLOTH):
 				continue
 			else:
-				if(item_1.get_cat_type == 1):
+				if(item_1.get_cat_type() == TOP_CLOTH):
 					t = Outfit(item_1, item_2, COMBINATIONS)
 					if(t not in possible_out):
 						possible_out.append(t)
-				if(item_2.get_cat_type == 1):
+				if(item_2.get_cat_type() == TOP_CLOTH):
 					t = Outfit(item_2, item_1, COMBINATIONS)
 					if(t not in possible_out):
 						possible_out.append(t)
-
 
 def make_wardrobe(wardrobe, cloths_list):
 

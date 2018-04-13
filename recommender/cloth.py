@@ -4,6 +4,10 @@ import os
 FULLBODY = 0
 COMBINATIONS = 1
 
+TOP_CLOTH = "1"
+BOTTOM_CLOTH = "2"
+FULLBODY_CLOTH = "3"
+
 DATA_DIRECTORY = 'image-processing/DATA'
 
 LIST_CATEGORY_CLOTH_FILE = os.path.join(DATA_DIRECTORY, 'Anno', 'list_category_cloth.txt')
@@ -11,14 +15,15 @@ LIST_CATEGORY_CLOTH_FILE = os.path.join(DATA_DIRECTORY, 'Anno', 'list_category_c
 
 class Cloth:
 
-	def __init__(self, img_file, cat_type, cat_label, attr_label={}):
+	def __init__(self, img_file, cat_type, cat_label, attr_label={}, img_id = ""):
 		self.img_file = img_file
 		if cat_type == "":
 			cat_type = self.get_category_type(cat_label)
-		self.cat_type = cat_type
+		self.cat_type = str(cat_type)
 
 		self.cat_label = cat_label
 		self.attr_label = attr_label
+		self.img_id = img_id
 
 	def get_cat_type(self):
 		return self.cat_type
@@ -31,6 +36,9 @@ class Cloth:
 
 	def get_img_file(self):
 		return self.img_file
+
+	def get_img_id(self):
+		return self.img_id
 
 	def set_cat_label(cat_label):
 		self.cat_label = cat_label
@@ -83,7 +91,14 @@ class Outfit:
 			bottom_s = "Bottoms: " + str(self.bottom) + "\n"
 			return type_s + top_s + bottom_s
 
-		# return "Error"
+	def __eq__(self, other):
+		if(self.get_type() != other.get_type()):
+			return False
+
+		cloth_self = self.get_cloths()
+		cloth_other = other.get_cloths()
+
+		return all(cs.get_img_id() == co.get_img_id() for cs, co in zip(cloth_self, cloth_other))
 
 	def get_type(self):
 		return self.type

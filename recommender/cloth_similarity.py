@@ -57,10 +57,10 @@ def get_item_similarity(root, cloth1, cloth2):
 
 	union_c = set_c1 | set_c2
 	if(len(union_c) == 0):
-		return 0.5 * cat_sim
+		return cat_sim
 
-	# return sum / (1 + len(union_c))
-	return 0.9 * cat_sim + 0.1 * attr_sim / (len(union_c))
+	return cat_sim
+	#return 0.9 * cat_sim + 0.1 * attr_sim / (len(union_c))
 
 
 def get_outfit_similarity(root, outfit1, outfit2):

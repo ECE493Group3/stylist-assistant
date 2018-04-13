@@ -50,3 +50,5 @@ Robe           3
 Romper         3
 Shirtdress     3
 Sundress       3
+Pants          2
+
