@@ -12,13 +12,16 @@ firebase.initializeApp(config);
 
 describe("User Profile Creation", function(){
 
-  var PORT = 8104;
+  var PORT = 8105;
 
   var username = element(by.model('$ctrl.user.username'));
   var email = element(by.model('$ctrl.user.email'));
   var password = element(by.model('$ctrl.user.password'));
   var re_password = element(by.model('re_pword'));
   var stylist_code = element(by.model('$ctrl.user.stylist_code'));
+
+  var restore_data = "";
+  var ref = firebase.database().ref();
 
   let joc = jasmine.objectContaining;
 
@@ -31,39 +34,81 @@ describe("User Profile Creation", function(){
     });
   }
 
-  beforeEach(function(){
-    browser.get('http://localhost:'+PORT+'/#/user_register')
+  beforeAll(function(){
+    console.log("restore_data: " + restore_data);
+    var user_email = "test_user@capstone.ca";
+    var user_pword = "capstone";
 
     var ref = firebase.database().ref();
 
-    stylist_json = {
-      "stylists" : {
-        "DSzjEvbRcsPD5cnymJ01fZGoIrP2" : {
-          "email" : "test_stylist@domain.ca",
-          "name" : "test_stylist",
-          "password" : "123456",
-        },
-      },
-    };
+    firebase.auth().signInWithEmailAndPassword(user_email, user_pword).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("Error: " + errorCode);
+      console.log("Error Message: " + errorMessage);
+    });
 
-    user_json = {
-      "stylists" : {
-        "JJmxTJiDAAdKkehR7JucOOJb4OZ2" : {
-          "email" : "test_user@domain.ca",
-          "name" : "Test User",
-          "dresslog":{},
-          "recommendeditems":{},
-          "recommendedoutfits":{},
-          "wardrobeitems":{},
-        },
-      },
-    };
+    browser.wait(() =>{
+      return get_firebase_data().then((data) =>{
+        console.log("Start loading old data");
+        restore_data = data;
+        console.log("restore_data: " + restore_data);
 
-    var data = get_firebase_data();
-    ref.update(null);
+        console.log(JSON.stringify(data));
+        console.log("Finish loading old data");
+        test_json = {
+          "stylists" : {
+            "DSzjEvbRcsPD5cnymJ01fZGoIrPddd2" : {
+              "email" : "test_stylist@domain.ca",
+              "name" : "test_stylist",
+              "password" : "123456",
+            },
+          },
+          "users" : {
+            "JJmxTJiDAAdKkehR7JucOOJb4OZ2" : {
+              "email" : "test_user@domain.ca",
+              "name" : "Test User",
+              "dresslog":{},
+              "recommendeditems":{},
+              "recommendedoutfits":{},
+              "wardrobeitems":{},
+            },
+          },
+        };
+
+        console.log("Start pushing test data");
+
+        // ref.remove();
+        ref.update(test_json);
+        console.log("Finish pushing test data");
+        return restore_data != "";  
+      })}, 10000);
+  });
+
+  afterAll(function(){
+    // console.log("restore_data: " + JSON.stringify(restore_data));
+    var user_email = "test_user@capstone.ca";
+    var user_pword = "capstone";
+
+
+    firebase.auth().signInWithEmailAndPassword(user_email, user_pword).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("Error: " + errorCode);
+      console.log("Error Message: " + errorMessage);
+      // ...
+    });
     
-    // console.log("SSS: " + data);
+    console.log("Start to restore")
+    ref.update(restore_data);
+    console.log("End restore");
+  });
 
+  beforeEach(function(){
+    
+    browser.get('http://localhost:'+PORT+'/#/user_register');
   });
 
   it("Profile registration, success", function(done){
@@ -75,19 +120,14 @@ describe("User Profile Creation", function(){
     
     element(by.buttonText('Register')).click();
 
-    // element(by.cssContainingText('.button', "Register")).click();
-
-    // get_firebase_data().then(function(data){
-    //   expect(data).toEqual(joc({'users':joc()}));
-    //   done();
-    // });
-
     browser.wait(function(){
       return browser.getCurrentUrl().then((url) => {
         return url == "http://localhost:"+PORT+"/#/user_main"
       })}, 5000);
 
     expect(browser.getCurrentUrl()).toEqual("http://localhost:"+PORT+"/#/user_main");
+
+    console.log("restore_data: " + restore_data);
   });
 
   it("Profile registration, username already exists", function(){
@@ -106,6 +146,8 @@ describe("User Profile Creation", function(){
 
     var el = element(by.binding('errorMsg'));
     expect(el.getText()).toBe('Error creating new user, this email may already be in use.');
+
+    // restore_data(restore_data);
   });
 
   it("Profile registration, stylist does not exist", function(){
