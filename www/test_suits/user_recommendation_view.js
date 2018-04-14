@@ -158,7 +158,7 @@ describe("Stylist Accepts User", function () {
 
         element(by.buttonText('Sign-In')).click();
 
-        browser.get('http://localhost:' + PORT + '/#/user_main');
+        browser.get('http://localhost:' + PORT + '/#/user_recommend');
     });
 
     it("Show list of items of outfit recommendations", function (done) {
