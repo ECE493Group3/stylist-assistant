@@ -1,4 +1,4 @@
-![alt text](resources/android.icon/drawable-xxxhdpi-icon.png "Stylist Assistant")
+![alt text](resources/android/icon/drawable-xxxhdpi-icon.png "Stylist Assistant")
 
 ### Introduction
 
@@ -13,6 +13,8 @@ The project’s potential to disrupt and grow the industry to a large degree mak
 
 ### Build instructions 
 - `npm i`
+
+requres npm 
 
 ### Run instructions 
 - web: `ionic serve`
