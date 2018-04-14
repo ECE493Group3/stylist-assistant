@@ -123,7 +123,7 @@ describe("Stylist Accepts User", function () {
         browser.get('http://localhost:' + PORT + '/#/stylist_main');
     });
 
-    it("User deletes photo on database", function (done) {
+    it("Stylist accepts user’s request", function (done) {
 
         browser.manage().timeouts().pageLoadTimeout(40000);
 
@@ -135,8 +135,28 @@ describe("Stylist Accepts User", function () {
                 clientAcceptButton.click();
 
                 browser.manage().timeouts().implicitlyWait(3000);
-                expect($$('ion-content ion-list ion-item:first-child').isPresent()).toEqual(false);                
-                expect($$('ion-content ion-list ion-item.client-request:first-child').isPresent()).toEqual(false);                
+                expect($$('ion-content ion-list ion-item:first-child').isPresent()).toEqual(true);                
+                expect($$('ion-content ion-list ion-item.client-request').isPresent()).toEqual(false);                
+                // expect(true).toEqual(true); 
+
+                done();
+            })
+    });
+
+    it("Stylist ignores user’s request", function (done) {
+
+        browser.manage().timeouts().pageLoadTimeout(40000);
+
+        browser.executeScript("document.querySelector('.ion-navicon').click()")
+            .then(function () {
+                expect($$('ion-content ion-list ion-item.client-request:first-child').isPresent()).toEqual(true);
+
+                let clientAcceptButton = $$('ion-content ion-list ion-item.client-request:first-child .button:second-child')
+                clientAcceptButton.click();
+
+                browser.manage().timeouts().implicitlyWait(3000);
+                expect($$('ion-content ion-list ion-item:first-child').isPresent()).toEqual(false);
+                expect($$('ion-content ion-list ion-item.client-request').isPresent()).toEqual(false);
                 // expect(true).toEqual(true); 
 
                 done();
