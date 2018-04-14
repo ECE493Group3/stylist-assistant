@@ -57,30 +57,19 @@ describe("User Profile Creation", function(){
 
         console.log(JSON.stringify(data));
         console.log("Finish loading old data");
-        test_json = {
-          "stylists" : {
-            "DSzjEvbRcsPD5cnymJ01fZGoIrPddd2" : {
-              "email" : "test_stylist@domain.ca",
-              "name" : "test_stylist",
-              "password" : "123456",
-            },
-          },
-          "users" : {
-            "JJmxTJiDAAdKkehR7JucOOJb4OZ2" : {
-              "email" : "test_user@domain.ca",
-              "name" : "Test User",
-              "dresslog":{},
-              "recommendeditems":{},
-              "recommendedoutfits":{},
-              "wardrobeitems":{},
-            },
+        stylist_json = {
+          "user_profile_creation" : {
+            "email":"stylistA@domain.ca",
+            "name" : "test_stylist",
+            "password" : "123456",
           },
         };
 
         console.log("Start pushing test data");
 
         // ref.remove();
-        ref.update(test_json);
+        firebase.database().ref().child('stylists').update(stylist_json);
+
         console.log("Finish pushing test data");
         return restore_data != "";  
       })}, 10000);
@@ -112,11 +101,26 @@ describe("User Profile Creation", function(){
   });
 
   it("Profile registration, success", function(done){
-    username.sendKeys('test_users');
-    email.sendKeys('test_users@domain.com');
-    password.sendKeys('test_password');
-    re_password.sendKeys('test_password');
-    stylist_code.sendKeys('kalburgi@ualberta.ca');
+    var new_name = "test_users";
+    var new_email = "test_users@domain.com";
+    var new_pword = "test_password";
+    var exist_stylist_code = "stylistA@domain.ca";
+
+    firebase.auth().signInWithEmailAndPassword(new_email, new_pword)
+      .then(function(){
+        //Shoud not reach here
+        expect("User should not exists").toEqual("User should not exists");
+      })
+      .catch(function(){
+        //User should not exists
+        expect("User should not exists").toEqual("User exists");
+      });
+
+    username.sendKeys(new_name);
+    email.sendKeys(new_email);
+    password.sendKeys(new_pword);
+    re_password.sendKeys(new_pword);
+    stylist_code.sendKeys(exist_stylist_code);
     
     element(by.buttonText('Register')).click();
 
@@ -127,17 +131,49 @@ describe("User Profile Creation", function(){
 
     expect(browser.getCurrentUrl()).toEqual("http://localhost:"+PORT+"/#/user_main");
 
-    console.log("restore_data: " + restore_data);
+    firebase.auth().signInWithEmailAndPassword(new_email, new_pword)
+      .then(function(){
+        console.log("User exists");
+        expect("User should exists").toEqual("User should exists");
+        firebase.auth().onAuthStateChanged(function (u) {
+          if (u) {
+            var stylistsref = firebase.database().ref("users");
+            var stylist = stylistsref.child(u.uid).child('stylist').value();
+            console.log("stylists: " + stylist);
+            expect(stylist).toEqual(exist_stylist_code);
+          };
+        });
+
+        firebase.auth().currentUser.delete().then(function(){
+          console.log("User deleted");
+          expect("User not longer exists").toEqual("User not longer exists");
+        }).catch(function(){
+          expect("User shoud exists").toEqual("User does not exist");
+        });
+      })
+      .catch(function(){
+        //Should not reach here
+        expect("User should exists").toEqual("User did not exist");
+      });
+
     done(); 
   });
 
-  it("Profile registration, username already exists", function(){
-    username.sendKeys('aabbb');
-    email.sendKeys('abc@domain.com');
-    password.sendKeys('123456');
-    re_password.sendKeys('123456');
-    stylist_code.sendKeys('kalburgi@ualberta.ca');
+  it("Profile registration, username already exists", function(done){
+    var new_name = "test_users";
+    var new_email = "test_users@domain.com";
+    var new_pword = "test_password";
+    var exist_stylist_code = "stylistA@domain.ca";
 
+    firebase.auth().createUserWithEmailAndPassword(new_email, new_pword).catch(function(error){
+      console.log("User already exists");
+    });
+
+    username.sendKeys(new_name);
+    email.sendKeys(new_email);
+    password.sendKeys(new_pword);
+    re_password.sendKeys(new_pword);
+    stylist_code.sendKeys(exist_stylist_code);
     element(by.cssContainingText('.button', 'Register')).click();
 
     browser.wait(function(){
@@ -148,23 +184,45 @@ describe("User Profile Creation", function(){
     var el = element(by.binding('errorMsg'));
     expect(el.getText()).toBe('Error creating new user, this email may already be in use.');
 
-    // restore_data(restore_data);
+    firebase.auth().signInWithEmailAndPassword(new_email, new_pword).then(()=> {
+      firebase.auth().currentUser.delete().then(function(){
+        console.log("User deleted");
+        expect("User not long exists").toEqual("User not long exists");
+      }).catch(function(){
+        expect("User shoud exists").toEqual("User does not exist");
+      });  
+    });
+    
     done(); 
   });
 
-  it("Profile registration, stylist does not exist", function(){
-    username.sendKeys('test_users');
-    email.sendKeys('test_users@domain.com');
-    password.sendKeys('test_password');
-    re_password.sendKeys('test_password');
-    stylist_code.sendKeys('stylist_exists');
+  it("Profile registration, stylist does not exist", function(done){
+    var new_name = "test_users";
+    var new_email = "test_users@domain.com";
+    var new_pword = "test_password";
+    var not_exist_stylist_code = "stylistB@domain.ca";
 
+    firebase.auth().signInWithEmailAndPassword(new_email, new_pword)
+      .then(function(){
+        //Shoud not reach here
+        expect("User should not exists").toEqual("User should not exists");
+      })
+      .catch(function(){
+        //User should not exists
+        expect("User should not exists").toEqual("User exists");
+      });
+
+    username.sendKeys(new_name);
+    email.sendKeys(new_email);
+    password.sendKeys(new_pword);
+    re_password.sendKeys(new_pword);
+    stylist_code.sendKeys(not_exist_stylist_code);
 
     element(by.cssContainingText('.button', 'Register')).click();
 
     browser.wait(function(){
       return element(by.binding('errorMsg')).getText().then((text)=>{
-        return text == 'Error creating new user, this email may already be in use.'
+        return text == 'This email is not recognized as a stylist.'
       })}, 5000);
 
     var el = element(by.binding('errorMsg'));
