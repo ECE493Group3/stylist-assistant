@@ -17,6 +17,8 @@ Install the following Python packages:
 - anytree (https://pypi.python.org/pypi/anytree)
 - firebase_admin (https://firebase.google.com/docs/admin/setup)
 
+We recommend using a virtual environment.
+
 # Cloth piece and Outfit Similarity
 ## cloth_hierarchy.py
 create the cloth hierarchy for cloth piece simiarlity comparison

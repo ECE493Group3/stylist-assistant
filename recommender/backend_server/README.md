@@ -7,6 +7,12 @@ handle custom POST request from the application
 These scripts use Python (version 2.7).
 
 Install the following Python packages:
+ - tensorflow (or tensorflow-gpu)
 
+We recommend using a virtual environment.
 
-## server.py
+# Setting up the neural network
+
+To run the neural network, training data needs to be provided.
+Put the two directories `category_convnet_model` and `attribute_tagging_convnet_model`
+created by training into the directory image-processing.
