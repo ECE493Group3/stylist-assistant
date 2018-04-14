@@ -10,7 +10,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-describe("User Wardrobe Input", function () {
+describe("Stylist style Input", function () {
 
     var PORT = 8105;
 
