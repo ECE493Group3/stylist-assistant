@@ -62,6 +62,14 @@ class ImageProcessor(object):
         dataset = tf.data.Dataset.from_tensor_slices([img_filename])
         return dataset.map(cnn_vgg16.pre_process_image_filename)
 
+    def predict_type(self, img_filename):
+        _, cat_name = self.predict_category(img_filename)
+
+        for name, typ in nn_config.CATEGORY_TYPES:
+            if cat_name == name:
+                return typ
+        return None
+
     def predict_category(self, img_filename):
         input_fn = lambda: ImageProcessor._build_neural_net_input(img_filename)
         category_spec = self.category_classifier.predict(input_fn=input_fn)

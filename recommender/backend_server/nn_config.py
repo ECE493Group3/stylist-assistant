@@ -23,3 +23,29 @@ SELECTED_CATEGORIES = [
         ('Top', '19'),
         ('Trunks', '36')
 ]
+
+CATEGORY_TYPES = [
+        ('Blazer', 'Top'),
+        ('Bomber', 'Top'),
+        ('Button-Down', 'Top'),
+        ('Cardigan', 'Top'),
+        ('Chinos', 'Bottom'),
+        ('Coat', 'Full-body'),
+        ('Flannel', 'Top'),
+        ('Henley', 'Top'),
+        ('Hoodie', 'Top'),
+        ('Jacket', 'Top'),
+        ('Jeans', 'Bottom'),
+        ('Jersey', 'Top'),
+        ('Joggers', 'Bottom'),
+        ('Parka', 'Top'),
+        ('Poncho', 'Top'),
+        ('Shorts', 'Bottom'),
+        ('Sweater', 'Top'),
+        ('Sweatpants', 'Bottom'),
+        ('Sweatshorts', 'Bottom'),
+        ('Tank', 'Top'),
+        ('Tee', 'Top'),
+        ('Top', 'Top'),
+        ('Trunks', 'Bottom')
+]
