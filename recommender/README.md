@@ -16,8 +16,11 @@ Install the following Python packages:
 
 - anytree (https://pypi.python.org/pypi/anytree)
 - firebase_admin (https://firebase.google.com/docs/admin/setup)
+>sudo pip install anytree --user
+>sudo pip install firebase_admin
 
-We recommend using a virtual environment.
+
+We recommend using a virtual environment (https://virtualenv.pypa.io/en/stable/)
 
 # Cloth piece and Outfit Similarity
 ## cloth_hierarchy.py
