@@ -112,11 +112,14 @@ describe("Stylist Profile Creation", function () {
     });
 
     it("Profile registration, success", function (done) {
-        username.sendKeys('test_users');
-        email.sendKeys('test_users@domain.com');
-        password.sendKeys('test_password');
-        re_password.sendKeys('test_password');
+        var new_name = "test_stylist";
+        var new_email = "test_stylist@domain.com";
+        var new_pword = "test_password";
 
+        username.sendKeys(new_name);
+        email.sendKeys(new_email);
+        password.sendKeys(new_pword);
+        re_password.sendKeys(new_pword);
         element(by.buttonText('Register')).click();
 
         browser.wait(function () {
@@ -129,26 +132,52 @@ describe("Stylist Profile Creation", function () {
 
         console.log("restore_data: " + restore_data);
 
+        firebase.auth().signInWithEmailAndPassword(new_email, new_pword).then(()=> {
+          firebase.auth().currentUser.delete().then(function(){
+            console.log("User deleted");
+            expect("User not long exists").toEqual("User not long exists");
+          }).catch(function(){
+            expect("User shoud exists").toEqual("User does not exist");
+          });  
+        });
+
         done(); 
     });
 
-    it("Profile registration, username already exists", function () {
-        username.sendKeys('aabbb');
-        email.sendKeys('abc@domain.com');
-        password.sendKeys('123456');
-        re_password.sendKeys('123456');
+    // it("Profile registration, username already exists", function(done){
+    //     var new_name = "test_stylist";
+    //     var new_email = "test_stylist@domain.com";
+    //     var new_pword = "test_password";
 
-        element(by.cssContainingText('.button', 'Register')).click();
+    //     firebase.auth().createUserWithEmailAndPassword(new_email, new_pword).catch(function(error){
+    //       console.log("Stylist already exists");
+    //     });
 
-        browser.wait(function () {
-            return element(by.binding('errorMsg')).getText().then((text) => {
-                return text == 'Error creating new user, this email may already be in use.'
-            })
-        }, 5000);
+    //     username.sendKeys(new_name);
+    //     email.sendKeys(new_email);
+    //     password.sendKeys(new_pword);
+    //     re_password.sendKeys(new_pword);
+    //     element(by.cssContainingText('.button', 'Register')).click();
 
-        var el = element(by.binding('errorMsg'));
-        expect(el.getText()).toBe('Error creating new user, this email may already be in use.');
+    //     browser.wait(function(){
+    //       return element(by.binding('errorMsg')).getText().then((text)=>{
+    //         return text == 'Error creating new user, this email may already be in use.'
+    //       })}, 5000);
+
+    //     var el = element(by.binding('errorMsg'));
+    //     expect(el.getText()).toBe('Error creating new user, this email may already be in use.');
+
+    //     firebase.auth().signInWithEmailAndPassword(new_email, new_pword).then(()=> {
+    //       firebase.auth().currentUser.delete().then(function(){
+    //         console.log("User deleted");
+    //         expect("User not long exists").toEqual("User not long exists");
+    //       }).catch(function(){
+    //         expect("User shoud exists").toEqual("User does not exist");
+    //       });  
+    //     });
         
-        done(); 
-    });
+    //     done(); 
+    //   });
+
+    
 });
